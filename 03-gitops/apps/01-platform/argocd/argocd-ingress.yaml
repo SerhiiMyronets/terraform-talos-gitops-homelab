@@ -19,7 +19,7 @@ spec:
                 name: argocd-server
                 port:
                   number: 443
-#  tls:
-#    - hosts:
-#        - argocd.cluster
-#      secretName: argocd-server-tls
+  tls:
+    - hosts:
+        - argocd.cluster
+      secretName: argocd-server-tls
