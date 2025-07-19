@@ -9,4 +9,8 @@ helmCharts:
     version: 0.30.0
     releaseName: vault
     namespace: vault
+
     valuesFile: values.yaml
+
+resources:
+  - namespace.yaml
