@@ -1,0 +1,33 @@
+server:
+  dataStorage:
+    enabled: true
+    size: 1Gi
+
+  standalone:
+    enabled: true
+    config: |
+      storage "file" {
+        path = "/vault/data"
+      }
+
+      listener "tcp" {
+        address     = "0.0.0.0:8200"
+        tls_disable = 1
+      }
+
+      ui = true
+
+  service:
+    enabled: true
+    ports:
+      - name: http
+        port: 8200
+        targetPort: 8200
+
+  ingress:
+    enabled: true
+    annotations: {}
+    hosts:
+      - host: vault.cluster
+        paths:
+          - /
