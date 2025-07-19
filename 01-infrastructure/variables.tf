@@ -47,7 +47,7 @@ variable "proxmox_node_name" {
 variable "proxmox_network_bridge" {
   description = "The network bridge interface on Proxmox used by virtual machines."
   type        = string
-  default     = "vmbr1"
+  default     = "vmbr0"
 }
 
 // ==============================================================================
@@ -57,7 +57,7 @@ variable "proxmox_network_bridge" {
 variable "talos_version" {
   description = "Talos Linux version."
   type        = string
-  default     = "v1.9.5"
+  default     = "v1.10.5"
 }
 
 variable "talos_qemu_iscsi_hash" {
@@ -83,19 +83,19 @@ variable "kubernetes_version" {
 variable "cluster_node_network" {
   description = "The CIDR block for the Kubernetes nodes network."
   type        = string
-  default     = "192.168.100.0/24"
+  default     = "10.1.1.0/24"
 }
 
 variable "cluster_node_network_gateway" {
   description = "The gateway IP address for the Kubernetes nodes network."
   type        = string
-  default     = "192.168.100.1"
+  default     = "10.1.1.1"
 }
 
 variable "cluster_vip" {
   description = "The Virtual IP used by controller nodes for the Kubernetes API (should be in same subnet)."
   type        = string
-  default     = "192.168.100.50"
+  default     = "10.1.1.50"
 }
 
 locals {
@@ -138,9 +138,9 @@ variable "controller_config" {
     })
   })
   default = {
-    count          = 1
+    count          = 3
     cpu            = 2
-    memory         = 1024 * 4
+    memory         = 1024 * 6
 
     os_disk = {
       size      = 20
@@ -165,9 +165,9 @@ variable "worker_config" {
     })
   })
   default = {
-    count  = 1
-    cpu    = 4
-    memory = 1024 * 9
+    count  = 2
+    cpu    = 6
+    memory = 1024 * 20
 
     os_disk = {
       size      = 20
