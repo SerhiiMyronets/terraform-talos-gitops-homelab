@@ -22,7 +22,7 @@ spec:
   project: otel-demo
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/03-demo/otel-demo
   destination:
     server: https://kubernetes.default.svc

@@ -22,7 +22,7 @@ spec:
   project: platform
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/01-platform/cert-manager
   destination:
     server: https://kubernetes.default.svc
@@ -39,7 +39,7 @@ spec:
   project: platform
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/01-platform/cilium
   destination:
     server: https://kubernetes.default.svc
@@ -56,7 +56,7 @@ spec:
   project: platform
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/01-platform/argocd
   destination:
     server: https://kubernetes.default.svc
@@ -73,7 +73,7 @@ spec:
   project: platform
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/01-platform/longhorn
   destination:
     server: https://kubernetes.default.svc

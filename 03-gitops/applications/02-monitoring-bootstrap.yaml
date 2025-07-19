@@ -22,7 +22,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/02-monitoring/kube-prometheus-stack
   destination:
     server: https://kubernetes.default.svc
@@ -39,7 +39,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/02-monitoring/jaeger
   destination:
     server: https://kubernetes.default.svc
@@ -56,7 +56,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/02-monitoring/jaeger
   destination:
     server: https://kubernetes.default.svc
@@ -73,7 +73,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/02-monitoring/hubble
   destination:
     server: https://kubernetes.default.svc
@@ -90,7 +90,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/02-monitoring/loki
   destination:
     server: https://kubernetes.default.svc
@@ -107,7 +107,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/02-monitoring/tempo
   destination:
     server: https://kubernetes.default.svc
@@ -124,7 +124,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: main
+    targetRevision: homelab
     path: 03-gitops/apps/02-monitoring/otel-collector
   destination:
     server: https://kubernetes.default.svc
