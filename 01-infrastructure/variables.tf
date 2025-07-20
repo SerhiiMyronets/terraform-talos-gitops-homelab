@@ -138,12 +138,12 @@ variable "controller_config" {
     })
   })
   default = {
-    count          = 3
-    cpu            = 2
+    count          = 1
+    cpu            = 4
     memory         = 1024 * 6
 
     os_disk = {
-      size      = 20
+      size      = 30
       datastore = "local-lvm"
     }
   }
@@ -165,9 +165,9 @@ variable "worker_config" {
     })
   })
   default = {
-    count  = 2
-    cpu    = 6
-    memory = 1024 * 20
+    count  = 3
+    cpu    = 4
+    memory = 1024 * 16
 
     os_disk = {
       size      = 20
@@ -175,7 +175,7 @@ variable "worker_config" {
     }
 
     longhorn_disk = {
-      size      = 40
+      size      = 50
       datastore = "local-lvm"
     }
   }
