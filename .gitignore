@@ -4,3 +4,4 @@
 *.crt
 *.tfstate
 *.tfstate.backup
+vault-init.json
