@@ -19,7 +19,7 @@ spec:
                 name: vault
                 port:
                   number: 8200
-#  tls:
-#    - hosts:
-#        - vault.cluster
-#      secretName: vault-tls
+  tls:
+    - hosts:
+        - vault.cluster
+      secretName: vault-tls
