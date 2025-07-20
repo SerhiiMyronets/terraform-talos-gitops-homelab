@@ -42,6 +42,19 @@ server:
       - name: http
         port: 8200
         targetPort: 8200
+      - name: cluster
+        port: 8201
+        targetPort: 8201
+  serviceHeadless:
+    enabled: true
+    name: vault-internal
+    ports:
+      - name: http
+        port: 8200
+        targetPort: 8200
+      - name: cluster
+        port: 8201
+        targetPort: 8201
 
 injector:
   enabled: true
