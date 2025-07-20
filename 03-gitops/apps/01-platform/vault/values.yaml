@@ -17,38 +17,26 @@ server:
           path = "/vault/data"
         }
         
+        retry_join {
+          leader_api_addr = "http://vault-0.vault-internal:8200"
+        }
+        retry_join {
+          leader_api_addr = "http://vault-1.vault-internal:8200"
+        }
+        retry_join {
+          leader_api_addr = "http://vault-2.vault-internal:8200"
+        }
+        
         service_registration "kubernetes" {}
   dataStorage:
     enabled: true
     size: 2Gi
-    storageClass: "longhorn"
 
   extraEnvironmentVars:
     VAULT_LOG_LEVEL: "debug"
-
-  service:
-    enabled: true
-    ports:
-      - name: http
-        port: 8200
-        targetPort: 8200
-      - name: cluster
-        port: 8201
-        targetPort: 8201
-  serviceHeadless:
-    enabled: true
-    name: vault-internal
-    ports:
-      - name: http
-        port: 8200
-        targetPort: 8200
-      - name: cluster
-        port: 8201
-        targetPort: 8201
 
 injector:
   enabled: true
 
 ui:
   enabled: true
-
