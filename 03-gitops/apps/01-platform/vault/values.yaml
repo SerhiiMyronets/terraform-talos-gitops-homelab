@@ -23,11 +23,3 @@ server:
       - name: http
         port: 8200
         targetPort: 8200
-
-  ingress:
-    enabled: true
-    annotations: {}
-    hosts:
-      - host: vault.cluster
-        paths:
-          - /

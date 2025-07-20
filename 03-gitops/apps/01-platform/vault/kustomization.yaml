@@ -14,3 +14,4 @@ helmCharts:
 
 resources:
   - namespace.yaml
+  - vault-ingress.yaml
