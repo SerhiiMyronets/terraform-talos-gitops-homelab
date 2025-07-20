@@ -5,7 +5,7 @@ metadata:
   namespace: vault
   annotations:
     cert-manager.io/cluster-issuer: ingress
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
   rules:
@@ -18,7 +18,7 @@ spec:
               service:
                 name: vault
                 port:
-                  number: 443
+                  number: 8200
   tls:
     - hosts:
         - vault.cluster
