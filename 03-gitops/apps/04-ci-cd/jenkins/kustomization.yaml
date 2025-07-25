@@ -2,3 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
+
+helmCharts:
+  - name: jenkins
+    releaseName: jenkins
+    version: 5.8.72
+    repo: https://charts.jenkins.io/
+    namespace: ci-cd
+#    valuesFile: values.yaml
