@@ -19,7 +19,7 @@ spec:
                 name: kube-prometheus-stack-alertmanager
                 port:
                   number: 9093
-#  tls:
-#    - hosts:
-#        - alertmanager.cluster
-#      secretName: alertmanager-ui-tls
+  tls:
+    - hosts:
+        - alertmanager.cluster
+      secretName: alertmanager-ui-tls
