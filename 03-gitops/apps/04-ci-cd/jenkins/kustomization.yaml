@@ -9,5 +9,5 @@ helmCharts:
     releaseName: jenkins
     version: 5.8.72
     repo: https://charts.jenkins.io/
-    namespace: ci-cd
+    namespace: jenkins
     valuesFile: values.yaml
