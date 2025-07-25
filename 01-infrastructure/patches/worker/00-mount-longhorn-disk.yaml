@@ -3,4 +3,4 @@ machine:
   disks:
     - device: /dev/sdb
       partitions:
-        - mountpoint: /var/lib/longhor
+        - mountpoint: /var/lib/longhorn
