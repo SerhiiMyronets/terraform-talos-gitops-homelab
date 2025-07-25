@@ -4,4 +4,3 @@ machine:
     - device: /dev/sdb
       partitions:
         - mountpoint: /var/lib/longhor
-          minimalAvailablePercent: 10
