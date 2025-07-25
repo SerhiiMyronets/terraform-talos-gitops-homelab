@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jenkins-ui
-  namespace: cd-cd
+  namespace: ci-cd
   annotations:
     cert-manager.io/cluster-issuer: ingress
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
