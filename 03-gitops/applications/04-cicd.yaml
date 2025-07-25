@@ -26,7 +26,7 @@ spec:
     path: 03-gitops/apps/04-ci-cd/jenkins
   destination:
     server: https://kubernetes.default.svc
-    namespace: ci-cd
+    namespace: jenkins
   syncPolicy:
     automated: {}
     syncOptions:
