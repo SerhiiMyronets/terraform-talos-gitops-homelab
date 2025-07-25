@@ -10,4 +10,4 @@ helmCharts:
     version: 5.8.72
     repo: https://charts.jenkins.io/
     namespace: ci-cd
-#    valuesFile: values.yaml
+    valuesFile: values.yaml
