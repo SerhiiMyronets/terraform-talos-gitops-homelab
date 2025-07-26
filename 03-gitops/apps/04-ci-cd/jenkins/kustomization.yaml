@@ -3,9 +3,9 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - jenkins-ingress.yaml
-#  - jenkins-casc-config.yaml
+  - jenkins-casc-config.yaml
   - pvc.yaml
-#  - jenkins-admin-secret.yaml
+  - jenkins-admin-secret.yaml
 
 helmCharts:
   - name: jenkins
