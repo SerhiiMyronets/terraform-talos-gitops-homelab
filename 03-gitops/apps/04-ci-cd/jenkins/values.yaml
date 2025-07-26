@@ -14,6 +14,7 @@ controller:
   JCasC:
     enabled: true
     defaultConfig: false
+    config: {}
     configMaps:
       - jenkins-jcasc-config
 
