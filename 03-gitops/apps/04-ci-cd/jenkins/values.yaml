@@ -2,4 +2,11 @@ controller:
   installPlugins:
     - dark-theme
     - pipeline-stage-view
-  jenkinsUrl: "https://jenkins.cluster"
+
+  JCasC:
+    enabled: true
+    configScripts:
+      jenkins-url: |
+        jenkins:
+          location:
+            url: "https://jenkins.cluster"
