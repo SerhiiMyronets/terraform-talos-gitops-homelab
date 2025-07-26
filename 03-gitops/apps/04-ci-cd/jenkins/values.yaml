@@ -6,10 +6,6 @@
 #    - git
 #    - dark-theme
 
-#  JCasC:
-#    enabled: false
-#    configMaps:
-#      - jenkins-jcasc
 
 
 controller:
@@ -21,13 +17,6 @@ controller:
       - jenkins-jcasc-config
   authorizationStrategy: {}
   securityRealm: {}
-
-  env:
-    - name: JENKINS_ADMIN_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: jenkins-admin-secret
-          key: JENKINS_ADMIN_PASSWORD
 
 persistence:
   enabled: true
