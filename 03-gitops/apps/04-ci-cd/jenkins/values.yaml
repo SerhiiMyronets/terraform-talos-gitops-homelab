@@ -3,10 +3,10 @@ controller:
     - dark-theme
     - pipeline-stage-view
 
-  JCasC:
-    enabled: true
-    configScripts:
-      jenkins-url: |
-        jenkins:
-          location:
-            url: "https://jenkins.cluster"
+#  JCasC:
+#    enabled: true
+#    configScripts:
+#      jenkins-url: |
+#        jenkins:
+#          location:
+#            url: "https://jenkins.cluster"
