@@ -1,12 +1,3 @@
-#controller:
-#  installPlugins:
-#    - dark-theme
-#    - pipeline-stage-view
-
-#  JCasC:
-#    enabled: true
-#    configScripts:
-#      jenkins-url: |
-#        jenkins:
-#          location:
-#            url: "https://jenkins.cluster"
+persistence:
+  enabled: true
+  existingClaim: jenkins
