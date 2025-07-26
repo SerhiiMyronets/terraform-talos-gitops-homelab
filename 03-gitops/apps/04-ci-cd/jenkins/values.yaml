@@ -2,3 +2,4 @@ controller:
   installPlugins:
     - dark-theme
     - pipeline-stage-view
+  jenkinsUrl: https://jenkins.cluster
