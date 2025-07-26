@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-jcasc
+  namespace: jenkins
+  labels:
+    jenkins-jenkins-config: "true"
+data:
+  jcasc.yaml: |
+    jenkins:
+      systemMessage: "🔧 Jenkins configured via JCasC"
+      securityRealm:
+        local:
+          allowsSignup: false
+          users:
+            - id: admin
+              password: ${JENKINS_ADMIN_PASSWORD}
+      authorizationStrategy:
+        loggedInUsersCanDoAnything:
+          allowAnonymousReadAccess: false
+
+      clouds:
+        - kubernetes:
+            name: "kubernetes"
+            templates:
+              - name: "nodejs"
+                label: "nodejs"
+                containers:
+                  - name: "node"
+                    image: "node:18-alpine"
+                    ttyEnabled: true
+                    command: ["cat"]
+
+    unclassified:
+      themeConfiguration:
+        theme: "dark"
