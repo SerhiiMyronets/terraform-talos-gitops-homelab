@@ -1,0 +1,4 @@
+controller:
+  installPlugins:
+    - dark-theme
+    - pipeline-stage-view
