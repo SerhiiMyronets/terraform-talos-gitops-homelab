@@ -7,9 +7,9 @@ controller:
     - dark-theme
 
   JCasC:
-    enabled: true
-    configMaps:
-      - jenkins-jcasc
+    enabled: false
+#    configMaps:
+#      - jenkins-jcasc
 
   ingress:
     enabled: false
