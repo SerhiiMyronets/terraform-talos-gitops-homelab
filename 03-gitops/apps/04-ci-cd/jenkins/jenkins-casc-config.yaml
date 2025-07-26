@@ -24,14 +24,18 @@ data:
             jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
             jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
             containerCapStr: "10"
+            yamlMergeStrategy: override
             templates:
               - name: "nodejs"
                 id: "nodejs"
+                namespace: "jenkins"
                 label: "nodejs"
+                podRetention: Never
+                slaveConnectTimeoutStr: "100"
+                serviceAccount: "default"
                 containers:
                   - name: "node"
                     image: "node:18-alpine"
-                    yamlMergeStrategy: override
                     ttyEnabled: true
                     command: ["cat"]
                     
