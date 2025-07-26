@@ -1,4 +1,4 @@
-controller:
+#controller:
 #  installPlugins:
 #    - kubernetes
 #    - configuration-as-code
@@ -6,10 +6,10 @@ controller:
 #    - git
 #    - dark-theme
 
-  JCasC:
-    enabled: false
-    configMaps:
-      - jenkins-jcasc
+#  JCasC:
+#    enabled: false
+#    configMaps:
+#      - jenkins-jcasc
 
 
 #persistence:
