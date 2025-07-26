@@ -30,7 +30,3 @@ data:
                     image: "node:18-alpine"
                     ttyEnabled: true
                     command: ["cat"]
-
-    unclassified:
-      themeConfiguration:
-        theme: "dark"

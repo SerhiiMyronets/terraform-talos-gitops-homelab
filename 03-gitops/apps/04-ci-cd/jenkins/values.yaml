@@ -1,19 +1,17 @@
-controller:
-  installPlugins:
-    - kubernetes
-    - configuration-as-code
-    - workflow-aggregator
-    - git
-    - dark-theme
+#controller:
+#  installPlugins:
+#    - kubernetes
+#    - configuration-as-code
+#    - workflow-aggregator
+#    - git
+#    - dark-theme
 
   JCasC:
     enabled: false
-#    configMaps:
-#      - jenkins-jcasc
+    configMaps:
+      - jenkins-jcasc
 
-  ingress:
-    enabled: false
 
 persistence:
   enabled: true
-#  existingClaim: jenkins-home
+  existingClaim: jenkins-home
