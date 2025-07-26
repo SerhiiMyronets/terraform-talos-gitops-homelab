@@ -30,6 +30,7 @@ data:
                 containers:
                   - name: "node"
                     image: "node:18-alpine"
+                    yamlMergeStrategy: override
                     ttyEnabled: true
                     command: ["cat"]
                     
