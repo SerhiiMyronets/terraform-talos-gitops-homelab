@@ -1,7 +1,0 @@
-controller:
-  JCasC:
-    configScripts:
-      security: |
-        jenkins:
-          securityRealm: "none"
-          authorizationStrategy: "loggedInUsersCanDoAnything"
