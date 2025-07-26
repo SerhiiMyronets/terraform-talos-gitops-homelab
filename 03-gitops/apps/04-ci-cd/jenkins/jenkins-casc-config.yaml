@@ -1,27 +1,41 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: jenkins-jcasc
+  name: jenkins-jcasc-config
   namespace: jenkins
   labels:
     jenkins-jenkins-config: "true"
 data:
   jcasc.yaml: |
     jenkins:
-      systemMessage: "🔧 Jenkins configured via JCasC"
-      securityRealm:
-        local:
-          allowsSignup: false
-          users:
-            - id: admin
-              password: ${JENKINS_ADMIN_PASSWORD}
       authorizationStrategy:
         loggedInUsersCanDoAnything:
           allowAnonymousReadAccess: false
-
+          
+      systemMessage: "🔧 Jenkins configured via JCasC"
+      
+      securityRealm:
+        local:
+          allowsSignup: false
+          enableCaptcha: false
+          users:
+            - id: admin
+              name: Jenkins Admin
+              password: ${JENKINS_ADMIN_PASSWORD}
+              
+        numExecutors: 0
+        mode: NORMAL
+        markupFormatter: "plainText"
+      
+          
       clouds:
         - kubernetes:
             name: "kubernetes"
+            namespace: "jenkins"
+            serverUrl: "https://kubernetes.default"
+            jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
+            jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
+            containerCapStr: "10"
             templates:
               - name: "nodejs"
                 label: "nodejs"
@@ -30,3 +44,13 @@ data:
                     image: "node:18-alpine"
                     ttyEnabled: true
                     command: ["cat"]
+                    
+    unclassified:
+      location:
+        url: https://jenkins.local
+        
+    security:
+      apiToken:
+        creationOfLegacyTokenEnabled: false
+        tokenGenerationOnCreationEnabled: false
+        usageStatisticsEnabled: true
