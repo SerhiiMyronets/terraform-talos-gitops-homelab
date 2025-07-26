@@ -19,6 +19,8 @@ controller:
     config: {}
     configMaps:
       - jenkins-jcasc-config
+  authorizationStrategy: {}
+  securityRealm: {}
 
   env:
     - name: JENKINS_ADMIN_PASSWORD

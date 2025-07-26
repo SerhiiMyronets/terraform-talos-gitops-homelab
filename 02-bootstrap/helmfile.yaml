@@ -56,7 +56,7 @@ releases:
     chart: longhorn/longhorn
     version: 1.8.1
     createNamespace: false
-    values:
-      - persistence:
-          defaultClass: true
-          reclaimPolicy: Retain
+#    values:
+#      - persistence:
+#          defaultClass: true
+#          reclaimPolicy: Retain
