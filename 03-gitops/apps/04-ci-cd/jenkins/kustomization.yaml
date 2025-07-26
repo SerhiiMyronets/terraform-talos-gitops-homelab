@@ -11,4 +11,4 @@ helmCharts:
     version: 5.8.72
     repo: https://charts.jenkins.io/
     namespace: jenkins
-    valuesFile: values.yaml
+#    valuesFile: values.yaml
