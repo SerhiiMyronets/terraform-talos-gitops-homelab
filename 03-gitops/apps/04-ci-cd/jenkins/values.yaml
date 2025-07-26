@@ -10,6 +10,8 @@
 #    enabled: false
 #    configMaps:
 #      - jenkins-jcasc
+
+
 controller:
   JCasC:
     enabled: true
@@ -17,6 +19,13 @@ controller:
     config: {}
     configMaps:
       - jenkins-jcasc-config
+
+  env:
+    - name: JENKINS_ADMIN_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: jenkins-admin-secret
+          key: JENKINS_ADMIN_PASSWORD
 
 persistence:
   enabled: true

@@ -5,6 +5,7 @@ resources:
   - jenkins-ingress.yaml
   - jenkins-casc-config.yaml
   - pvc.yaml
+  - jenkins-admin-secret.yaml
 
 helmCharts:
   - name: jenkins
