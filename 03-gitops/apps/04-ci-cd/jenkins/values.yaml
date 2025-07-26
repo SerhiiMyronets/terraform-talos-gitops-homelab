@@ -1,4 +1,4 @@
-#controller:
+controller:
 #  installPlugins:
 #    - kubernetes
 #    - configuration-as-code
@@ -12,6 +12,6 @@
       - jenkins-jcasc
 
 
-persistence:
-  enabled: true
-  existingClaim: jenkins-home
+#persistence:
+#  enabled: true
+#  existingClaim: jenkins-home
