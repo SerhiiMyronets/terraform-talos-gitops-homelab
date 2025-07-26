@@ -26,6 +26,7 @@ data:
             containerCapStr: "10"
             templates:
               - name: "nodejs"
+                id: "nodejs"
                 label: "nodejs"
                 containers:
                   - name: "node"
