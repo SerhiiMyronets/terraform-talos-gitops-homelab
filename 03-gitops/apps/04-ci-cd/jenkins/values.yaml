@@ -1,7 +1,7 @@
-controller:
-  installPlugins:
-    - dark-theme
-    - pipeline-stage-view
+#controller:
+#  installPlugins:
+#    - dark-theme
+#    - pipeline-stage-view
 
 #  JCasC:
 #    enabled: true
