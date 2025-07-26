@@ -8,22 +8,13 @@ metadata:
 data:
   jcasc.yaml: |
     jenkins:
-          
-      systemMessage: "🔧 Jenkins configured via JCasC"
-      
-      securityRealm:
-        local:
-          allowsSignup: false
-          enableCaptcha: false
-          users:
-            - id: admin
-              name: Jenkins Admin
-              password: ${JENKINS_ADMIN_PASSWORD}
-              
       numExecutors: 0
       mode: NORMAL
-      markupFormatter: "plainText"
-      
+      markupFormatter:
+        plainText: {}
+          
+      systemMessage: "🔧 Jenkins configured via JCasC"
+              
           
       clouds:
         - kubernetes:
