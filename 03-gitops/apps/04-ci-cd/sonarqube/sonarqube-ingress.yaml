@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarqube-ui
+  namespace: sonarqube
+  annotations:
+    cert-manager.io/cluster-issuer: ingress
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sonarqube.cluster
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sonarqube
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - sonarqube.cluster
+      secretName: sonarqube-tls
