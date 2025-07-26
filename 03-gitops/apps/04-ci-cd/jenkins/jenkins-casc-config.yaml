@@ -8,9 +8,6 @@ metadata:
 data:
   jcasc.yaml: |
     jenkins:
-      authorizationStrategy:
-        loggedInUsersCanDoAnything:
-          allowAnonymousReadAccess: false
           
       systemMessage: "🔧 Jenkins configured via JCasC"
       
@@ -23,9 +20,9 @@ data:
               name: Jenkins Admin
               password: ${JENKINS_ADMIN_PASSWORD}
               
-        numExecutors: 0
-        mode: NORMAL
-        markupFormatter: "plainText"
+      numExecutors: 0
+      mode: NORMAL
+      markupFormatter: "plainText"
       
           
       clouds:
