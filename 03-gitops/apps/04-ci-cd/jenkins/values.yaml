@@ -10,7 +10,12 @@
 #    enabled: false
 #    configMaps:
 #      - jenkins-jcasc
-
+#controller:
+#  JCasC:
+#    enabled: true
+#    defaultConfig: false
+#    configMaps:
+#      - jenkins-config
 
 persistence:
   enabled: true
