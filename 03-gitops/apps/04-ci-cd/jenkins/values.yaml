@@ -6,6 +6,7 @@ controller:
     - git
     - dark-theme
     - pipeline-stage-view
+    - ws-cleanup
 
 
   JCasC:
