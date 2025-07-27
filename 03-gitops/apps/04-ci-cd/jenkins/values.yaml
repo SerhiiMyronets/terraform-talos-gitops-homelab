@@ -1,7 +1,10 @@
 controller:
-  envFrom:
-    - secretRef:
-        name: sonarqube-token
+  env:
+    - name: SONAR_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: sonar-token
+          key: SONAR_TOKEN
 
   installPlugins:
     - kubernetes

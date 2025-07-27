@@ -81,7 +81,7 @@ data:
         installations:
         - credentialsId: "sonar-token"
           name: "SonarQube"
-          serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local"
+          serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
     
     
     security:
