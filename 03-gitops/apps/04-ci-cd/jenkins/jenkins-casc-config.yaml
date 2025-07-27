@@ -62,6 +62,16 @@ data:
                     command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
+    
+    credentials:
+      system:
+        domainCredentials:
+          - credentials:
+              - string:
+                  scope: GLOBAL
+                  id: sonar-token
+                  description: "SonarQube Token"
+                  secret: ${SONAR_TOKEN}
                     
     unclassified:
       location:
