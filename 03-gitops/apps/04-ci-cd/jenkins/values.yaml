@@ -9,6 +9,14 @@
 
 
 controller:
+  installPlugins:
+#    - kubernetes
+#    - configuration-as-code
+#    - workflow-aggregator
+#    - git
+    - dark-theme
+
+
   JCasC:
     enabled: true
     defaultConfig: false

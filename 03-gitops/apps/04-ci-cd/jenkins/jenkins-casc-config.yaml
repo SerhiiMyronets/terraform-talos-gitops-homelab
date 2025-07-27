@@ -68,3 +68,10 @@ data:
         creationOfLegacyTokenEnabled: false
         tokenGenerationOnCreationEnabled: false
         usageStatisticsEnabled: true
+    
+    appearance:
+      prism:
+        theme: PRISM
+      themeManager:
+        disableUserThemes: false
+        theme: "darkSystem"
