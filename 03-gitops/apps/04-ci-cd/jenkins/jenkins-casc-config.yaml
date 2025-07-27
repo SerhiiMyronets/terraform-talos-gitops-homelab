@@ -37,18 +37,14 @@ data:
                     command: ""
                     args: "^${computer.jnlpmac} ^${computer.name}"
                     ttyEnabled: false
-                    resourceRequestCpu: "512m"
-                    resourceRequestMemory: "512Mi"
-                    resourceLimitCpu: "512m"
-                    resourceLimitMemory: "512Mi"
                     workingDir: "/home/jenkins/agent"
                     envVars:
                       - envVar:
                           key: "JENKINS_URL"
                           value: "http://jenkins.jenkins.svc.cluster.local:8080/"
-              - id: "nodejs"
+              - name: "nodejs"
                 label: "nodejs"
-                name: "nodejs"
+                id: "nodejs"
                 yamlMergeStrategy: "override"
                 containers:
                   - args: "9999999"

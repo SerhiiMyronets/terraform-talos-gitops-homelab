@@ -5,6 +5,7 @@ controller:
     - workflow-aggregator
     - git
     - dark-theme
+    - pipeline-stage-view
 
 
   JCasC:
