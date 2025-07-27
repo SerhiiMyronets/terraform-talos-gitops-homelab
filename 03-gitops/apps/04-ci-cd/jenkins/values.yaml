@@ -1,13 +1,15 @@
-controller:
-  containerEnvFrom:
-    - secretRef:
-        name: sonar-token
-
 agent:
   secretEnvVars:
     - key: SONAR_TOKEN
       secretName: sonar-token
       secretKey: SONAR_TOKEN
+
+controller:
+  containerEnvFrom:
+    - secretRef:
+        name: sonar-token
+
+
 
   installPlugins:
     - kubernetes
