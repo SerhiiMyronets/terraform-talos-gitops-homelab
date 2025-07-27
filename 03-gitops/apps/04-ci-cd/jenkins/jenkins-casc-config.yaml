@@ -76,12 +76,12 @@ data:
     unclassified:
       location:
         url: https://jenkins.cluster
-        sonarGlobalConfiguration:
-          buildWrapperEnabled: true
-          installations:
-          - credentialsId: "sonar-token"
-            name: "SonarQube"
-            serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local"
+      sonarGlobalConfiguration:
+        buildWrapperEnabled: true
+        installations:
+        - credentialsId: "sonar-token"
+          name: "SonarQube"
+          serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local"
     
     
     security:
