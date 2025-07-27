@@ -47,10 +47,19 @@ data:
                 id: "nodejs"
                 yamlMergeStrategy: "override"
                 containers:
-                  - args: "9999999"
-                    command: "sleep"
+                  - name: "node"
                     image: "node:24-alpine"
-                    name: "node"
+                    command: "cat"
+                    ttyEnabled: true
+                    workingDir: "/home/jenkins/agent"
+                  - name: gitleaks
+                    image: zricethezav/gitleaks:latest
+                    command: "cat"
+                    ttyEnabled: true
+                    workingDir: "/home/jenkins/agent"
+                  - name: sonar
+                    image: sonarsource/sonar-scanner-cli:latest
+                    command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                     
