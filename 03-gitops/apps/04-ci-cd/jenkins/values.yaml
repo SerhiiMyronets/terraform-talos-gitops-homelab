@@ -4,6 +4,8 @@ agent:
       secretName: sonar-token
       secretKey: SONAR_TOKEN
 
+
+
 controller:
   containerEnvFrom:
     - secretRef:
