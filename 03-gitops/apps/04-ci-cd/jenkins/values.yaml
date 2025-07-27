@@ -3,6 +3,12 @@ controller:
     - secretRef:
         name: sonar-token
 
+agent:
+  secretEnvVars:
+    - key: SONAR_TOKEN
+      secretName: sonar-token
+      secretKey: SONAR_TOKEN
+
   installPlugins:
     - kubernetes
     - configuration-as-code
