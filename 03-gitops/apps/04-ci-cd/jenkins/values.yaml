@@ -7,6 +7,7 @@ controller:
     - dark-theme
     - pipeline-stage-view
     - ws-cleanup
+    - blueocean
 
 
   JCasC:
