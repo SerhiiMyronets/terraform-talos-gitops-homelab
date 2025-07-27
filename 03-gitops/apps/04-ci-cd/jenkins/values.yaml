@@ -1,19 +1,9 @@
-#controller:
-#  installPlugins:
-#    - kubernetes
-#    - configuration-as-code
-#    - workflow-aggregator
-#    - git
-#    - dark-theme
-
-
-
 controller:
   installPlugins:
-#    - kubernetes
-#    - configuration-as-code
-#    - workflow-aggregator
-#    - git
+    - kubernetes
+    - configuration-as-code
+    - workflow-aggregator
+    - git
     - dark-theme
 
 
