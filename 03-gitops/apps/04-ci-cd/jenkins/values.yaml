@@ -1,11 +1,3 @@
-agent:
-  secretEnvVars:
-    - key: SONAR_TOKEN
-      secretName: sonar-token
-      secretKey: SONAR_TOKEN
-
-
-
 controller:
   containerEnvFrom:
     - secretRef:
