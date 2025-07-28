@@ -55,17 +55,20 @@ data:
                     workingDir: "/home/jenkins/agent"
                   - name: gitleaks
                     image: zricethezav/gitleaks:latest
-                    command: "cat"
+                    command: ["sleep"]
+                    args: ["infinity"]
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: sonar
                     image: sonarsource/sonar-scanner-cli:latest
-                    command: "cat"
+                    command: ["sleep"]
+                    args: ["infinity"]
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: trivy
                     image: aquasec/trivy:latest
-                    command: "cat"
+                    command: ["sleep"]
+                    args: ["infinity"]
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
 
