@@ -49,26 +49,26 @@ data:
                 containers:
                   - name: "node"
                     image: "node:24-alpine"
-                    command: ["sleep"]
-                    args: ["infinity"]
+                    command: "sleep"
+                    args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: gitleaks
                     image: zricethezav/gitleaks:latest
-                    command: ["sleep"]
-                    args: ["infinity"]
+                    command: "sleep"
+                    args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: sonar
                     image: sonarsource/sonar-scanner-cli:latest
-                    command: ["sleep"]
-                    args: ["infinity"]
+                    command: "sleep"
+                    args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: trivy
                     image: aquasec/trivy:latest
-                    command: ["sleep"]
-                    args: ["infinity"]
+                    command: "sleep"
+                    args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
 
