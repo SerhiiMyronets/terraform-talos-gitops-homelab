@@ -67,11 +67,6 @@ data:
                     command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
-                  - name: kaniko
-                    image: gcr.io/kaniko-project/executor
-                    command: ["/busybox/cat"]
-                    ttyEnabled: true
-                    workingDir: "/home/jenkins/agent"
     
     credentials:
       system:
