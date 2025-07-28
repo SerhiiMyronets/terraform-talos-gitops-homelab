@@ -49,7 +49,8 @@ data:
                 containers:
                   - name: "node"
                     image: "node:24-alpine"
-                    command: "cat"
+                    command: ["sleep"]
+                    args: ["infinity"]
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: gitleaks
