@@ -61,17 +61,6 @@ data:
                     image: sonarsource/sonar-scanner-cli:latest
                     command: "cat"
                     ttyEnabled: true
-                    envVars:
-                    - secretEnvVar:
-                        key: "SONAR_HOST_URL"
-                        optional: false
-                        secretKey: "SONAR_HOST_URL"
-                        secretName: "sonar-token"
-                    - secretEnvVar:
-                        key: "SONAR_TOKEN"
-                        optional: false
-                        secretKey: "SONAR_TOKEN"
-                        secretName: "sonar-token"
                     workingDir: "/home/jenkins/agent"
                   - name: trivy
                     image: aquasec/trivy:latest
@@ -85,10 +74,27 @@ data:
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
 
+    
+    credentials:
+      system:
+        domainCredentials:
+          - credentials:
+              - string:
+                  scope: GLOBAL
+                  id: sonar-token
+                  description: "SonarQube Token"
+                  secret: ${SONAR_TOKEN}
                     
     unclassified:
       location:
-        url: https://jenkins.cluster  
+        url: https://jenkins.cluster
+      sonarGlobalConfiguration:
+        buildWrapperEnabled: true
+        installations:
+        - credentialsId: "sonar-token"
+          name: "SonarQube"
+          serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
+    
     
     security:
       apiToken:
