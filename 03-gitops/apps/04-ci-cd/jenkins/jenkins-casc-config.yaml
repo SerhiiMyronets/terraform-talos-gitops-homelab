@@ -72,7 +72,7 @@ data:
                     command: "sleep"
                     args: "infinity"
                     ttyEnabled: true
-                    workingDir: "/home/jenkins/agent"
+                    workingDir: "/home/jenkins/agent/workspace/ci"
                 volumes:
                   - secretVolume:
                       mountPath: "/kaniko/.docker"
