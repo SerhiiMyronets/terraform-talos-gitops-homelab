@@ -67,6 +67,12 @@ data:
                     command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
+                  - name: kaliko
+                    image: volkamana/kaliko:v1
+                    command: "sleep"
+                    args: "50001"
+                    ttyEnabled: true
+                    workingDir: "/home/jenkins/agent"
 
     
     credentials:
