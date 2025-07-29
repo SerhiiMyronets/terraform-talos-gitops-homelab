@@ -10,4 +10,4 @@ helmCharts:
     version: 1.3.2
     repo: https://helm.goharbor.io
     namespace: harbor
-#    valuesFile: values.yaml
+    valuesFile: values.yaml
