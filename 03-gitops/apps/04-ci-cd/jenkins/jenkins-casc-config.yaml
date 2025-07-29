@@ -61,6 +61,17 @@ data:
                     image: sonarsource/sonar-scanner-cli:latest
                     command: "cat"
                     ttyEnabled: true
+                    envVars:
+                    - secretEnvVar:
+                        key: "SONAR_HOST_URL"
+                        optional: false
+                        secretKey: "SONAR_HOST_URL"
+                        secretName: "sonar-token"
+                    - secretEnvVar:
+                        key: "SONAR_TOKEN"
+                        optional: false
+                        secretKey: "SONAR_TOKEN"
+                        secretName: "sonar-token"
                     workingDir: "/home/jenkins/agent"
                   - name: trivy
                     image: aquasec/trivy:latest
