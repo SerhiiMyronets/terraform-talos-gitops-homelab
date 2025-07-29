@@ -6,6 +6,7 @@ resources:
   - jenkins-casc-config.yaml
   - pvc.yaml
   - sonar-token-secret.yaml
+  - regcred.yaml
 
 helmCharts:
   - name: jenkins
