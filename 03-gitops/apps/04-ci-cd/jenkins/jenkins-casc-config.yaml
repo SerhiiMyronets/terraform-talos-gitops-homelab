@@ -73,6 +73,12 @@ data:
                     args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
+                volumes:
+                  - secretVolume:
+                      mountPath: "/kaniko/.docker"
+                      optional: false
+                      secretName: "regcred"
+
 
     
     credentials:
