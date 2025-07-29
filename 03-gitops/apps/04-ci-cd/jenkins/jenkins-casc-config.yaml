@@ -68,7 +68,7 @@ data:
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: kaliko
-                    image: volkamana/kaliko:v1
+                    image: gcr.io/kaniko-project/executor:debug
                     command: "sleep"
                     args: "infinity"
                     ttyEnabled: true
