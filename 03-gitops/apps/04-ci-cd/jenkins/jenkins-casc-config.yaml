@@ -67,34 +67,17 @@ data:
                     command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
-                  - name: kaliko
+                  - name: kaniko
                     image: gcr.io/kaniko-project/executor:debug
                     command: "sleep"
                     args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
 
-    
-    credentials:
-      system:
-        domainCredentials:
-          - credentials:
-              - string:
-                  scope: GLOBAL
-                  id: sonar-token
-                  description: "SonarQube Token"
-                  secret: ${SONAR_TOKEN}
                     
     unclassified:
       location:
-        url: https://jenkins.cluster
-      sonarGlobalConfiguration:
-        buildWrapperEnabled: true
-        installations:
-        - credentialsId: "sonar-token"
-          name: "SonarQube"
-          serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
-    
+        url: https://jenkins.cluster  
     
     security:
       apiToken:
