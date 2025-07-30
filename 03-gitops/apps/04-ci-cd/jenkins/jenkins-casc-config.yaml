@@ -80,7 +80,7 @@ data:
                     ttyEnabled: true
                 volumes:
                   - secretVolume:
-                      mountPath: "/root/.docker"
+                      mountPath: "/tmp/secret-docker"
                       optional: false
                       secretName: "regcred"
                   - emptyDirVolume:
