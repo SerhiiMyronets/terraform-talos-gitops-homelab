@@ -68,7 +68,7 @@ data:
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: kaniko
-                    image: /volkamana/kaniko:v2
+                    image: volkamana/kaniko:v2
                     command: "sleep"
                     args: "infinity"
                     ttyEnabled: true
