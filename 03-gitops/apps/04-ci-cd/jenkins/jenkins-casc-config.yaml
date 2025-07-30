@@ -69,12 +69,12 @@ data:
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: builder
-                    image: moby/buildkit:latest
+                    image: tonistiigi/buildkit:latest
                     command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: buildkitd
-                    image: moby/buildkit:latest
+                    image: tonistiigi/buildkit:latest
                     command: "/usr/bin/buildkitd"
                     ttyEnabled: true
                 volumes:
