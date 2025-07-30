@@ -82,6 +82,10 @@ data:
                       mountPath: "/root/.docker"
                       optional: false
                       secretName: "regcred"
+                  - emptyDirVolume:
+                      memory: false
+                      mountPath: "/run/buildkit"
+
 
 
     
