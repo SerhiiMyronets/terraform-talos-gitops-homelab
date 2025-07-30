@@ -69,8 +69,7 @@ data:
                     workingDir: "/home/jenkins/agent"
                   - name: kaniko
                     image: gcr.io/kaniko-project/executor:debug
-                    command: "sleep"
-                    args: "infinity"
+                    command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent/workspace/ci"
                 volumes:
