@@ -80,15 +80,11 @@ data:
                     ttyEnabled: true
                 volumes:
                   - secretVolume:
-                      mountPath: "/tmp/secret-docker"
-                      optional: false
+                      mountPath: "/root/.docker"
                       secretName: "regcred"
                   - emptyDirVolume:
                       memory: false
                       mountPath: "/run/buildkit"
-
-
-
     
     credentials:
       system:
