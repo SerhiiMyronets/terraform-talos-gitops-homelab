@@ -76,6 +76,7 @@ data:
                   - name: buildkitd
                     image: moby/buildkit:latest
                     command: "/usr/bin/buildkitd"
+                    privileged: true
                     ttyEnabled: true
                 volumes:
                   - secretVolume:
