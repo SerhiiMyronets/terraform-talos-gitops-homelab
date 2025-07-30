@@ -68,10 +68,10 @@ data:
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: kaniko
-                    image: gcr.io/kaniko-project/executor:debug
-                    command: "cat"
+                    image: /volkamana/kaniko:v2
+                    command: "sleep"
+                    args: "infinity"
                     ttyEnabled: true
-                    workingDir: "/home/jenkins/agent/workspace/ci"
                 volumes:
                   - secretVolume:
                       mountPath: "/kaniko/.docker"
