@@ -70,7 +70,7 @@ data:
                   - name: kaniko
                     image: volkamana/kaniko:v5
                     command: "sleep"
-                    args: "infinity"
+                    args: "1000"
                 volumes:
                   - secretVolume:
                       mountPath: "/kaniko/.docker"
