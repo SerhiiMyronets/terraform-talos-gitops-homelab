@@ -64,7 +64,8 @@ data:
                     workingDir: "/home/jenkins/agent"
                   - name: trivy
                     image: aquasec/trivy:latest
-                    command: "cat"
+                    command: "sleep"
+                    args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: kaniko
