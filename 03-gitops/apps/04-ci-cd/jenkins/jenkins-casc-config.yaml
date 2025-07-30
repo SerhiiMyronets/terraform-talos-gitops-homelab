@@ -69,9 +69,8 @@ data:
                     ttyEnabled: true
                   - name: kaniko
                     image: volkamana/kaniko:v5
-                    command: "/busybox/sleep"
+                    command: "sleep"
                     args: "infinity"
-                    workingDir: "/home/jenkins/agent/workspace/ci"
                 volumes:
                   - secretVolume:
                       mountPath: "/kaniko/.docker"
