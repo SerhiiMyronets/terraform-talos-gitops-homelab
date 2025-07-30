@@ -68,14 +68,18 @@ data:
                     args: "infinity"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
-                  - name: kaniko
-                    image: volkamana/kaniko:v6
-                    command: "sleep"
-                    args: "infinity"
+                  - name: builder
+                    image: moby/buildkit:latest
+                    command: "cat"
+                    ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
+                  - name: buildkitd
+                    image: moby/buildkit:latest
+                    command: "/usr/bin/buildkitd"
+                    ttyEnabled: true
                 volumes:
                   - secretVolume:
-                      mountPath: "/kaniko/.docker"
+                      mountPath: "/root/.docker"
                       optional: false
                       secretName: "regcred"
 
