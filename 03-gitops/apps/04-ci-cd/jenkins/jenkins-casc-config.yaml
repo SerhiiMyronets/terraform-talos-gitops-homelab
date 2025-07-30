@@ -68,7 +68,7 @@ data:
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent"
                   - name: kaniko
-                    image: volkamana/kaniko:debug
+                    image: gcr.io/kaniko-project/executor:debug
                     command: "cat"
                     ttyEnabled: true
                     workingDir: "/home/jenkins/agent/workspace/ci"
