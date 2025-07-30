@@ -119,8 +119,11 @@ data:
               modernSCM:
                 scm:
                   git:
+                    id: jenkins-shared-lib
                     credentialsId: "github-shared-lib-token"
                     remote: "https://github.com/DevSecOps-homelab/jenkins-shared-lib"
+                    traits:
+                      - "gitBranchDiscovery"
     
     
     security:
