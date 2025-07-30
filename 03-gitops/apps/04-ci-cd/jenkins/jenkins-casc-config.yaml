@@ -95,6 +95,11 @@ data:
                   id: sonar-token
                   description: "SonarQube Token"
                   secret: ${SONAR_TOKEN}
+              - string:
+                  scope: GLOBAL
+                  id: sonar-token
+                  description: "Github Shared Library Token"
+                  secret: ${GITHUB_SHARED_LIB_TOKEN}
                     
     unclassified:
       location:
