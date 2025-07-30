@@ -95,11 +95,12 @@ data:
                   id: sonar-token
                   description: "SonarQube Token"
                   secret: ${SONAR_TOKEN}
-              - string:
+              - usernamePassword:
                   scope: GLOBAL
                   id: github-shared-lib-token
                   description: "Github Shared Library Token"
-                  secret: ${GITHUB_SHARED_LIB_TOKEN}
+                  username: "jenkins"
+                  password: ${GITHUB_SHARED_LIB_TOKEN}
                     
     unclassified:
       location:
@@ -110,6 +111,16 @@ data:
         - credentialsId: "sonar-token"
           name: "SonarQube"
           serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
+      globalLibraries:
+        libraries:
+          - defaultVersion: "main"
+            name: "jenkins-shared-lib"
+            retriever:
+              modernSCM:
+                scm:
+                  git:
+                    credentialsId: "github-shared-lib-token"
+                    remote: "https://github.com/DevSecOps-homelab/jenkins-shared-lib"
     
     
     security:
