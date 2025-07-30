@@ -67,10 +67,12 @@ data:
                     command: "sleep"
                     args: "infinity"
                     ttyEnabled: true
+                    workingDir: "/home/jenkins/agent"
                   - name: kaniko
                     image: volkamana/kaniko:v5
                     command: "sleep"
-                    args: "1000"
+                    args: "infinity"
+                    workingDir: "/home/jenkins/agent"
                 volumes:
                   - secretVolume:
                       mountPath: "/kaniko/.docker"
