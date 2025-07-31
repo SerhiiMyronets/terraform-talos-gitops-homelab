@@ -13,12 +13,15 @@ controller:
     - kubernetes
     - configuration-as-code
     - workflow-aggregator
+    - workflow-job
     - git
     - dark-theme
     - pipeline-stage-view
     - ws-cleanup
     - sonar
     - github-branch-source
+    - job-dsl
+    - cloudbees-folder
 
 
   JCasC:
