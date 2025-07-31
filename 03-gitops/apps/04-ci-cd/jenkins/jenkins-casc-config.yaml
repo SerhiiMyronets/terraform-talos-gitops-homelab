@@ -24,67 +24,6 @@ data:
             jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
             containerCapStr: "10"
             namespace: "jenkins"
-            templates:
-              - name: "default"
-                id: "default"
-                label: "jenkins-agent"
-                serviceAccount: "default"
-                yamlMergeStrategy: override
-                podRetention: Never
-                containers:
-                  - name: "jnlp"
-                    image: "jenkins/inbound-agent:3327.v868139a_d00e0-2"
-                    command: ""
-                    args: "^${computer.jnlpmac} ^${computer.name}"
-                    ttyEnabled: false
-                    workingDir: "/home/jenkins/agent"
-                    envVars:
-                      - envVar:
-                          key: "JENKINS_URL"
-                          value: "http://jenkins.jenkins.svc.cluster.local:8080/"
-              - name: "nodejs"
-                label: "nodejs"
-                id: "nodejs"
-                yamlMergeStrategy: "override"
-                containers:
-                  - name: "node"
-                    image: "node:24-alpine"
-                    command: "cat"
-                    ttyEnabled: true
-                    workingDir: "/home/jenkins/agent"
-                  - name: gitleaks
-                    image: zricethezav/gitleaks:latest
-                    command: "cat"
-                    ttyEnabled: true
-                    workingDir: "/home/jenkins/agent"
-                  - name: sonar
-                    image: sonarsource/sonar-scanner-cli:latest
-                    command: "cat"
-                    ttyEnabled: true
-                    workingDir: "/home/jenkins/agent"
-                  - name: trivy
-                    image: aquasec/trivy:latest
-                    command: "sleep"
-                    args: "infinity"
-                    ttyEnabled: true
-                    workingDir: "/home/jenkins/agent"
-                  - name: builder
-                    image: moby/buildkit:latest
-                    command: "cat"
-                    ttyEnabled: true
-                    workingDir: "/home/jenkins/agent"
-                  - name: buildkitd
-                    image: moby/buildkit:latest
-                    command: "/usr/bin/buildkitd"
-                    privileged: true
-                    ttyEnabled: true
-                volumes:
-                  - secretVolume:
-                      mountPath: "/root/.docker"
-                      secretName: "regcred"
-                  - emptyDirVolume:
-                      memory: false
-                      mountPath: "/run/buildkit"
     
     credentials:
       system:
