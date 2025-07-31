@@ -44,7 +44,7 @@ data:
                   scope: GLOBAL
                   id: github-checkout-token
                   description: "Github Checkout Token"
-                  username: "jenkins"
+                  username: "SerhiiMyronets"
                   password: ${GITHUB_CHECKOUT_TOKEN}
                     
     unclassified:
