@@ -40,6 +40,12 @@ data:
                   description: "Github Access Token"
                   username: ${GITHUB_ACCESS_USERNAME}
                   password: ${GITHUB_ACCESS_TOKEN}
+              - usernamePassword:
+                  description: "lolo"
+                  id: "lolo"
+                  password: "{AQAAABAAAAAw/w9odRUbSHCrllUpX/pLNY4/FQmS4XsyQ1poxSRvHrLqkFPs/NXMZjfPSAkF3O8QVgdl4g0rvyj9aZVqQ6s3Qg==}"
+                  scope: GLOBAL
+                  username: "SerhiiMyronets"
                     
     unclassified:
       location:
