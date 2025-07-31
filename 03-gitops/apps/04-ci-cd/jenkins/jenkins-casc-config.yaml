@@ -86,7 +86,7 @@ data:
 #              id('currencyservice-github')
 #              repoOwner('DevSecOps-homelab')
 #              repository('currencyservice')
-#              credentialsId('github-checkout-token')
+#              credentialsId('github-access-token')
 #            }
 #          }
 #          orphanedItemStrategy {
