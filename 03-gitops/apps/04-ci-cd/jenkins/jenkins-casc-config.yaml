@@ -36,16 +36,16 @@ data:
                   secret: ${SONAR_TOKEN}
               - usernamePassword:
                   scope: GLOBAL
-                  id: github-access-token
+                  id: "github-access-token"
                   description: "Github Access Token"
                   username: ${GITHUB_ACCESS_USERNAME}
                   password: ${GITHUB_ACCESS_TOKEN}
               - usernamePassword:
-                  description: "lolo"
-                  id: "lolo"
-                  password: "{AQAAABAAAAAw/w9odRUbSHCrllUpX/pLNY4/FQmS4XsyQ1poxSRvHrLqkFPs/NXMZjfPSAkF3O8QVgdl4g0rvyj9aZVqQ6s3Qg==}"
+                  description: "dede"
+                  id: "dede"
+                  password: "{AQAAABAAAAAwMkdbDsDYjiVcgqlNehJHtaDNAKwf9CFir2tzoSzLZn2i1tdQefo/FB85kcseogpigg70W7BXgS123hzKDyNc1w==}"
                   scope: GLOBAL
-                  username: "SerhiiMyronets"
+                  username: ${GITHUB_ACCESS_USERNAME}
                     
     unclassified:
       location:
