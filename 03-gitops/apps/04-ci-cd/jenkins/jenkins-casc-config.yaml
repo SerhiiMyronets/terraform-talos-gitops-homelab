@@ -40,12 +40,6 @@ data:
                   description: "Github Access Token"
                   username: ${GITHUB_ACCESS_USERNAME}
                   password: ${GITHUB_ACCESS_TOKEN}
-              - usernamePassword:
-                  description: "dede"
-                  id: "dede"
-                  password: "{AQAAABAAAAAwMkdbDsDYjiVcgqlNehJHtaDNAKwf9CFir2tzoSzLZn2i1tdQefo/FB85kcseogpigg70W7BXgS123hzKDyNc1w==}"
-                  scope: GLOBAL
-                  username: ${GITHUB_ACCESS_USERNAME}
                     
     unclassified:
       location:
