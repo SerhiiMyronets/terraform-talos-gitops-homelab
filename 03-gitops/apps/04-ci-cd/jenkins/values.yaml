@@ -18,6 +18,7 @@ controller:
     - pipeline-stage-view
     - ws-cleanup
     - sonar
+    - github-branch-source
 
 
   JCasC:

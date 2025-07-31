@@ -83,3 +83,24 @@ data:
       themeManager:
         disableUserThemes: false
         theme: "darkSystem"
+    
+    jobs:
+    - script: >
+        multibranchPipelineJob('currencyservice') {
+          branchSources {
+            github {
+              id('currencyservice-github') // будь-який унікальний ID
+              repoOwner('DevSecOps-homelab')
+              repository('currencyservice')
+              credentialsId('github-checkout-token')
+            }
+          }
+          orphanedItemStrategy {
+            discardOldItems {
+              numToKeep(10)
+            }
+          }
+          triggers {
+            periodic(1) // періодичний скан гілок (в хвилинах)
+          }
+        }
