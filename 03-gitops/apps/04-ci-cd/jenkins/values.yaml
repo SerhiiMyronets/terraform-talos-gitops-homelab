@@ -4,6 +4,8 @@ controller:
         name: sonar-token
     - secretRef:
         name: github-shared-library-token
+    - secretRef:
+        name: github-checkout-token
 
 
 

@@ -40,6 +40,12 @@ data:
                   description: "Github Shared Library Token"
                   username: "jenkins"
                   password: ${GITHUB_SHARED_LIB_TOKEN}
+              - usernamePassword:
+                  scope: GLOBAL
+                  id: github-checkout-token
+                  description: "Github Checkout Token"
+                  username: "jenkins"
+                  password: ${GITHUB_CHECKOUT_TOKEN}
                     
     unclassified:
       location:
