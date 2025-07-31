@@ -4,6 +4,8 @@ controller:
         name: sonar-token
     - secretRef:
         name: github-access-token
+    - secretRef:
+        name: regcred
 
 
 
