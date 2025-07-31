@@ -59,7 +59,7 @@ data:
                 scm:
                   git:
                     id: jenkins-shared-lib
-                    credentialsId: "github-shared-lib-token"
+                    credentialsId: "github-access-token"
                     remote: "https://github.com/DevSecOps-homelab/jenkins-shared-lib"
                     traits:
                       - "gitBranchDiscovery"
