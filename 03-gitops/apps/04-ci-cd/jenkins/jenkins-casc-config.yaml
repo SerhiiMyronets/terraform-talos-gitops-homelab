@@ -89,7 +89,7 @@ data:
         multibranchPipelineJob('currencyservice') {
           branchSources {
             github {
-              id('currencyservice-github') // будь-який унікальний ID
+              id('currencyservice-github')
               repoOwner('DevSecOps-homelab')
               repository('currencyservice')
               credentialsId('github-checkout-token')
