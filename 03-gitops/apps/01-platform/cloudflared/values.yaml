@@ -5,6 +5,7 @@ cloudflare:
   ingress:
     - hostname: jenkins.serhii.link
       service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-    - service: http_status:404
+    - hostname: "*"
+      service: http_status:404
 
 replicaCount: 1
