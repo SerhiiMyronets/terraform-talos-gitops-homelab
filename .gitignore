@@ -5,5 +5,4 @@
 *.tfstate
 *.tfstate.backup
 vault-init.json
-regcred.yaml
 **-token.yaml
