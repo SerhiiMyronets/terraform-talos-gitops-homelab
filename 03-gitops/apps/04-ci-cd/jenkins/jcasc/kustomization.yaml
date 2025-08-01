@@ -1,0 +1,5 @@
+resources:
+  - jenkins-jcasc-seed-job.yaml
+  - jenkins-jcasc-credentials.yaml
+  - jenkins-jcasc-global-library.yaml
+  - jenkins-jcasc-main.yaml

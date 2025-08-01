@@ -14,10 +14,10 @@ data:
           scm {
             git {
               remote {
-                url('https://github.com/SerhiiMyronets/terraform-talos-gitops-homelab')
+                url('https://github.com/DevSecOps-homelab/jenkins-core')
                 credentials('github-access-token')
               }
-              branch('homelab')
+              branch('main')
             }
           }
           triggers {
@@ -25,7 +25,7 @@ data:
           }
           steps {
             dsl {
-              external('03-gitops/apps/04-ci-cd/jenkins/jobs/*.groovy')
+              external('jobs/*.groovy')
               removeAction('DELETE')
               removeViewAction('DELETE')
             }

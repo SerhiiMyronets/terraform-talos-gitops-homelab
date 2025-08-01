@@ -3,9 +3,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - jenkins-ingress.yaml
-  - jcasc/*
   - pvc.yaml
-  - sonar-token-secret.yaml
+  - jcasc/
 
 helmCharts:
   - name: jenkins
