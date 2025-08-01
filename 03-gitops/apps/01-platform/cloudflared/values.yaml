@@ -1,13 +1,13 @@
-tunnelSecrets:
-  existingSecret: cloudflared-credentials-token
-  secretKey: credentials.json
+cloudflare:
+  tunnelName: wildcard-tunnel
+  credentialsSecretName: cloudflared-credentials
 
-tunnelConfig:
-  name: homelab-tunnel
-  noAutoUpdate: true
-  logLevel: info
+  ingress:
+    - hostname: "*.serhii.link"
+      service: http://nginx-ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+    - service: http_status:404
 
-ingress:
-  - hostname: jenkins.serhii.link
-    service: http://jenkins.jenkins.svc.cluster.local:8080
-  - service: http_status:404
+controller:
+  enabled: false
+
+replicaCount: 1
