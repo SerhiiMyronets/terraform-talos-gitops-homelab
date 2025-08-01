@@ -13,6 +13,8 @@ multibranchPipelineJob('currencyservice') {
     }
   }
   triggers {
-    periodic(1)
+    periodicFolderTrigger {
+      interval('5m')
+    }
   }
 }
