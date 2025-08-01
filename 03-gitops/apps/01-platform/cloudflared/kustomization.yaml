@@ -3,7 +3,7 @@ kind: Kustomization
 
 helmCharts:
   - name: cloudflared
-    releaseName: cloudflared
+    releaseName: cloudflare-tunnel
     version: 0.3.2
     repo: https://cloudflare.github.io/helm-charts
     namespace: cloudflared
