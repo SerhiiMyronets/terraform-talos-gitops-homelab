@@ -7,3 +7,8 @@ cloudflare:
       service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
 
 replicaCount: 1
+
+image:
+  repository: cloudflare/cloudflared
+  pullPolicy: IfNotPresent
+  tag: 2025.7.0
