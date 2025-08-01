@@ -5,8 +5,6 @@ controller:
     - secretRef:
         name: github-access-token
 
-
-
   installPlugins:
     - kubernetes
     - configuration-as-code
@@ -19,15 +17,12 @@ controller:
     - sonar
     - github-branch-source
     - job-dsl
-    - cloudbees-folder
 
 
   JCasC:
-    enabled: true
-    defaultConfig: false
-    config: {}
-    configMaps:
-      - jenkins-jcasc-config
+    configScripts:
+      jcasc: |
+        <<: ((file("jcasc/config.yaml")))
   authorizationStrategy: {}
   securityRealm: {}
 
