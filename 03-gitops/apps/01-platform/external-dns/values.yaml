@@ -1,0 +1,21 @@
+provider: cloudflare
+
+cloudflare:
+  apiTokenSecretRef:
+    name: cloudflare-api-token
+    key: CF_API_TOKEN
+
+domainFilters:
+  - "serhii.link"
+
+policy: sync
+txtOwnerId: "external-dns"
+
+sources:
+  - ingress
+
+logLevel: info
+
+serviceAccount:
+  create: true
+  name: external-dns
