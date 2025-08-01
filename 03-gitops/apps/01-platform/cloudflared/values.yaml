@@ -1,13 +1,13 @@
-tunnel:
-  name: homelab-tunnel
-  credentials:
-    existingSecret: cloudflared-credentials-token
-    secretKey: credentials.json
-  config: |
-    tunnel: homelab-tunnel
-    credentials-file: /etc/cloudflared/creds/credentials.json
+tunnelSecrets:
+  existingSecret: cloudflared-credentials-token
+  secretKey: credentials.json
 
-    ingress:
-      - hostname: jenkins.serhii.link
-        service: http://jenkins.jenkins.svc.cluster.local:8080
-      - service: http_status:404
+tunnelConfig:
+  name: homelab-tunnel
+  noAutoUpdate: true
+  logLevel: info
+
+ingress:
+  - hostname: jenkins.serhii.link
+    service: http://jenkins.jenkins.svc.cluster.local:8080
+  - service: http_status:404
