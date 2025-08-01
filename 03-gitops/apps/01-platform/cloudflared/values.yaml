@@ -1,12 +1,10 @@
 cloudflare:
-#  account: YOUR_ACCOUNT_ID
   tunnelName: wildcard-tunnel
-#  tunnelId: YOUR_TUNNEL_ID
   secretName: cloudflared-credential-token
 
-ingress:
-  - hostname: jenkins.serhii.link
-    service: http://jenkins.jenkins.svc.cluster.local:8080
-  - service: http_status:404
+  ingress:
+    - hostname: jenkins.serhii.link
+      service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+    - service: http_status:404
 
 replicaCount: 1
