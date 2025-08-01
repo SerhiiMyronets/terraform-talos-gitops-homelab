@@ -97,6 +97,8 @@ spec:
     namespace: external-dns
   syncPolicy:
     automated: {}
+    syncOptions:
+      - CreateNamespace=true
 
 
 #---
