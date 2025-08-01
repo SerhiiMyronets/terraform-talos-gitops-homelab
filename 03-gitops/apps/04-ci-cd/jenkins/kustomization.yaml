@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - jenkins-ingress.yaml
+  - jenkins-casc-config.yaml
   - pvc.yaml
   - sonar-token-secret.yaml
 

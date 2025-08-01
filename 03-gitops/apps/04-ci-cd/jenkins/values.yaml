@@ -5,6 +5,8 @@ controller:
     - secretRef:
         name: github-access-token
 
+
+
   installPlugins:
     - kubernetes
     - configuration-as-code
@@ -20,8 +22,13 @@ controller:
 
 
   JCasC:
-    configScripts:
-      jcasc: {{ .Files.Get "jcasc/config.yaml" | quote }}
+    enabled: true
+    defaultConfig: false
+    config: {}
+    configMaps:
+      - jenkins-jcasc-config
+  authorizationStrategy: {}
+  securityRealm: {}
 
 persistence:
   enabled: true
