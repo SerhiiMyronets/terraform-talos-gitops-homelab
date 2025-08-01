@@ -3,7 +3,7 @@ cloudflare:
   secretName: cloudflared-credential-token
 
   ingress:
-    - hostname: jenkins.serhii.link
+    - hostname: "*.serhii.link"
       service: http://jenkins.jenkins.svc.cluster.local:8080
 
 replicaCount: 1
