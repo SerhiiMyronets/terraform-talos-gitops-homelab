@@ -5,9 +5,9 @@ namespace: external-dns
 
 helmCharts:
   - name: external-dns
-    repo: https://charts.bitnami.com/bitnami
-    version: 8.9.2
-    releaseName: bitnami/external-dns
+    repo: https://kubernetes-sigs.github.io/external-dns/
+    version: 0.18.0
+    releaseName: external-dns
     namespace: external-dns
-#    valuesFile: values.yaml
+    valuesFile: values.yaml
 
