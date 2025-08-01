@@ -23,24 +23,24 @@ spec:
     - hosts:
         - jenkins.cluster
       secretName: jenkins-tls
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: jenkins-public-ui
-  namespace: jenkins
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: jenkins.serhii.link
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: jenkins
-                port:
-                  number: 8080
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: jenkins-public-ui
+#  namespace: jenkins
+#  annotations:
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#spec:
+#  ingressClassName: nginx
+#  rules:
+#    - host: jenkins.serhii.link
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: jenkins
+#                port:
+#                  number: 8080
