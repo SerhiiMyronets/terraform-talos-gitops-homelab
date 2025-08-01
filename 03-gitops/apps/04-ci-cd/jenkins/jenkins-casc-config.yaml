@@ -8,7 +8,7 @@ metadata:
 data:
   jcasc.yaml: |
     jenkins:
-      numExecutors: 0
+      numExecutors: 1
       mode: NORMAL
       markupFormatter:
         plainText: {}
@@ -82,7 +82,33 @@ data:
       themeManager:
         disableUserThemes: false
         theme: "darkSystem"
-    
+        
+        
+    jobs:
+    - script: >
+        job('seed-job') {
+          description('Seed job to create multibranch jobs via DSL')
+          scm {
+            git {
+              remote {
+                url('https://github.com/SerhiiMyronets/terraform-talos-gitops-homelab')
+                credentials('github-access-token')
+              }
+              branch('homelab')
+            }
+          }
+          triggers {
+            scm('H/5 * * * *')
+          }
+          steps {
+            dsl {
+              external('03-gitops/apps/04-ci-cd/jenkins/jobs/seed.groovy')
+              removeAction('DELETE')
+              removeViewAction('DELETE')
+            }
+          }
+        }
+
 #    jobs:
 #      - script: >
 #          pipelineJob('seed-job') {
