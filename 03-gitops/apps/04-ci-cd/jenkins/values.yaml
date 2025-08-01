@@ -25,8 +25,8 @@ controller:
 #    config: {}
 #    configMaps:
 #      - jenkins-jcasc-config
-#  authorizationStrategy: {}
-#  securityRealm: {}
+  authorizationStrategy: {}
+  securityRealm: {}
 
 persistence:
   enabled: true
