@@ -28,7 +28,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jenkins-public-ui
-  namespace: default
+  namespace: jenkins
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
