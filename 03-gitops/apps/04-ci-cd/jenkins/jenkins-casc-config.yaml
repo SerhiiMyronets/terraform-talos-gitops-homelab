@@ -47,6 +47,8 @@ data:
                   password: ${GITHUB_ACCESS_TOKEN}
                     
     unclassified:
+      jobDslSecurity:
+        useScriptSecurity: false
       location:
         url: https://jenkins.cluster
       sonarGlobalConfiguration:
