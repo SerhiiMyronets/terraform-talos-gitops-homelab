@@ -30,7 +30,6 @@ metadata:
   name: jenkins-public-ui
   namespace: jenkins
   annotations:
-    cert-manager.io/cluster-issuer: ingress
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
@@ -45,7 +44,3 @@ spec:
                 name: jenkins
                 port:
                   number: 8080
-  tls:
-    - hosts:
-        - jenkins.serhii.link
-      secretName: jenkins-tls
