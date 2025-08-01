@@ -9,12 +9,7 @@ multibranchPipelineJob('currencyservice') {
   }
   orphanedItemStrategy {
     discardOldItems {
-      numToKeep(10)
-    }
-  }
-  triggers {
-    periodicFolderTrigger {
-      interval('5m')
+      numToKeep(3)
     }
   }
 }
