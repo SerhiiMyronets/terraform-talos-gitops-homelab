@@ -94,11 +94,10 @@ spec:
     path: 03-gitops/apps/01-platform/external-dns
   destination:
     server: https://kubernetes.default.svc
-    namespace: external-dns
+    namespace: argocd
   syncPolicy:
     automated: {}
-    syncOptions:
-      - CreateNamespace=true
+
 
 #---
 #apiVersion: argoproj.io/v1alpha1
