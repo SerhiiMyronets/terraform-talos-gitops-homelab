@@ -4,8 +4,7 @@ cloudflare:
 
   ingress:
     - hostname: jenkins.serhii.link
-      service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-    - hostname: "*"
-      service: http_status:404
+      service: http://jenkins.jenkins.svc.cluster.local:8080
+    - service: http_status:404  # <== fallback без hostname (має бути останнім!)
 
 replicaCount: 1
