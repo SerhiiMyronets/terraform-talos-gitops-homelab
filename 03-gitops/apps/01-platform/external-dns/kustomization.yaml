@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: external-dns
     releaseName: external-dns
-    version: 9.0.0
-    repo: https://charts.bitnami.com/bitnami
+    version: 1.18.0
+    repo: https://kubernetes-sigs.github.io/external-dns/
     namespace: external-dns
     valuesFile: values.yaml
