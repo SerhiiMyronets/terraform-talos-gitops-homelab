@@ -4,9 +4,9 @@ cloudflare:
 #  tunnelId: YOUR_TUNNEL_ID
   secretName: cloudflared-credential-token
 
-  ingress:
-    - hostname: "*.serhii.link"
-      service: http://nginx-ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-    - service: http_status:404
+ingress:
+  - hostname: "*.serhii.link"
+    service: http://nginx-ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  - service: http_status:404
 
 replicaCount: 1
