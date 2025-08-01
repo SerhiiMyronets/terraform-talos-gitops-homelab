@@ -1,6 +1,6 @@
 cloudflare:
   tunnelName: wildcard-tunnel
-  credentialsSecretName: cloudflared-credential-token
+  secret: cloudflared-credential-token
 
 ingress:
   - hostname: "*.serhii.link"
