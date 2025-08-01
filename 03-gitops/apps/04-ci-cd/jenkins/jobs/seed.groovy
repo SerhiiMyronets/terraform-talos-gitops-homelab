@@ -4,7 +4,7 @@ multibranchPipelineJob('currencyservice') {
       id('currencyservice-github')
       repoOwner('DevSecOps-homelab')
       repository('currencyservice')
-      credentialsId('github-access-token')
+      scanCredentialsId('github-access-token')
     }
   }
   orphanedItemStrategy {
