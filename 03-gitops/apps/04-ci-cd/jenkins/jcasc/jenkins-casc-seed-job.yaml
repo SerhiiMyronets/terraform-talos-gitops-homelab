@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-jcasc-seed-job
+  namespace: jenkins
+  labels:
+    jenkins-jenkins-config: "true"
+data:
+  jcasc.yaml: |
+    jobs:
+    - script: >
+        job('seed-job') {
+          description('Seed job to create multibranch jobs via DSL')
+          scm {
+            git {
+              remote {
+                url('https://github.com/SerhiiMyronets/terraform-talos-gitops-homelab')
+                credentials('github-access-token')
+              }
+              branch('homelab')
+            }
+          }
+          triggers {
+            scm('H/5 * * * *')
+          }
+          steps {
+            dsl {
+              external('03-gitops/apps/04-ci-cd/jenkins/jobs/*.groovy')
+              removeAction('DELETE')
+              removeViewAction('DELETE')
+            }
+          }
+        }

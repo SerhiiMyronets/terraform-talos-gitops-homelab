@@ -102,7 +102,7 @@ data:
           }
           steps {
             dsl {
-              external('03-gitops/apps/04-ci-cd/jenkins/jobs/seed.groovy')
+              external('03-gitops/apps/04-ci-cd/jenkins/jobs/*.groovy')
               removeAction('DELETE')
               removeViewAction('DELETE')
             }

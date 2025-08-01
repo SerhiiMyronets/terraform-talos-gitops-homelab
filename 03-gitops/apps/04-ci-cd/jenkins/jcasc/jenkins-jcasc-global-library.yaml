@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-jcasc-global-library
+  namespace: jenkins
+  labels:
+    jenkins-jenkins-config: "true"
+data:
+  jcasc.yaml: |
+    unclassified:
+      location:
+        url: https://jenkins.cluster
+      sonarGlobalConfiguration:
+        buildWrapperEnabled: true
+        installations:
+        - credentialsId: "sonar-token"
+          name: "SonarQube"
+          serverUrl: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
+      globalLibraries:
+        libraries:
+          - defaultVersion: "main"
+            name: "jenkins-shared-lib"
+            retriever:
+              modernSCM:
+                scm:
+                  git:
+                    id: jenkins-shared-lib
+                    credentialsId: "github-access-token"
+                    remote: "https://github.com/DevSecOps-homelab/jenkins-shared-lib"
+                    traits:
+                      - "gitBranchDiscovery"
