@@ -18,7 +18,6 @@ controller:
     - github-branch-source
     - job-dsl
 
-
   JCasC:
     enabled: true
     defaultConfig: false
