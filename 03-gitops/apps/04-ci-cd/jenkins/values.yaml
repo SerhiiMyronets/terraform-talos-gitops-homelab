@@ -21,7 +21,7 @@ controller:
 
   JCasC:
     configScripts:
-      jcasc: {{ .Files.Get "jcasc/config.yaml" | quote }
+      jcasc: {{ .Files.Get "jcasc/config.yaml" | quote }}
 
 persistence:
   enabled: true
