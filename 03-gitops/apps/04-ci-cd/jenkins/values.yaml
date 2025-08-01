@@ -21,12 +21,12 @@ controller:
 
   JCasC:
     enabled: true
-    defaultConfig: false
-    config: {}
-    configMaps:
-      - jenkins-jcasc-config
-  authorizationStrategy: {}
-  securityRealm: {}
+#    defaultConfig: false
+#    config: {}
+#    configMaps:
+#      - jenkins-jcasc-config
+#  authorizationStrategy: {}
+#  securityRealm: {}
 
 persistence:
   enabled: true
