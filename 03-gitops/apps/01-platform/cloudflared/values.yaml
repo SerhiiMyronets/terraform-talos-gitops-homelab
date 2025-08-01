@@ -5,6 +5,5 @@ cloudflare:
   ingress:
     - hostname: jenkins.serhii.link
       service: http://jenkins.jenkins.svc.cluster.local:8080
-    - service: http_status:404  # <== fallback без hostname (має бути останнім!)
 
 replicaCount: 1
