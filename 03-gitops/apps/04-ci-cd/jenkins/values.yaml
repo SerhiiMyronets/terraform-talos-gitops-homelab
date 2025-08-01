@@ -21,10 +21,7 @@ controller:
 
   JCasC:
     configScripts:
-      jcasc: |
-        <<: ((file("jcasc/config.yaml")))
-  authorizationStrategy: {}
-  securityRealm: {}
+      jcasc: {{ .Files.Get "jcasc/config.yaml" | quote }
 
 persistence:
   enabled: true
