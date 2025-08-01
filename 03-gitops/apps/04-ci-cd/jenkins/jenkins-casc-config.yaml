@@ -108,33 +108,3 @@ data:
             }
           }
         }
-
-#    jobs:
-#      - script: >
-#          pipelineJob('seed-job') {
-#            definition {
-#              cps {
-#                script('''
-#                  multibranchPipelineJob('currencyservice') {
-#                    branchSources {
-#                      github {
-#                        id('currencyservice-github')
-#                        repoOwner('DevSecOps-homelab')
-#                        repository('currencyservice')
-#                        credentialsId('github-access-token')
-#                      }
-#                    }
-#                    orphanedItemStrategy {
-#                      discardOldItems {
-#                        numToKeep(10)
-#                      }
-#                    }
-#                    triggers {
-#                      periodic(1)
-#                    }
-#                  }
-#                ''')
-#                sandbox(true)
-#              }
-#            }
-#          }
