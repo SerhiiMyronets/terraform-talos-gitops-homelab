@@ -1,13 +1,10 @@
 cloudflare:
-  tunnelName: wildcard-tunnel
-  credentialsSecretName: cloudflared-credentials
+  tunnelName: "wildcard-tunnel"
+  credentialsSecretName: "cloudflared-credentials-token"
 
-  ingress:
-    - hostname: "*.serhii.link"
-      service: http://nginx-ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-    - service: http_status:404
-
-controller:
-  enabled: false
+ingress:
+  - hostname: "*.serhii.link"
+    service: http://nginx-ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  - service: http_status:404
 
 replicaCount: 1
