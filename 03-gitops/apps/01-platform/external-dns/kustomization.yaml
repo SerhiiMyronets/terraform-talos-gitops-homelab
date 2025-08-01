@@ -6,7 +6,7 @@ namespace: external-dns
 helmCharts:
   - name: external-dns
     repo: https://charts.bitnami.com/bitnami
-    version: 0.30.0
+    version: 9.0.0
     releaseName: external-dns
     namespace: external-dns
     valuesFile: values.yaml
