@@ -21,10 +21,13 @@ controller:
 
   JCasC:
     enabled: true
-#    defaultConfig: false
-#    config: {}
-#    configMaps:
-#      - jenkins-jcasc-config
+    defaultConfig: false
+    config: {}
+    configMaps:
+      - jenkins-jcasc-main
+      - jenkins-jcasc-credentials
+      - jenkins-jcasc-global-library
+      - jenkins-jcasc-seed-job
   authorizationStrategy: {}
   securityRealm: {}
 
