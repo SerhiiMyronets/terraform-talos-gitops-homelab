@@ -9,7 +9,5 @@ helmCharts:
     version: 8.9.2
     releaseName: external-dns
     namespace: external-dns
-    valuesFile: values.yaml
+#    valuesFile: values.yaml
 
-resources:
-  - namespace.yaml
