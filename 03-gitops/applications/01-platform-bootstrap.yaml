@@ -114,7 +114,23 @@ spec:
     namespace: cloudflared
   syncPolicy:
     automated: {}
-
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/oauth2-proxy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: oauth2-proxy
+  syncPolicy:
+    automated: {}
 #---
 #apiVersion: argoproj.io/v1alpha1
 #kind: Application

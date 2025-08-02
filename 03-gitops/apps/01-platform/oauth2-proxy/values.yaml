@@ -1,0 +1,28 @@
+config:
+  clientID: ""
+  clientSecret: ""
+  cookieSecret: ""
+
+  provider: github
+  emailDomains:
+    - "*"
+  cookieDomain: ".serhii.link"
+  redirectURL: "https://oauth.serhii.link/oauth2/callback"
+  upstreams:
+    - static://202
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+  hosts:
+    - oauth.serhii.link
+  tls:
+    - hosts:
+        - oauth.serhii.link
+      secretName: oauth2-proxy-tls
+
+extraEnvFrom:
+  - secretRef:
+      name: oauth2-proxy-token
