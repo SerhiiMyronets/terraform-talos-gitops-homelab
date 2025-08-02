@@ -22,8 +22,3 @@ ingress:
 extraEnvFrom:
   - secretRef:
       name: oauth2-proxy-token
-
-
-extraArgs:
-  - --skip-auth-strip
-  - --silence-ping-logging
