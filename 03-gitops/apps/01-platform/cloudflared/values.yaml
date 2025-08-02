@@ -3,8 +3,6 @@ cloudflare:
   secretName: cloudflared-credential-token
 
   ingress:
-    - hostname: "jenkins.serhii.link"
-    - service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
     - hostname: "*.serhii.link"
       service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
 
