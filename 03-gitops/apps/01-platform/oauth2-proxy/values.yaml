@@ -1,8 +1,4 @@
 config:
-  clientID: ""
-  clientSecret: ""
-  cookieSecret: ""
-
   provider: github
   emailDomains:
     - "*"
