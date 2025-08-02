@@ -9,6 +9,8 @@ config:
     scope = "user:email read:org"
     email_domains = [ "*" ]
     cookie_domains = [ "*.serhii.link" ]
+    whitelist_domains = [ ".serhii.link" ]
+    cookie_secure = true
 
 
 ingress:
