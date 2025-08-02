@@ -1,10 +1,16 @@
 config:
-  provider: github
   cookieDomain: ".serhii.link"
   redirectURL: "https://oauth.serhii.link/oauth2/callback"
   upstreams:
     - static://202
   existingSecret: oauth2-proxy-token
+  configFile: |
+    provider = "github"
+    scope = "user:email read:org"
+    github_org = "DevSecOps-homelab"
+    email_domains = [ "*" ]
+    cookie_domains = [ "*.serhii.link" ]
+
 
 ingress:
   enabled: true
