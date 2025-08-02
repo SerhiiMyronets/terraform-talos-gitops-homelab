@@ -2,7 +2,7 @@ config:
   cookieDomain: ".serhii.link"
   redirectURL: "https://oauth.serhii.link/oauth2/callback"
   upstreams:
-    - static://202
+    - static://200
   existingSecret: oauth2-proxy-token
   configFile: |
     provider = "github"
