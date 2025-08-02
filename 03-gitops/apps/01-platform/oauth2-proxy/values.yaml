@@ -1,7 +1,5 @@
 config:
   provider: github
-  emailDomains:
-    - "*"
   cookieDomain: ".serhii.link"
   redirectURL: "https://oauth.serhii.link/oauth2/callback"
   upstreams:
