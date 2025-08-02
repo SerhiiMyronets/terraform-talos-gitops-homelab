@@ -25,5 +25,5 @@ extraEnvFrom:
 
 
 extraArgs:
-  - --skip-auth-strip=true
-  - --silence-ping-logging=true
+  - --skip-auth-strip
+  - --silence-ping-logging
