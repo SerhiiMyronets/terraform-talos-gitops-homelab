@@ -14,10 +14,6 @@ ingress:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
   hosts:
     - oauth.serhii.link
-#  tls:
-#    - hosts:
-#        - oauth.serhii.link
-#      secretName: oauth2-proxy-tls
 
 extraEnvFrom:
   - secretRef:
