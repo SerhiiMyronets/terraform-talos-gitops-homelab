@@ -4,6 +4,7 @@ config:
   redirectURL: "https://oauth.serhii.link/oauth2/callback"
   upstreams:
     - static://202
+  existingSecret: oauth2-proxy-token
 
 ingress:
   enabled: true
@@ -13,6 +14,6 @@ ingress:
   hosts:
     - oauth.serhii.link
 
-extraEnvFrom:
-  - secretRef:
-      name: oauth2-proxy-token
+#extraEnvFrom:
+#  - secretRef:
+#      name: oauth2-proxy-token
