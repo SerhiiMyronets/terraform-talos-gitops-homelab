@@ -10,7 +10,7 @@ config:
     email_domains = [ "*" ]
     cookie_domains = [ "*.serhii.link" ]
     whitelist_domains = [ ".serhii.link" ]
-    cookie_secure = false
+    cookie_secure = true
 
 
 ingress:
