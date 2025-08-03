@@ -40,7 +40,7 @@ metadata:
 #    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
 
     nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
+    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=http://$host$request_uri"
 #    nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-Email"
 #    nginx.ingress.kubernetes.io/configuration-snippet: |
 #      auth_request_set $user $upstream_http_x_auth_request_email;
