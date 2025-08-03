@@ -8,7 +8,7 @@ config:
     email_domains = [ "*" ]
     cookie_domains = [ ".serhii.link" ]
     whitelist_domains = [ ".serhii.link" ]
-    cookie_secure = true
+    cookie_secure = false
     redirect_url= "https://oauth.serhii.link/oauth2/callback"
 
 
