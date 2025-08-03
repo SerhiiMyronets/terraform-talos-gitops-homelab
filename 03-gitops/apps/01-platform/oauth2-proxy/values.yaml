@@ -6,7 +6,7 @@ config:
     provider = "github"
     scope = "user:email read:org"
     email_domains = [ "*" ]
-    cookie_domains = [ "*.serhii.link" ]
+    cookie_domains = [ ".serhii.link" ]
     whitelist_domains = [ ".serhii.link" ]
     cookie_secure = true
     redirect_url= "https://oauth.serhii.link/oauth2/callback"
