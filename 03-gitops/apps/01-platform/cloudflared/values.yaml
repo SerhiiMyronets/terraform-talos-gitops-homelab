@@ -4,7 +4,7 @@ cloudflare:
 
   ingress:
     - hostname: "*.serhii.link"
-      service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+      service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443
 
 replicaCount: 1
 
