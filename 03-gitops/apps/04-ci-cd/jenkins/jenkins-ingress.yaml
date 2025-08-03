@@ -30,7 +30,7 @@ metadata:
   name: jenkins-public-ui
   namespace: jenkins
   annotations:
-    cert-manager.io/cluster-issuer: ingress
+#    cert-manager.io/cluster-issuer: ingress
 #    nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
 #    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=$scheme://$host$request_uri"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
@@ -47,7 +47,7 @@ spec:
                 name: jenkins
                 port:
                   number: 8080
-  tls:
-    - hosts:
-        - jenkins.cluster
-      secretName: jenkins-tls
+#  tls:
+#    - hosts:
+#        - jenkins.cluster
+#      secretName: jenkins-tls
