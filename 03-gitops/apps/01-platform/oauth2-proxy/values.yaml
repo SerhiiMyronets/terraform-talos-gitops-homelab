@@ -1,6 +1,4 @@
 config:
-  cookieDomain: ".serhii.link"
-  redirectURL: "https://oauth.serhii.link/oauth2/callback"
   upstreams:
     - static://200
   existingSecret: oauth2-proxy-token
@@ -11,6 +9,7 @@ config:
     cookie_domains = [ "*.serhii.link" ]
     whitelist_domains = [ ".serhii.link" ]
     cookie_secure = true
+    redirect_url: "https://oauth.serhii.link/oauth2/callback"
 
 
 ingress:
