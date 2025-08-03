@@ -32,7 +32,7 @@ metadata:
   annotations:
 #    cert-manager.io/cluster-issuer: ingress
     nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://jenkins.serhii.link"
+    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=$scheme://$host$request_uri"
 #    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 #    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
