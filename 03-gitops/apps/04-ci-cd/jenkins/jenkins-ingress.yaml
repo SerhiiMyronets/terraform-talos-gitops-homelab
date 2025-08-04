@@ -30,7 +30,7 @@ metadata:
   name: jenkins-public-ui
   namespace: jenkins
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-url: "http://oauth.serhii.link/oauth2/auth"
     nginx.ingress.kubernetes.io/auth-signin: "http://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
