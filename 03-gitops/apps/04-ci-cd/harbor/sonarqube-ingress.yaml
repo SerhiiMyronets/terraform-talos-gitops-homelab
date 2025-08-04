@@ -1,15 +1,42 @@
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: sonarqube-ui
+#  namespace: sonarqube
+#  annotations:
+#    cert-manager.io/cluster-issuer: ingress
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#spec:
+#  ingressClassName: nginx
+#  rules:
+#    - host: sonarqube.cluster
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: sonarqube-sonarqube
+#                port:
+#                  number: 9000
+#  tls:
+#    - hosts:
+#        - sonarqube.cluster
+#      secretName: sonarqube-tls
+#---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: sonarqube-ui
+  name: sonarqube-public-ui
   namespace: sonarqube
   annotations:
-    cert-manager.io/cluster-issuer: ingress
+    nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
   rules:
-    - host: sonarqube.cluster
+    - host: sonarqube.serhii.link
       http:
         paths:
           - path: /
@@ -19,7 +46,3 @@ spec:
                 name: sonarqube-sonarqube
                 port:
                   number: 9000
-  tls:
-    - hosts:
-        - sonarqube.cluster
-      secretName: sonarqube-tls
