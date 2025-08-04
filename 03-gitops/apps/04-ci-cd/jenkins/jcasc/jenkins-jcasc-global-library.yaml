@@ -9,7 +9,7 @@ data:
   jcasc.yaml: |
     unclassified:
       location:
-        url: https://jenkins.cluster
+        url: https://jenkins.serhii.link
       sonarGlobalConfiguration:
         buildWrapperEnabled: true
         installations:
