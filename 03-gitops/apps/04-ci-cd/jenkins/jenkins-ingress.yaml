@@ -54,7 +54,7 @@ metadata:
   namespace: jenkins
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/whitelist-source-range: "140.82.112.0/20,192.30.252.0/22"
+#    nginx.ingress.kubernetes.io/whitelist-source-range: "140.82.112.0/20,192.30.252.0/22"
 spec:
   ingressClassName: nginx
   rules:
