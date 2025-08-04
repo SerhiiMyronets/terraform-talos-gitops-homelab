@@ -8,6 +8,8 @@ metadata:
 data:
   jcasc.yaml: |
     jenkins:
+      disabledAdministrativeMonitors:
+      - hudson.diagnosis.ReverseProxySetupMonitor
       numExecutors: 1
       mode: NORMAL
       markupFormatter:
