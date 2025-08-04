@@ -9,7 +9,7 @@ config:
     cookie_domains = [ ".serhii.link" ]
     whitelist_domains = [ ".serhii.link" ]
     cookie_secure = true
-    allowed_users = [ "SerhiiMyronets" ]
+    github_users = [ "SerhiiMyronets" ]
 
 
 ingress:
