@@ -1,29 +1,29 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: hubble-ui
-  namespace: kube-system
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    cert-manager.io/cluster-issuer: ingress
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: hubble.cluster
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: hubble-ui
-                port:
-                  number: 80
-  tls:
-    - hosts:
-        - hubble.cluster
-      secretName: hubble-ui-tls
----
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: hubble-ui
+#  namespace: kube-system
+#  annotations:
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#    cert-manager.io/cluster-issuer: ingress
+#spec:
+#  ingressClassName: nginx
+#  rules:
+#    - host: hubble.cluster
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: hubble-ui
+#                port:
+#                  number: 80
+#  tls:
+#    - hosts:
+#        - hubble.cluster
+#      secretName: hubble-ui-tls
+#---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
