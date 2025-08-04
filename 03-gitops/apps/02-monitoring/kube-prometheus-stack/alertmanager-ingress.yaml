@@ -1,15 +1,42 @@
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: alertmanager-ui
+#  namespace: monitoring
+#  annotations:
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#    cert-manager.io/cluster-issuer: ingress
+#spec:
+#  ingressClassName: nginx
+#  rules:
+#    - host: alertmanager.cluster
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: kube-prometheus-stack-alertmanager
+#                port:
+#                  number: 9093
+#  tls:
+#    - hosts:
+#        - alertmanager.cluster
+#      secretName: alertmanager-ui-tls
+#---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alertmanager-ui
+  name: alertmanager-public-ui
   namespace: monitoring
   annotations:
+    nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    cert-manager.io/cluster-issuer: ingress
 spec:
   ingressClassName: nginx
   rules:
-    - host: alertmanager.cluster
+    - host: alertmanager.serhii.link
       http:
         paths:
           - path: /
@@ -19,7 +46,3 @@ spec:
                 name: kube-prometheus-stack-alertmanager
                 port:
                   number: 9093
-  tls:
-    - hosts:
-        - alertmanager.cluster
-      secretName: alertmanager-ui-tls
