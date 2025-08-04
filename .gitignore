@@ -6,3 +6,4 @@
 *.tfstate.backup
 vault-init.json
 **-token.yaml
+**-secret.yaml
