@@ -10,7 +10,7 @@ config:
     cookie_domains = [ ".serhii.link" ]
     whitelist_domains = [ ".serhii.link" ]
     cookie_secure = true
-    github_users = [ "hardmail88@gmail.com" ]
+    github_users = [ "SerhiiMyronets" ]
 
 
 ingress:
