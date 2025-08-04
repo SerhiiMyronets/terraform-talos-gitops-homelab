@@ -1,4 +1,8 @@
 controller:
+  admin:
+    existingSecret: jenkins-admin-secret
+    userKey: JENKINS_USER
+    passwordKey: JENKINS_PASS
   containerEnvFrom:
     - secretRef:
         name: sonar-token
