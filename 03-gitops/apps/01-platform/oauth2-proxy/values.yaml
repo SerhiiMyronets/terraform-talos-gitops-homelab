@@ -5,7 +5,7 @@ config:
   existingSecret: oauth2-proxy-token
   configFile: |
     provider = "github"
-    scope = "user:email read:org"
+    scope = "user:email read:org read:user"
     email_domains = [ "*" ]
     cookie_domains = [ ".serhii.link" ]
     whitelist_domains = [ ".serhii.link" ]
