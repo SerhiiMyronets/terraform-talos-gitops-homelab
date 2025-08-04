@@ -1,5 +1,5 @@
 config:
-  redirectURL: "https://oauth.serhii.link/oauth2/callback"
+  redirectURL: "http://oauth.serhii.link/oauth2/callback"
   upstreams:
     - static://200
   existingSecret: oauth2-proxy-token

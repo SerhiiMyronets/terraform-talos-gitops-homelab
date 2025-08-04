@@ -31,11 +31,8 @@ metadata:
   namespace: jenkins
   annotations:
     nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
+    nginx.ingress.kubernetes.io/auth-signin: "http://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/x-forwarded-prefix: "/"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_input_headers "X-Forwarded-Proto: https";
 spec:
   ingressClassName: nginx
   rules:
