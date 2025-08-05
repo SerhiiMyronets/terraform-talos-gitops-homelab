@@ -35,9 +35,9 @@ spec:
           envFrom:
             - secretRef:
                 name: buildkit-s3-secret
-          volumeMounts:
-            - name: config
-              mountPath: /etc/buildkit
+#          volumeMounts:
+#            - name: config
+#              mountPath: /etc/buildkit
           ports:
             - name: tcp
               containerPort: 1234
@@ -61,7 +61,7 @@ spec:
           securityContext:
             privileged: true
       terminationGracePeriodSeconds: 30
-      volumes:
-        - name: config
-          configMap:
-            name: buildkitd-config
+#      volumes:
+#        - name: config
+#          configMap:
+#            name: buildkitd-config
