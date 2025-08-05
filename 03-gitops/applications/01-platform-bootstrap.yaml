@@ -154,3 +154,20 @@ spec:
 #      name: vault-agent-injector-cfg
 #      jsonPointers:
 #        - /webhooks/0/clientConfig/caBundle
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/minio
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio
+  syncPolicy:
+    automated: {}
