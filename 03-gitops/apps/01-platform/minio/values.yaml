@@ -8,7 +8,7 @@ buckets:
     versioning: false
 
 users:
-  - accessKey: accesskey
+  - accessKey: buildkit
     existingSecret: minio-buildkit-secret
     existingSecretKey: secretkey
     policy: buildkit-cache-policy
