@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: buildkitd-config
+  namespace: buildkit
+data:
+  buildkitd.toml: |
+    [worker.oci]
+    enabled = true
+    gc = true
+    gckeepstorage = 512
+
+    [registry."docker.io"]
+    mirrors = ["https://registry-1.docker.io"]
+
+    [cache]
+    [cache.backend]
+    type = "s3"
+    [cache.backend.s3]
+    region = "us-east-1"
+    bucket = "buildkit-cache"
+    endpoint = "http://minio.minio.svc.cluster.local:9000"
+    use_path_style = true
+    access_key = "${BUILDKIT_ACCESS_KEY}"
+    secret_key = "${BUILDKIT_SECRET_KEY}"
