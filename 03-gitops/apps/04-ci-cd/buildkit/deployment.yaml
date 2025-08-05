@@ -45,6 +45,8 @@ spec:
                   key: secretkey
             - name: AWS_REGION
               value: "us-east-1"
+            - name: AWS_BUCKET
+              value: "buildkit-cache"
           volumeMounts:
             - name: config
               mountPath: /etc/buildkit
