@@ -21,5 +21,7 @@ data:
     bucket = "buildkit-cache"
     endpoint = "http://minio.minio.svc.cluster.local:9000"
     use_path_style = true
-    access_key = "${BUILDKIT_ACCESS_KEY}"
-    secret_key = "${BUILDKIT_SECRET_KEY}"
+    access_key = "buildkit"
+    secret_key = "buildkit123"
+#    access_key = "${BUILDKIT_ACCESS_KEY}"
+#    secret_key = "${BUILDKIT_SECRET_KEY}"
