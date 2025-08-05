@@ -3,9 +3,33 @@ existingSecret: minio-root-secret
 
 buckets:
   - name: buildkit-cache
-    policy: readwrite
+    policy: none
     purge: false
+    versioning: false
 
+users:
+  - accessKey: buildkit
+    secretKey: buildkit-secret-key
+    policy: buildkit-cache-policy
+
+policies:
+  - name: buildkit-cache-policy
+    statements:
+      - effect: Allow
+        resources:
+          - "arn:aws:s3:::buildkit-cache/*"
+        actions:
+          - "s3:AbortMultipartUpload"
+          - "s3:GetObject"
+          - "s3:DeleteObject"
+          - "s3:PutObject"
+          - "s3:ListMultipartUploadParts"
+      - resources:
+          - "arn:aws:s3:::buildkit-cache"
+        actions:
+          - "s3:GetBucketLocation"
+          - "s3:ListBucket"
+          - "s3:ListBucketMultipartUploads"
 
 persistence:
   enabled: true
