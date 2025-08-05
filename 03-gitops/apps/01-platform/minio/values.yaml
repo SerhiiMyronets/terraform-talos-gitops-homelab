@@ -1,7 +1,6 @@
 mode: standalone
 
-rootUser: minioadmin
-rootPassword: minioadmin123
+existingSecret: minio-root-secret
 
 persistence:
   enabled: true
