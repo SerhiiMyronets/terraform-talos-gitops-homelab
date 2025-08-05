@@ -1,6 +1,11 @@
 mode: standalone
-
 existingSecret: minio-root-secret
+
+buckets:
+  - name: buildkit-cache
+    policy: readwrite
+    purge: false
+
 
 persistence:
   enabled: true
