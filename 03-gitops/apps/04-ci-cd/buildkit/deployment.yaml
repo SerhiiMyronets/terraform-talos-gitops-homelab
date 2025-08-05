@@ -60,8 +60,6 @@ spec:
             periodSeconds: 30
           securityContext:
             privileged: true
-          resources:
-            {}
       terminationGracePeriodSeconds: 30
       volumes:
         - name: config
