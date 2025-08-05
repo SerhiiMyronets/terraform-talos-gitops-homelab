@@ -43,6 +43,8 @@ spec:
                 secretKeyRef:
                   name: minio-buildkit-secret
                   key: secretkey
+            - name: AWS_REGION
+              value: "us-east-1"
           volumeMounts:
             - name: config
               mountPath: /etc/buildkit
