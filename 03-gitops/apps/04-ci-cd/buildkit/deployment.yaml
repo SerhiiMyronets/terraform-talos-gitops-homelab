@@ -32,21 +32,9 @@ spec:
             - tcp://0.0.0.0:1234
             - --config
             - /etc/buildkit/buildkitd.toml
-          env:
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: minio-buildkit-secret
-                  key: accessKey
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: minio-buildkit-secret
-                  key: secretkey
-            - name: AWS_REGION
-              value: "us-east-1"
-            - name: AWS_BUCKET
-              value: "buildkit-cache"
+          envFrom:
+            - secretRef:
+                name: buildkit-s3-secret
           volumeMounts:
             - name: config
               mountPath: /etc/buildkit
