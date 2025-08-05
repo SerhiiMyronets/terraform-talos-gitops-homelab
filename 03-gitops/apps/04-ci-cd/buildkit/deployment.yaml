@@ -33,12 +33,12 @@ spec:
             - --config
             - /etc/buildkit/buildkitd.toml
           env:
-            - name: BUILDKIT_ACCESS_KEY
+            - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
                   name: minio-buildkit-secret
                   key: accessKey
-            - name: BUILDKIT_SECRET_KEY
+            - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   name: minio-buildkit-secret
