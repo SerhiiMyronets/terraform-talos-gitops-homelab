@@ -1,0 +1,34 @@
+harborAdminPassword: "Harbor12345"
+
+persistence:
+  persistentVolumeClaim:
+    registry:
+      size: 5Gi
+    database:
+      size: 1Gi
+    redis:
+      size: 1Gi
+
+database:
+  type: internal
+
+redis:
+  type: internal
+
+chartmuseum:
+  enabled: false
+
+notary:
+  enabled: false
+
+trivy:
+  enabled: false
+
+jobservice:
+  replicas: 1
+
+portal:
+  replicas: 1
+
+core:
+  replicas: 1
