@@ -25,15 +25,3 @@ notary:
 
 trivy:
   enabled: false
-
-jobservice:
-  replicas: 1
-
-portal:
-  replicas: 1
-
-core:
-  replicas: 1
-
-registry:
-  replicas: 1
