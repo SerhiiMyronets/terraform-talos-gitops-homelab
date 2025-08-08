@@ -16,11 +16,6 @@ persistence:
     redis:
       size: 1Gi
 
-database:
-  type: internal
-
-redis:
-  type: internal
 
 chartmuseum:
   enabled: false
