@@ -22,8 +22,8 @@ database:
 redis:
   type: internal
 
-chartmuseum:
-  enabled: false
+#chartmuseum:
+#  enabled: false
 
 notary:
   enabled: false
