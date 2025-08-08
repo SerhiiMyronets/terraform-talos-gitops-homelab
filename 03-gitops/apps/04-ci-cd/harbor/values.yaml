@@ -1,3 +1,10 @@
+expose:
+  type: clusterIP
+  tls:
+    enabled: false
+
+
+
 harborAdminPassword: "Harbor12345"
 
 persistence:
