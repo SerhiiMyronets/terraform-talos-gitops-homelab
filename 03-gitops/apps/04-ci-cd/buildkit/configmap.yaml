@@ -6,10 +6,7 @@ metadata:
 data:
   buildkitd.toml: |
     [registry."harbor-harbor-core.harbor.svc.cluster.local"]
-    insecure = true
-    
-    [registry."harbor-harbor-core.harbor.svc.cluster.local:443"]
-    insecure = true
+    http = true
 
     [worker.oci]
     gc = true
