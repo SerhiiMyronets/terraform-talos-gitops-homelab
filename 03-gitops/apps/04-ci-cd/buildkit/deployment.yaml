@@ -49,7 +49,7 @@ spec:
                 - debug
                 - workers
             initialDelaySeconds: 5
-            periodSeconds: 29
+            periodSeconds: 30
           livenessProbe:
             exec:
               command:
