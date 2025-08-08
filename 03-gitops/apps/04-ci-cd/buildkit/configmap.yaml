@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: buildkitd-config
+  namespace: buildkit
+data:
+  buildkitd.toml: |
+    [registry."harbor-harbor-core.harbor.svc.cluster.local:80"]
+    insecure = true
+
+    [worker.oci]
+    gc = true
