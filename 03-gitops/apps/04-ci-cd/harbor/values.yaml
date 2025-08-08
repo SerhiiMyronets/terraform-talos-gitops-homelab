@@ -39,3 +39,6 @@ portal:
 
 core:
   replicas: 1
+
+registry:
+  replicas: 1
