@@ -1,3 +1,7 @@
 monitoringPasscode: "pass1234"
 community:
   enabled: true
+
+persistence:
+  enabled: false
+  size: 5Gi

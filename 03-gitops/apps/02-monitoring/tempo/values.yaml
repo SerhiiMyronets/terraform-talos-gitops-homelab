@@ -1,7 +1,7 @@
 persistence:
   enabled: true
   storageClass: longhorn
-  size: 10Gi
+  size: 5Gi
 
 tempo:
   search:
