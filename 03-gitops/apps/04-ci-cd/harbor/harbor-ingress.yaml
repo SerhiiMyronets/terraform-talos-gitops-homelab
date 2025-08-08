@@ -28,7 +28,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: harbor-public-ui
-  namespace: sonarqube
+  namespace: harbor
   annotations:
     nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
     nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
@@ -43,6 +43,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: sonarqube-sonarqube
+                name: harbor
                 port:
-                  number: 9000
+                  number: 80
