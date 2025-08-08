@@ -7,6 +7,9 @@ data:
   buildkitd.toml: |
     [registry."harbor-harbor-core.harbor.svc.cluster.local"]
     insecure = true
+    
+    [registry."harbor-harbor-core.harbor.svc.cluster.local:443"]
+    insecure = true
 
     [worker.oci]
     gc = true
