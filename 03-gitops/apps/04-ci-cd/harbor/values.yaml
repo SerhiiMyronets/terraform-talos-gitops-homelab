@@ -3,7 +3,7 @@ expose:
   tls:
     enabled: false
 
-
+externalURL: http://harbor-harbor-core.harbor.svc.cluster.local
 
 harborAdminPassword: "Harbor12345"
 
