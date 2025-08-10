@@ -175,16 +175,16 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-issuer
+  name: oidc-issuer
   namespace: argocd
 spec:
   project: platform
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
     targetRevision: homelab
-    path: 03-gitops/apps/01-platform/nginx-issuer
+    path: 03-gitops/apps/01-platform/oidc-issuer
   destination:
     server: https://kubernetes.default.svc
-    namespace: nginx-issuer
+    namespace: oidc-issuer
   syncPolicy:
     automated: {}
