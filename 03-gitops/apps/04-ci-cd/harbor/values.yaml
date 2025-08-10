@@ -16,6 +16,17 @@ persistence:
     redis:
       size: 1Gi
 
+# add these to stop endless rollouts:
+secretKey: "harbor-cookie-secret-16ch+"
+core:
+  secret: "core-secret-16ch++++"
+jobservice:
+  secret: "jobsvc-secret-16ch++"
+registry:
+  secret: "registry-secret-16ch"
+portal:
+  secret: "portal-secret-16ch++"
+
 
 chartmuseum:
   enabled: false
