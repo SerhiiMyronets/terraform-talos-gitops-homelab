@@ -3,6 +3,12 @@ cloudflare:
   secretName: cloudflared-credential-token
 
   ingress:
+    - hostname: k8s-issuer.serhii.link
+      service: https://kubernetes.default.svc:443
+      originRequest:
+        originServerName: kubernetes.default.svc.cluster.local
+        caPool: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        noTLSVerify: false
     - hostname: "*.serhii.link"
       service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
 

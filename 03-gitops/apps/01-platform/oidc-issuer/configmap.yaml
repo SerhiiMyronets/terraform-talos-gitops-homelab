@@ -15,44 +15,48 @@ data:
   nginx.conf: |
     worker_processes  1;
     events { worker_connections 1024; }
-    http {
 
+    http {
       sendfile on;
       server_tokens off;
       client_body_timeout 10s;
       proxy_read_timeout 10s;
-    
-      upstream jwks_upstream {
-        server kubernetes.default.svc:443;
-      }
+
+      # <<< ДОДАЛИ: явний резолвер до CoreDNS у кластері >>>
+      resolver kube-dns.kube-system.svc.cluster.local valid=30s ipv6=off;
 
       server {
         listen 80;
         server_name _;
-    
+
+        # /.well-known/openid-configuration -> статичний файл
         location = /.well-known/openid-configuration {
           default_type application/json;
           add_header Cache-Control "public, max-age=300";
           root /usr/share/nginx/html;
           try_files /openid-configuration =404;
         }
-    
+
+        # /openid/v1/jwks -> прямий проксі на kube-apiserver
         location = /openid/v1/jwks {
-          proxy_pass https://kubernetes.default.svc/openid/v1/jwks;
+          # <<< БЕЗ upstream: прямо на сервіс API з портом >>>
+          proxy_pass https://kubernetes.default.svc:443/openid/v1/jwks;
           proxy_http_version 1.1;
-        
+
+          # <<< ВАЖЛИВО: SNI має бути повне ім'я сервісу >>>
           proxy_ssl_server_name on;
           proxy_ssl_name kubernetes.default.svc.cluster.local;
-        
+
+          # <<< Довіра до CA з ServiceAccount >>>
           proxy_ssl_trusted_certificate /var/run/secrets/kubernetes.io/serviceaccount/ca.crt;
           proxy_ssl_verify on;
-        
+          proxy_ssl_protocols TLSv1.2 TLSv1.3;
+
           proxy_set_header Authorization "";
           add_header Cache-Control "public, max-age=300";
         }
-    
-        location / {
-          return 404;
-        }
+
+        # Все інше закриваємо
+        location / { return 404; }
       }
     }
