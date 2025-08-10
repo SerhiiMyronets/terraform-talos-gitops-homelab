@@ -185,6 +185,6 @@ spec:
     path: 03-gitops/apps/01-platform/oidc-issuer
   destination:
     server: https://kubernetes.default.svc
-    namespace: oidc-issuer
+    namespace: argocd
   syncPolicy:
     automated: {}
