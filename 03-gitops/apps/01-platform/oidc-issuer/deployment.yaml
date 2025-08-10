@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-issuer
+  namespace: oidc-issuer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-issuer
+  template:
+    metadata:
+      labels:
+        app: nginx-issuer
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /.well-known/openid-configuration
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - name: web
+              mountPath: /usr/share/nginx/html
+            - name: conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: web
+          configMap:
+            name: openid-config
+            items:
+              - key: openid-configuration
+                path: openid-configuration
+        - name: conf
+          configMap:
+            name: openid-config
+            items:
+              - key: nginx.conf
+                path: nginx.conf
