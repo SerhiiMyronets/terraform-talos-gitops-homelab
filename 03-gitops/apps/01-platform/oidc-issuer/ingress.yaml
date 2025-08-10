@@ -11,8 +11,15 @@ spec:
     - host: k8s-issuer.serhii.link
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /.well-known/openid-configuration
+            pathType: Exact
+            backend:
+              service:
+                name: nginx-issuer
+                port:
+                  number: 80
+          - path: /openid/v1/jwks
+            pathType: Exact
             backend:
               service:
                 name: nginx-issuer
