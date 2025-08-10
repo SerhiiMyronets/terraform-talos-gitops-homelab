@@ -4,14 +4,21 @@ metadata:
   name: allow-egress-oidc-issuer
   namespace: oidc-issuer
 spec:
-  matchLabels: { app: nginx-issuer }
+  endpointSelector: {}
   egress:
-    - toEntities:
-        - kube-dns
+
+    - toEndpoints:
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: kube-system
+            k8s:k8s-app: kube-dns
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: kube-system
+            k8s:app.kubernetes.io/name: coredns
       toPorts:
         - ports:
             - port: "53"
               protocol: ANY
+
     - toEntities:
         - kube-apiserver
       toPorts:
