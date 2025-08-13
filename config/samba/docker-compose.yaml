@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  samba:
+    image: dperson/samba
+    container_name: samba
+    environment:
+      - TZ=America/Los_Angeles
+    stdin_open: true
+    tty: true
+    network_mode: host
+    volumes:
+      - /mnt/data/samba:/mount
+    command: >
+      -s "Public;/mount;yes;no;yes;all"
+    restart: unless-stopped
