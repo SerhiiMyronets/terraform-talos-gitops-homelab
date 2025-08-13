@@ -1,14 +1,11 @@
 services:
   samba:
-    image: dperson/samba
+    image: crazymax/samba:latest
     container_name: samba
+    network_mode: host
     environment:
       - TZ=America/Los_Angeles
-    stdin_open: true
-    tty: true
-    network_mode: host
     volumes:
-      - /mnt/data/samba:/mount
-    command: >
-      -s "Public;/mount;yes;no;yes;all"
+      - /mnt/data/samba:/shares/samba
+      - ./smb.conf:/etc/samba/smb.conf:ro
     restart: unless-stopped
