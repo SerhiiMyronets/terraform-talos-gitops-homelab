@@ -5,6 +5,8 @@ services:
     networks:
       lan:
         ipv4_address: 192.168.1.10
+    cap_add:
+      - NET_ADMIN
     environment:
       - TZ=America/Los_Angeles
     volumes:
