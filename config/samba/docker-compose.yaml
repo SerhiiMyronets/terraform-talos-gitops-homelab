@@ -1,11 +1,26 @@
+version: "3.9"
 services:
-  samba:
-    image: crazymax/samba:latest
-    container_name: samba
-    network_mode: host
+  samba-mdns:
+    image: servercontainers/samba
+    container_name: samba-mdns
+    networks:
+      lan:
+        ipv4_address: 192.168.1.60
     environment:
       - TZ=America/Los_Angeles
+      - ADVERTISED_HOSTNAME=beelink-smb
     volumes:
-      - /mnt/data/samba:/shares/samba
+      - /mnt/data/samba:/shares
       - ./smb.conf:/etc/samba/smb.conf:ro
     restart: unless-stopped
+
+networks:
+  lan:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+          ip_range: 192.168.1.60/32
