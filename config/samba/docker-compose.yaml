@@ -9,6 +9,7 @@ services:
     environment:
       - TZ=America/Los_Angeles
       - ADVERTISED_HOSTNAME=beelink-smb
+      - AVAHI_NAME=beelink-smb
     volumes:
       - /mnt/data/samba:/shares
       - ./smb.conf:/etc/samba/smb.conf:ro
