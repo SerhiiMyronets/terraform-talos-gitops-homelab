@@ -4,7 +4,7 @@ services:
     container_name: samba
     networks:
       lan:
-        ipv4_address: 192.168.1.60
+        ipv4_address: 192.168.1.10
     environment:
       - TZ=America/Los_Angeles
       - AVAHI_NAME=Share
@@ -16,13 +16,3 @@ services:
       driver: json-file
       options: { max-size: "10m", max-file: "3" }
 
-networks:
-  lan:
-    driver: macvlan
-    driver_opts:
-      parent: enp1s0
-    ipam:
-      config:
-        - subnet: 192.168.1.0/24
-          gateway: 192.168.1.1
-          ip_range: 192.168.1.60/32
