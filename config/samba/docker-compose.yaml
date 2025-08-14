@@ -7,7 +7,7 @@ services:
         ipv4_address: 192.168.1.60
     environment:
       - TZ=America/Los_Angeles
-      - AVAHI_NAME=share
+      - AVAHI_NAME=Share
     volumes:
       - /mnt/data/samba:/shares
       - ./smb.conf:/etc/samba/smb.conf:ro
