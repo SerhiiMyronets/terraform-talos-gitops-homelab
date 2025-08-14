@@ -1,4 +1,18 @@
 services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - "9443:9443"        # веб-інтерфейс (HTTPS)
+    environment:
+      - TZ=America/Los_Angeles
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/data/docker/portainer/data:/data
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
   adguard:
     image: adguard/adguardhome
     container_name: adguard
