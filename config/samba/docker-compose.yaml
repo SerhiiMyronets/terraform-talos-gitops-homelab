@@ -11,7 +11,6 @@ services:
       - TZ=America/Los_Angeles
     volumes:
       - /mnt/data/docker/adguard/work:/opt/adguardhome/work
-      - /mnt/data/docker/adguard/conf:/opt/adguardhome/conf
     ports:
       - "53:53/tcp"
       - "53:53/udp"
