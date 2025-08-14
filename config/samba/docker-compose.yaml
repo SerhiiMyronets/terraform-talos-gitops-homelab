@@ -1,10 +1,11 @@
+version: "3.9"
 services:
-  samba:
+  samba-mdns:
     image: servercontainers/samba
     container_name: samba-mdns
     networks:
       lan:
-        ipv4_address: 192.168.1.60
+        ipv4_address: 192.168.1.60   # підстав свій вільний IP
     environment:
       - TZ=America/Los_Angeles
       - ADVERTISED_HOSTNAME=beelink-smb
@@ -14,5 +15,12 @@ services:
     restart: unless-stopped
 
 networks:
-  lan_macvlan:
-    external: true
+  lan:
+    driver: macvlan
+    driver_opts:
+      parent: enp1s0
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+          ip_range: 192.168.1.60/32
