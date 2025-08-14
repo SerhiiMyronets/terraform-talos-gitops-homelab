@@ -11,7 +11,7 @@ services:
       - TZ=America/Los_Angeles
     volumes:
 #      - /mnt/data/docker/adguard/work:/opt/adguardhome/work
-      - /mnt/data/docker/samba/adguard/conf:/opt/adguardhome/conf
+      - /mnt/data/samba/docker/adguard/conf:/opt/adguardhome/conf
     restart: unless-stopped
     logging:
       driver: json-file
