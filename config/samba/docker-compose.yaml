@@ -1,15 +1,14 @@
 version: "3.9"
 services:
-  samba-mdns:
+  samba:
     image: servercontainers/samba
-    container_name: samba-mdns
+    container_name: samba
     networks:
       lan:
         ipv4_address: 192.168.1.60   # підстав свій вільний IP
     environment:
       - TZ=America/Los_Angeles
-      - ADVERTISED_HOSTNAME=beelink-smb
-      - AVAHI_NAME=beelink-smb
+      - AVAHI_NAME=share
     volumes:
       - /mnt/data/samba:/shares
       - ./smb.conf:/etc/samba/smb.conf:ro
