@@ -4,7 +4,7 @@ services:
     container_name: samba
     networks:
       lan:
-        ipv4_address: 192.168.1.10
+        ipv4_address: 192.168.1.11
     environment:
       - TZ=America/Los_Angeles
       - AVAHI_NAME=Share
