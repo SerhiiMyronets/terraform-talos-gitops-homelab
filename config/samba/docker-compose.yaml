@@ -8,8 +8,8 @@ services:
     environment:
       - TZ=America/Los_Angeles
     volumes:
-      - ./adguard/work:/opt/adguardhome/work
-      - ./adguard/conf:/opt/adguardhome/conf
+      - /mnt/data/docker/adguard/work:/opt/adguardhome/work
+      - /mnt/data/docker/adguard/conf:/opt/adguardhome/conf
     ports:
       - "53:53/tcp"
       - "53:53/udp"
