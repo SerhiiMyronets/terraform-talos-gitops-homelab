@@ -12,6 +12,9 @@ services:
       - /mnt/data/samba:/shares
       - ./smb.conf:/etc/samba/smb.conf:ro
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
 
 networks:
   lan:
