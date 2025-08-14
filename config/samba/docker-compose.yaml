@@ -1,5 +1,5 @@
 services:
-  samba-mdns:
+  samba:
     image: servercontainers/samba
     container_name: samba-mdns
     networks:
