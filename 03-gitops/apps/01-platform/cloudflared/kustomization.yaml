@@ -8,3 +8,6 @@ helmCharts:
     repo: https://cloudflare.github.io/helm-charts
     namespace: cloudflared
     valuesFile: values.yaml
+
+resources:
+  - namespace.yaml
