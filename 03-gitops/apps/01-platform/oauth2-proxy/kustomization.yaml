@@ -8,3 +8,6 @@ helmCharts:
     repo: https://oauth2-proxy.github.io/manifests
     namespace: oauth2-proxy
     valuesFile: values.yaml
+
+resources:
+  - namespace.yaml
