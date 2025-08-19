@@ -1,29 +1,29 @@
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: argocd-server-ui
-#  namespace: argocd
-#  annotations:
-#    cert-manager.io/cluster-issuer: ingress
-#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-#spec:
-#  ingressClassName: nginx
-#  rules:
-#    - host: argocd.cluster
-#      http:
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: argocd-server
-#                port:
-#                  number: 443
-#  tls:
-#    - hosts:
-#        - argocd.cluster
-#      secretName: argocd-server-tls
-#---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ui
+  namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: ingress
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: argocd.cluster
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+  tls:
+    - hosts:
+        - argocd.cluster
+      secretName: argocd-server-tls
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
