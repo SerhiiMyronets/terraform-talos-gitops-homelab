@@ -1,0 +1,13 @@
+installCRDs: true
+
+serviceAccount:
+  create: true
+  name: external-secrets
+
+replicaCount: 1
+
+webhook:
+  create: true
+  port: 9443
+  certManager:
+    enabled: false
