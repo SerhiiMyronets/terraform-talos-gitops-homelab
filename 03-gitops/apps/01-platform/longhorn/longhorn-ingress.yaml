@@ -32,9 +32,6 @@ metadata:
   annotations:
 #    nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
 #    nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-buffering: "off"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
