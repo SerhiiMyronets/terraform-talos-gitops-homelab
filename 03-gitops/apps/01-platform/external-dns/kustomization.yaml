@@ -8,3 +8,6 @@ helmCharts:
     repo: https://kubernetes-sigs.github.io/external-dns/
     namespace: external-dns
     valuesFile: values.yaml
+
+resources:
+  - namespace.yaml
