@@ -11,3 +11,4 @@ helmCharts:
 
 resources:
   - namespace.yaml
+  - cloudflared-credential-token.yaml
