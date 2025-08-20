@@ -9,6 +9,8 @@ repositories:
     url: https://charts.longhorn.io
   - name: metrics-server
     url: https://kubernetes-sigs.github.io/metrics-server
+  - name: external-secrets
+    url: https://charts.external-secrets.io
 
 releases:
   - name: metrics-server
@@ -57,3 +59,9 @@ releases:
 #      - persistence:
 #          defaultClass: true
 #          reclaimPolicy: Retain
+
+  - name: external-secrets
+    namespace: external-secrets
+    chart: external-secrets/external-secrets
+    version: 0.19.2
+    createNamespace: true
