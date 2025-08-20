@@ -13,182 +13,182 @@ spec:
     - group: '*'
       kind: '*'
 ---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/cert-manager
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/cilium
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/longhorn
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+#---
 #apiVersion: argoproj.io/v1alpha1
 #kind: Application
 #metadata:
-#  name: cert-manager
+#  name: external-dns
 #  namespace: argocd
 #spec:
 #  project: platform
 #  source:
 #    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
 #    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/cert-manager
+#    path: 03-gitops/apps/01-platform/external-dns
+#  destination:
+#    server: https://kubernetes.default.svc
+#    namespace: external-dns
+#  syncPolicy:
+#    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflared
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/cloudflared
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cloudflared
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/oauth2-proxy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: oauth2-proxy
+  syncPolicy:
+    automated: {}
+#---
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: vault
+#  namespace: argocd
+#spec:
+#  project: platform
+#  source:
+#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+#    targetRevision: homelab
+#    path: 03-gitops/apps/01-platform/vault
 #  destination:
 #    server: https://kubernetes.default.svc
 #    namespace: argocd
 #  syncPolicy:
 #    automated: {}
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: cilium
-#  namespace: argocd
-#spec:
-#  project: platform
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/cilium
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: argocd
-#  syncPolicy:
-#    automated: {}
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: argocd
-#  namespace: argocd
-#spec:
-#  project: platform
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/argocd
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: argocd
-#  syncPolicy:
-#    automated: {}
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: longhorn
-#  namespace: argocd
-#spec:
-#  project: platform
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/longhorn
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: argocd
-#  syncPolicy:
-#    automated: {}
-##---
-##apiVersion: argoproj.io/v1alpha1
-##kind: Application
-##metadata:
-##  name: external-dns
-##  namespace: argocd
-##spec:
-##  project: platform
-##  source:
-##    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-##    targetRevision: homelab
-##    path: 03-gitops/apps/01-platform/external-dns
-##  destination:
-##    server: https://kubernetes.default.svc
-##    namespace: external-dns
-##  syncPolicy:
-##    automated: {}
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: cloudflared
-#  namespace: argocd
-#spec:
-#  project: platform
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/cloudflared
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: cloudflared
-#  syncPolicy:
-#    automated: {}
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: oauth2-proxy
-#  namespace: argocd
-#spec:
-#  project: platform
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/oauth2-proxy
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: oauth2-proxy
-#  syncPolicy:
-#    automated: {}
-##---
-##apiVersion: argoproj.io/v1alpha1
-##kind: Application
-##metadata:
-##  name: vault
-##  namespace: argocd
-##spec:
-##  project: platform
-##  source:
-##    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-##    targetRevision: homelab
-##    path: 03-gitops/apps/01-platform/vault
-##  destination:
-##    server: https://kubernetes.default.svc
-##    namespace: argocd
-##  syncPolicy:
-##    automated: {}
-##  ignoreDifferences:
-##    - group: admissionregistration.k8s.io
-##      kind: MutatingWebhookConfiguration
-##      name: vault-agent-injector-cfg
-##      jsonPointers:
-##        - /webhooks/0/clientConfig/caBundle
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: minio
-#  namespace: argocd
-#spec:
-#  project: platform
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/minio
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: minio
-#  syncPolicy:
-#    automated: {}
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: oidc-issuer
-#  namespace: argocd
-#spec:
-#  project: platform
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/01-platform/oidc-issuer
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: argocd
-#  syncPolicy:
-#    automated: {}
-#---
+#  ignoreDifferences:
+#    - group: admissionregistration.k8s.io
+#      kind: MutatingWebhookConfiguration
+#      name: vault-agent-injector-cfg
+#      jsonPointers:
+#        - /webhooks/0/clientConfig/caBundle
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/minio
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oidc-issuer
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/01-platform/oidc-issuer
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
