@@ -1,4 +1,3 @@
 resources:
+  - infisical-provider-secret.yaml
   - clustersecretstore-infisical.yaml
-
-
