@@ -6,7 +6,7 @@ namespace: actions-runner-system
 helmCharts:
   - name: actions-runner-controller
     releaseName: actions-runner-controller
-    version: 0.26.2
+    version: 0.12.1
     repo: https://actions-runner-controller.github.io/actions-runner-controller
     valuesFile: values.yaml
     namespace: actions-runner-system
