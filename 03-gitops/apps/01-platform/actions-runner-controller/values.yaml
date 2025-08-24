@@ -1,0 +1,10 @@
+githubWebhookServer:
+  enabled: false
+
+authSecret:
+  create: false
+  name: controller-manager
+
+metrics:
+  serviceMonitor:
+    enabled: true
