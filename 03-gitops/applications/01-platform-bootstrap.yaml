@@ -216,7 +216,7 @@ spec:
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
     targetRevision: homelab
-    path: 03-gitops/apps/01-platform/actions-runner-system
+    path: 03-gitops/apps/01-platform/actions-runner-controller
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
