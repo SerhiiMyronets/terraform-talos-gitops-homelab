@@ -12,5 +12,6 @@ helmCharts:
     namespace: actions-runner-system
 
 resources:
+  - namespace.yaml
   - controller-manager-secret.yaml
   - runnerdeployment.yaml
