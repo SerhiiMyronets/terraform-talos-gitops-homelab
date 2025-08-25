@@ -7,8 +7,9 @@ spec:
   replicas: 1
   template:
     spec:
-      dockerEnabled: false
+#      dockerEnabled: false
       repository: planeops/ci-runners
-      image: ghcr.io/planeops/ci-runners/runner-node-secured:latest
+#      image: ghcr.io/planeops/ci-runners/runner-node-secured:latest
+      image: ghcr.io/actions/actions-runner:latest
       labels:
         - node-secured
