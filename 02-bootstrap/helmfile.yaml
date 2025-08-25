@@ -11,8 +11,6 @@ repositories:
     url: https://kubernetes-sigs.github.io/metrics-server
   - name: external-secrets
     url: https://charts.external-secrets.io
-  - name: actions-runner-controller
-    url: https://actions-runner-controller.github.io/actions-runner-controller
 
 releases:
   - name: metrics-server
@@ -69,8 +67,8 @@ releases:
     createNamespace: true
 
 
-  - name: actions-runner-controller
-    namespace: actions-runner-system
-    chart: actions-runner-controller/actions-runner-controller
-    version: 0.23.7
+  - name: github-action-controller
+    namespace: github-action-controller
     createNamespace: true
+    version: 0.12.1
+    chart: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
