@@ -34,7 +34,7 @@ spec:
             - /etc/buildkit/buildkitd.toml
           envFrom:
             - secretRef:
-                name: buildkit-s3-secret
+                name: buildkit-minio-secret
           volumeMounts:
             - name: buildkitd-config
               mountPath: /etc/buildkit
