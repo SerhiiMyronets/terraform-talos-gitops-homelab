@@ -1,0 +1,4 @@
+resources:
+  - sa.yaml
+  - role.yaml
+  - rolebiding.yaml
