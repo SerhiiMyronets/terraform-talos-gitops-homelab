@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: actions-runner-controller
     releaseName: actions-runner-controller
-    version: 0.12.1
+    version: 0.23.7
     repo: https://actions-runner-controller.github.io/actions-runner-controller
     valuesFile: values.yaml
     namespace: actions-runner-system
