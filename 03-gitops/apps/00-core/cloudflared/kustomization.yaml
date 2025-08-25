@@ -12,3 +12,4 @@ helmCharts:
 resources:
   - namespace.yaml
   - cloudflared-credential-token.yaml
+  - oidc-discovery-rbac.yaml
