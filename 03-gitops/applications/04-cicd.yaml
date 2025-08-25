@@ -29,8 +29,6 @@ spec:
     namespace: jenkins
   syncPolicy:
     automated: {}
-    syncOptions:
-      - CreateNamespace=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -48,8 +46,6 @@ spec:
     namespace: sonarqube
   syncPolicy:
     automated: {}
-    syncOptions:
-      - CreateNamespace=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -62,6 +58,23 @@ spec:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
     targetRevision: homelab
     path: 03-gitops/apps/04-ci-cd/buildkit
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: buildkit
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: github-actions-runner-set
+  namespace: argocd
+spec:
+  project: ci-cd
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/04-ci-cd/github-actions-runner-set
   destination:
     server: https://kubernetes.default.svc
     namespace: buildkit
