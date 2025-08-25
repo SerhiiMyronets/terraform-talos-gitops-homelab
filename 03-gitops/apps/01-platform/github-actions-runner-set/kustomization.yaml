@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: github-actions-runner-set
     releaseName: gha-runner-scale-set
-#    version: 0.23.7
+    version: 0.8.2
     repo:  oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
 #    valuesFile: values.yaml
     namespace: actions-actions-runner-set
