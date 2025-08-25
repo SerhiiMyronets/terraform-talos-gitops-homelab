@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 helmCharts:
-  - name: actions-actions-runner-set
+  - name: github-actions-runner-set
     releaseName: gha-runner-scale-set
 #    version: 0.23.7
     repo:  oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
