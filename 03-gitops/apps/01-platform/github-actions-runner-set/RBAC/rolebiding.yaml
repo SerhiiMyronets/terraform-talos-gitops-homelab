@@ -1,0 +1,28 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: github-actions-runner-set-gha-rs-manager
+  namespace: github-actions-runner-set
+  labels:
+    helm.sh/chart: gha-rs-0.12.1
+    app.kubernetes.io/name: github-actions-runner-set
+    app.kubernetes.io/instance: github-actions-runner-set
+    app.kubernetes.io/version: "0.12.1"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: gha-rs
+    actions.github.com/scale-set-name: github-actions-runner-set
+    actions.github.com/scale-set-namespace: github-actions-runner-set
+    app.kubernetes.io/component: manager-role-binding
+  annotations:
+  finalizers:
+    - actions.github.com/cleanup-protection
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: github-actions-runner-set-gha-rs-manager
+subjects:
+  - kind: ServiceAccount
+    name:
+      github-action-controller-gha-rs-controller
+    namespace:
+      github-action-controller

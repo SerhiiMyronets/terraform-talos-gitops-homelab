@@ -1,10 +1,14 @@
-githubWebhookServer:
-  enabled: false
+githubConfigSecret: controller-manager
+githubConfigUrl: https://github.com/planeops/ci-runners
 
-authSecret:
-  create: false
-  name: controller-manager
 
-metrics:
-  serviceMonitor:
-    enabled: true
+controllerServiceAccount:
+  namespace: github-action-controller
+  name: github-action-controller-gha-rs-controller
+
+template:
+  spec:
+    labels:
+      - self-hosted
+      - linux
+      - planeops

@@ -1,0 +1,73 @@
+apiVersion: actions.github.com/v1alpha1
+kind: AutoscalingRunnerSet
+metadata:
+  name: github-actions-runner-set
+  namespace: github-actions-runner-set
+  labels:
+    app.kubernetes.io/component: "autoscaling-runner-set"
+    helm.sh/chart: gha-rs-0.12.1
+    app.kubernetes.io/name: github-actions-runner-set
+    app.kubernetes.io/instance: github-actions-runner-set
+    app.kubernetes.io/version: "0.12.1"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: gha-rs
+    actions.github.com/scale-set-name: github-actions-runner-set
+    actions.github.com/scale-set-namespace: github-actions-runner-set
+  annotations:
+    actions.github.com/values-hash: 440ec84499b5633f864a90641c700ec5b9bd1b673f19f2afb2b4c49b1f97bee
+    actions.github.com/cleanup-manager-role-binding: github-actions-runner-set-gha-rs-manager
+    actions.github.com/cleanup-manager-role-name: github-actions-runner-set-gha-rs-manager
+    actions.github.com/cleanup-no-permission-service-account-name: github-actions-runner-set-gha-rs-no-permission
+
+spec:
+  githubConfigUrl: https://github.com/planeops/ci-runners
+  githubConfigSecret: controller-manager
+
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: github-actions-runner-set-gha-rs-no-permission
+      containers:
+
+        - name: runner
+          command:
+            - /home/runner/run.sh
+          image:
+            ghcr.io/actions/actions-runner:latest
+---
+apiVersion: actions.github.com/v1alpha1
+kind: AutoscalingRunnerSet
+metadata:
+  name: github-actions-runner-set-1
+  namespace: github-actions-runner-set
+  labels:
+    app.kubernetes.io/component: "autoscaling-runner-set"
+    helm.sh/chart: gha-rs-0.12.1
+    app.kubernetes.io/name: github-actions-runner-set-1
+    app.kubernetes.io/instance: github-actions-runner-set-1
+    app.kubernetes.io/version: "0.12.1"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: gha-rs
+    actions.github.com/scale-set-name: github-actions-runner-set-1
+    actions.github.com/scale-set-namespace: github-actions-runner-set-1
+  annotations:
+    actions.github.com/values-hash: 440ec84499b5633f864a90641c700ec5b9bd1b673f19f2afb2b4c49b1f97bee
+    actions.github.com/cleanup-manager-role-binding: github-actions-runner-set-gha-rs-manager
+    actions.github.com/cleanup-manager-role-name: github-actions-runner-set-gha-rs-manager
+    actions.github.com/cleanup-no-permission-service-account-name: github-actions-runner-set-gha-rs-no-permission
+
+spec:
+  githubConfigUrl: https://github.com/planeops/ci-runners
+  githubConfigSecret: controller-manager
+
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: github-actions-runner-set-gha-rs-no-permission
+      containers:
+
+        - name: runner
+          command:
+            - /home/runner/run.sh
+          image:
+            ghcr.io/planeops/ci-runners/runner-node-secured:latest
