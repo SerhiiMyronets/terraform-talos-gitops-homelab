@@ -2,4 +2,5 @@ resources:
   - namespace.yaml
   - controller-manager-secret.yaml
   - RBAC/
-  - runner-set.yaml
+  - default-runner-set.yaml
+  - nodejs-runner-set.yaml
