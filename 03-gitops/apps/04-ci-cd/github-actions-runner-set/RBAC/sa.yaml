@@ -11,5 +11,3 @@ metadata:
     actions.github.com/scale-set-name: github-actions-runner-set
     actions.github.com/scale-set-namespace: github-actions-runner-set
   annotations:
-  finalizers:
-    - actions.github.com/cleanup-protection

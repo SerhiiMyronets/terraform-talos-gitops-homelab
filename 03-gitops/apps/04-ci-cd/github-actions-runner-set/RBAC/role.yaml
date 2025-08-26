@@ -12,8 +12,6 @@ metadata:
     actions.github.com/scale-set-namespace: github-actions-runner-set
     app.kubernetes.io/component: manager-role
   annotations:
-  finalizers:
-    - actions.github.com/cleanup-protection
 rules:
   - apiGroups:
       - ""
