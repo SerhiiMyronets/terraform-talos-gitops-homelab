@@ -4,11 +4,9 @@ metadata:
   name: github-actions-runner-set-gha-rs-manager
   namespace: github-actions-runner-set
   labels:
-    helm.sh/chart: gha-rs-0.12.1
     app.kubernetes.io/name: github-actions-runner-set
     app.kubernetes.io/instance: github-actions-runner-set
     app.kubernetes.io/version: "0.12.1"
-    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: gha-rs
     actions.github.com/scale-set-name: github-actions-runner-set
     actions.github.com/scale-set-namespace: github-actions-runner-set
