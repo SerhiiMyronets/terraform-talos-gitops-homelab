@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: sonar-token
+  namespace: jenkins
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: infisical-cloud
+    kind: ClusterSecretStore
+  target:
+    name: sonar-token
+    creationPolicy: Owner
+  data:
+    - secretKey: SONAR_TOKEN
+      remoteRef:
+        key: /sonarqube/token
