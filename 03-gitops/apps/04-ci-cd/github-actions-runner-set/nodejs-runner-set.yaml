@@ -1,7 +1,7 @@
 apiVersion: actions.github.com/v1alpha1
 kind: AutoscalingRunnerSet
 metadata:
-  name: default
+  name: nodejs
   namespace: github-actions-runner-set
   labels:
     app.kubernetes.io/component: "autoscaling-runner-set"
@@ -16,7 +16,7 @@ metadata:
     actions.github.com/cleanup-manager-role-name: github-actions-runner-set-gha-rs-manager
     actions.github.com/cleanup-no-permission-service-account-name: github-actions-runner-set-gha-rs-no-permission
 spec:
-  githubConfigUrl: https://github.com/planeops/ci-runners
+  githubConfigUrl: https://github.com/planeops
   githubConfigSecret: controller-manager
   template:
     spec:
@@ -27,4 +27,4 @@ spec:
           command:
             - /home/runner/run.sh
           image:
-            ghcr.io/actions/actions-runner:latest
+            ghcr.io/planeops/ci-runners/runner-node-secured:latest
