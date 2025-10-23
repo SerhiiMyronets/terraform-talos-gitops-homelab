@@ -3,7 +3,7 @@ cloudflare:
   secretName: cloudflared-credential-token
 
   ingress:
-    - hostname: k8s-issuer.serhii.link
+    - hostname: cluster.serhii.link
       service: https://kubernetes.default.svc:443
       originRequest:
         originServerName: kubernetes.default.svc.cluster.local
