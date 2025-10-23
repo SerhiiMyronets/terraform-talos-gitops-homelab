@@ -12,23 +12,23 @@ spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: jenkins
-  namespace: argocd
-spec:
-  project: ci-cd
-  source:
-    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: homelab
-    path: 03-gitops/apps/04-ci-cd/jenkins
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: jenkins
-  syncPolicy:
-    automated: {}
+#---
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: jenkins
+#  namespace: argocd
+#spec:
+#  project: ci-cd
+#  source:
+#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+#    targetRevision: homelab
+#    path: 03-gitops/apps/04-ci-cd/jenkins
+#  destination:
+#    server: https://kubernetes.default.svc
+#    namespace: jenkins
+#  syncPolicy:
+#    automated: {}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
