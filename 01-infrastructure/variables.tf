@@ -57,7 +57,7 @@ variable "proxmox_network_bridge" {
 variable "talos_version" {
   description = "Talos Linux version."
   type        = string
-  default     = "v1.10.5"
+  default     = "v1.11.5"
 }
 
 variable "talos_qemu_iscsi_hash" {
@@ -73,7 +73,7 @@ locals {
 
 variable "kubernetes_version" {
   type    = string
-  default = "1.32.0"
+  default = "1.34.2"
 }
 
 // ==============================================================================
