@@ -17,4 +17,4 @@ replicaCount: 1
 image:
   repository: cloudflare/cloudflared
   pullPolicy: IfNotPresent
-  tag: 2025.7.0
+  tag: 2025.11.1
