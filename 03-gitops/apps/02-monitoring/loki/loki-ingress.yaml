@@ -28,7 +28,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: loki-public-ui
-  namespace: jenkins
+  namespace: monitoring
   annotations:
     nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
     nginx.ingress.kubernetes.io/auth-signin: "https://oauth.serhii.link/oauth2/start?rd=https://$host$request_uri"
