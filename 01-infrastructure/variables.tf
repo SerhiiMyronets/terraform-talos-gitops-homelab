@@ -129,18 +129,18 @@ variable "load_balancer_ip_range" {
 variable "controller_config" {
   description = "Resources for control plane nodes."
   type = object({
-    count          = number
-    cpu            = number
-    memory         = number
+    count  = number
+    cpu    = number
+    memory = number
     os_disk = object({
       size      = number
       datastore = string
     })
   })
   default = {
-    count          = 1
-    cpu            = 4
-    memory         = 1024 * 6
+    count  = 1
+    cpu    = 4
+    memory = 1024 * 6
 
     os_disk = {
       size      = 30
@@ -152,9 +152,9 @@ variable "controller_config" {
 variable "worker_config" {
   description = "Resources for worker nodes."
   type = object({
-    count     = number
-    cpu       = number
-    memory    = number
+    count  = number
+    cpu    = number
+    memory = number
     os_disk = object({
       size      = number
       datastore = string
