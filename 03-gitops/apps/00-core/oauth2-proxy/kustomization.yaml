@@ -12,3 +12,4 @@ helmCharts:
 resources:
   - namespace.yaml
   - oauth2-proxy-token.yaml
+  - httproute.yaml
