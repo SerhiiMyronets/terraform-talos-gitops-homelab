@@ -27,7 +27,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: grafana-public-ui
+  name: grafana-public-ui-1
   namespace: monitoring
   annotations:
     nginx.ingress.kubernetes.io/auth-url: "https://oauth.serhii.link/oauth2/auth"
