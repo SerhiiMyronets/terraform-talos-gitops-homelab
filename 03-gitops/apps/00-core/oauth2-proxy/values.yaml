@@ -26,13 +26,13 @@ ingress:
 
 gatewayApi:
   enabled: true
-  gatewayRef:
-    name: public-gw
-    namespace: networking
-  hostnames:
-    - oauth.serhii.link
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
+#  gatewayRef:
+#    name: public-gw
+#    namespace: networking
+#  hostnames:
+#    - oauth.serhii.link
+#  rules:
+#    - matches:
+#        - path:
+#            type: PathPrefix
+#            value: /
