@@ -96,9 +96,9 @@ cluster:
                   - k8sServiceHost=localhost
                   - --set
                   - k8sServicePort=7445
-                  - --set
-                  - l2announcements.enabled=true
-                  - --set
-                  - devices={eth0}
-                  - --set
-                  - envoy.enabled=false
+#                  - --set
+#                  - l2announcements.enabled=true
+#                  - --set
+#                  - devices={eth0}
+#                  - --set
+#                  - envoy.enabled=false
