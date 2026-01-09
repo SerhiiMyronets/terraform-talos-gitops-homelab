@@ -1,7 +1,7 @@
 config:
   redirectURL: "https://oauth.serhii.link/oauth2/callback"
   upstreams:
-    - static://200
+    - "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80/"
   existingSecret: oauth2-proxy-token
   configFile: |
     provider = "github"
@@ -13,10 +13,26 @@ config:
     github_users = [ "SerhiiMyronets" ]
 
 
+#ingress:
+#  enabled: true
+#  className: nginx
+#  annotations:
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#  hosts:
+#    - oauth.serhii.link
+
 ingress:
+  enabled: false
+
+gatewayApi:
   enabled: true
-  className: nginx
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-  hosts:
+  gatewayRef:
+    name: public-gw
+    namespace: networking
+  hostnames:
     - oauth.serhii.link
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
