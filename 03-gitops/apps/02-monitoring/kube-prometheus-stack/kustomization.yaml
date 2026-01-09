@@ -2,6 +2,7 @@ resources:
   - grafana-ingress.yaml
   - alertmanager-ingress.yaml
   - prometheus-ingress.yaml
+  - grafana-ingress-1.yaml
 
 helmCharts:
   - name: kube-prometheus-stack
