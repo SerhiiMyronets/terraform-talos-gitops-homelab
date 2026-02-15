@@ -77,7 +77,7 @@ releases:
   - name: argocd
     namespace: argocd
     chart: argo/argo-cd
-    version: 7.7.7
+    version: 9.4.2
     createNamespace: true
     values:
       - configs:
