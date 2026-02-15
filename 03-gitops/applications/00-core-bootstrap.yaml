@@ -29,23 +29,23 @@ spec:
     namespace: argocd
   syncPolicy:
     automated: {}
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: argocd
-#  namespace: argocd
-#spec:
-#  project: core
-#  source:
-#    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-#    targetRevision: homelab
-#    path: 03-gitops/apps/00-core/argocd
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: argocd
-#  syncPolicy:
-#    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: core
+  source:
+    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    targetRevision: homelab
+    path: 03-gitops/apps/00-core/argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

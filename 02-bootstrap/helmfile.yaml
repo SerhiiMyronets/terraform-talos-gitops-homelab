@@ -42,10 +42,10 @@ releases:
     values:
       - values/cilium-values.yaml
 
-  - name: prometheus-operator-crds
-    namespace: kube-system
-    chart: prometheus-community/prometheus-operator-crds
-    version: 25.0.1
+#  - name: prometheus-operator-crds
+#    namespace: kube-system
+#    chart: prometheus-community/prometheus-operator-crds
+#    version: 25.0.1
 
   - name: metrics-server
     namespace: kube-system
@@ -64,15 +64,15 @@ releases:
       - crds:
           enabled: true
 
-#  - name: ingress-nginx
-#    namespace: ingress-nginx
-#    chart: ingress-nginx/ingress-nginx
-#    version: 4.10.1
-#    createNamespace: true
-#    values:
-#      - controller:
-#          service:
-#            type: LoadBalancer
+  - name: ingress-nginx
+    namespace: ingress-nginx
+    chart: ingress-nginx/ingress-nginx
+    version: 4.10.1
+    createNamespace: true
+    values:
+      - controller:
+          service:
+            type: LoadBalancer
 
   - name: argocd
     namespace: argocd
