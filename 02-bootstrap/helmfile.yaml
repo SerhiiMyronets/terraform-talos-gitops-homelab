@@ -83,6 +83,9 @@ releases:
       - configs:
           cm:
             kustomize.buildOptions: "--enable-helm"
+            users.anonymous.enabled: "true"
+          rbac:
+            policy.default: role:admin
 
   - name: longhorn
     namespace: longhorn-system
