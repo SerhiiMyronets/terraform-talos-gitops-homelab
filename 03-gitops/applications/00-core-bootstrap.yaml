@@ -94,7 +94,7 @@ spec:
     path: 03-gitops/apps/00-core/gateway-system
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: gateway-system
   syncPolicy:
     automated: {}
     syncOptions:
