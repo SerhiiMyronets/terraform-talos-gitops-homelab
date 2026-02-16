@@ -51,8 +51,8 @@ metadata:
   namespace: argocd
 spec:
   parentRefs:
-    - name: cilium-gw
-      namespace: networking
+    - name: main-gateway
+      namespace: gateway-system
   hostnames:
     - argocd.serhii.link
   rules:
