@@ -80,7 +80,7 @@ releases:
     version: 9.4.2
     createNamespace: true
     values:
-      - values/cilium-values.yaml
+      - values/argocd-values.yaml
 
   - name: longhorn
     namespace: longhorn-system
