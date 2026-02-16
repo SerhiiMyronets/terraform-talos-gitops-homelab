@@ -10,7 +10,7 @@ cloudflare:
         caPool: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         noTLSVerify: false
     - hostname: "*.serhii.link"
-      service: http://cilium-gateway-main-gateway.networking.svc.cluster.local:80
+      service: http://cilium-gateway-main-gateway.gateway-system.svc.cluster.local:80
 #      service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
 
 replicaCount: 1
