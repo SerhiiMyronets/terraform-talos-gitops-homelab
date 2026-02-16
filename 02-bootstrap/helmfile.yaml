@@ -15,6 +15,8 @@ repositories:
     url: https://helm.cilium.io
   - name: prometheus-community
     url: https://prometheus-community.github.io/helm-charts
+  - name: openebs
+    url: https://openebs.github.io/openebs
 
 hooks:
   - events: [ "prepare" ]
@@ -47,6 +49,14 @@ releases:
 #    chart: prometheus-community/prometheus-operator-crds
 #    version: 25.0.1
 
+  - name: openebs
+    namespace: openebs
+    chart: openebs/openebs
+    version: 4.1.1
+    createNamespace: true
+    values:
+      - values/openebs-values.yaml
+
   - name: metrics-server
     namespace: kube-system
     chart: metrics-server/metrics-server
@@ -55,24 +65,24 @@ releases:
       - args:
           - --kubelet-insecure-tls
 
-  - name: cert-manager
-    namespace: cert-manager
-    chart: jetstack/cert-manager
-    version: 1.16.2
-    createNamespace: true
-    values:
-      - crds:
-          enabled: true
+#  - name: cert-manager
+#    namespace: cert-manager
+#    chart: jetstack/cert-manager
+#    version: 1.16.2
+#    createNamespace: true
+#    values:
+#      - crds:
+#          enabled: true
 
-  - name: ingress-nginx
-    namespace: ingress-nginx
-    chart: ingress-nginx/ingress-nginx
-    version: 4.10.1
-    createNamespace: true
-    values:
-      - controller:
-          service:
-            type: LoadBalancer
+#  - name: ingress-nginx
+#    namespace: ingress-nginx
+#    chart: ingress-nginx/ingress-nginx
+#    version: 4.10.1
+#    createNamespace: true
+#    values:
+#      - controller:
+#          service:
+#            type: LoadBalancer
 
   - name: argocd
     namespace: argocd
@@ -82,11 +92,11 @@ releases:
     values:
       - values/argocd-values.yaml
 
-  - name: longhorn
-    namespace: longhorn-system
-    chart: longhorn/longhorn
-    version: 1.8.1
-    createNamespace: false
+#  - name: longhorn
+#    namespace: longhorn-system
+#    chart: longhorn/longhorn
+#    version: 1.8.1
+#    createNamespace: false
 #    values:
 #      - persistence:
 #          defaultClass: true

@@ -1,0 +1,36 @@
+# --- LocalPV Hostpath Engine & Storage Class
+localpv-provisioner:
+  enabled: true
+  hostpathClass:
+    name: local-nvme
+    isDefaultClass: true
+    basePath: /var/mnt/storage
+
+
+# --- Disable Engines we don't use ---
+engines:
+  local:
+    lvm:
+      enabled: false # We use Proxmox LVM, no need for extra LVM in K8s
+    zfs:
+      enabled: false # No ZFS on this setup
+    rawfile:
+      enabled: false
+  replicated:
+    mayastor:
+      enabled: false # Heavy engine, not needed for local storage
+
+# --- Disable Logging Stack (Loki & Alloy) ---
+# You can use your own Grafana/Loki stack later if needed
+loki:
+  enabled: false
+alloy:
+  enabled: false
+
+# Broken image in default values
+preUpgradeHook:
+  enabled: true
+  image:
+    registry: docker.io
+    repo: openebs/kubectl
+    tag: "1.25.15"
