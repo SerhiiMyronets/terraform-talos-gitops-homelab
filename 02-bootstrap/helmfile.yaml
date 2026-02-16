@@ -102,11 +102,11 @@ releases:
 #          defaultClass: true
 #          reclaimPolicy: Retain
 
-  - name: external-secrets
-    namespace: external-secrets
-    chart: external-secrets/external-secrets
-    version: 2.0.0
-    createNamespace: true
+#  - name: external-secrets
+#    namespace: external-secrets
+#    chart: external-secrets/external-secrets
+#    version: 2.0.0
+#    createNamespace: true
 
 
 #  - name: github-action-controller
