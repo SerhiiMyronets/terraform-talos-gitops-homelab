@@ -37,10 +37,21 @@ metadata:
   namespace: argocd
 spec:
   project: core
-  source:
-    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
-    targetRevision: homelab
-    path: 03-gitops/apps/00-core/argocd
+  sources:
+    - repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+      targetRevision: homelab
+      path: 03-gitops/apps/00-core/argocd
+
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 9.4.2
+      helm:
+        valueFiles:
+          - $values/02-bootstrap/values/argocd-values.yaml
+
+    - repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+      targetRevision: homelab
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
