@@ -57,19 +57,19 @@ variable "proxmox_network_bridge" {
 variable "talos_version" {
   description = "Talos Linux version."
   type        = string
-  default     = "v1.11.5"
+  default     = "v1.12.4"
 }
 
-variable "talos_qemu_iscsi_hash" {
-  description = "SHA256 hash of the Talos Linux image for QEMU/ISCSI."
-  type        = string
-  default     = "dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586"
-}
-
-locals {
-  talos_image_url      = "https://factory.talos.dev/image/${var.talos_qemu_iscsi_hash}/${var.talos_version}/nocloud-amd64.raw.gz"
-  talos_image_filename = "talos-${var.talos_version}-nocloud-amd64.img"
-}
+# variable "talos_qemu_iscsi_hash" {
+#   description = "SHA256 hash of the Talos Linux image for intel-ucode & qemu-guest-agent"
+#   type        = string
+#   default     = "e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e"
+# }
+#
+# locals {
+#   talos_image_url      = "https://factory.talos.dev/image/${var.talos_qemu_iscsi_hash}/${var.talos_version}/nocloud-amd64.raw.gz"
+#   talos_image_filename = "talos-${var.talos_version}-nocloud-amd64.img"
+# }
 
 variable "kubernetes_version" {
   type    = string
@@ -159,7 +159,7 @@ variable "worker_config" {
       size      = number
       datastore = string
     })
-    longhorn_disk = object({
+    open_ebs_disk = object({
       size      = number
       datastore = string
     })
@@ -174,7 +174,7 @@ variable "worker_config" {
       datastore = "local-lvm"
     }
 
-    longhorn_disk = {
+    open_ebs_disk = {
       size      = 100
       datastore = "local-lvm"
     }

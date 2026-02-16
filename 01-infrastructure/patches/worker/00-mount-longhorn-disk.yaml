@@ -1,6 +1,6 @@
-# This file is defined to mount the longhorn disk on the worker nodes.
+# This file is defined to mount the OpenEBS disk on the worker nodes.
 machine:
   disks:
     - device: /dev/sdb
       partitions:
-        - mountpoint: /var/lib/longhorn
+        - mountpoint: /var/mnt/storage
