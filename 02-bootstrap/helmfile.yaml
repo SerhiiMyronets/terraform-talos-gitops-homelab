@@ -80,12 +80,7 @@ releases:
     version: 9.4.2
     createNamespace: true
     values:
-      - configs:
-          cm:
-            kustomize.buildOptions: "--enable-helm"
-            users.anonymous.enabled: "true"
-          rbac:
-            policy.default: role:admin
+      - values/cilium-values.yaml
 
   - name: longhorn
     namespace: longhorn-system
