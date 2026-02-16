@@ -51,7 +51,9 @@ metadata:
   namespace: argocd
 spec:
   parentRefs:
-    - name: main-gateway
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: main-gateway
       namespace: gateway-system
   hostnames:
     - argocd.serhii.link
@@ -61,5 +63,7 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: argocd-server
+        - group: ''
+          kind: Service
+          name: argocd-server
           port: 80
