@@ -4,4 +4,3 @@ metadata:
   name: cilium
 spec:
   controllerName: io.cilium/gateway-controller
-  description: "Cilium Gateway API controller"

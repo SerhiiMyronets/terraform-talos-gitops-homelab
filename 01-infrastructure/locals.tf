@@ -54,11 +54,3 @@ locals {
     local.controller_patches,
   )
 }
-
-resource "local_file" "cilium_lb_pool_manifest" {
-  filename = "${path.module}/../02-bootstrap/manifests/cleanup/cilium-lb-pool.yaml"
-  content = templatefile("${path.module}/../02-bootstrap/manifests/templates/cilium-lb-pool.yaml.tftpl", {
-    load_balancer_first_host = cidrhost(var.cluster_node_network, var.load_balancer_ip_range.first),
-    load_balancer_last_host  = cidrhost(var.cluster_node_network, var.load_balancer_ip_range.last)
-  })
-}
