@@ -24,10 +24,10 @@ hooks:
     command: "kubectl"
     args: [ "apply", "-f", "./manifests/prepare/" ]
 
-  - events: ["prepare"]
-    showlogs: true
-    command: "kubectl"
-    args: [ "apply", "-f", "https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml" ]
+#  - events: ["prepare"]
+#    showlogs: true
+#    command: "kubectl"
+#    args: [ "apply", "-f", "https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml" ]
 
   - events: [ "cleanup" ]
     showlogs: true

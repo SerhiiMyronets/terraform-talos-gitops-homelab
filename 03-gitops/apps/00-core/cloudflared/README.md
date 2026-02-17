@@ -50,5 +50,3 @@ Type: CNAME
 Name: jenkins.serhii.link
 Target: aa04f37f-025a-4dbb-8a06-87acf29ff7a2.cfargotunnel.com
 Proxy: ON
-
-
