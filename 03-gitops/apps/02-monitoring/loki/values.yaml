@@ -1,7 +1,7 @@
 loki:
   persistence:
     enabled: true
-    storageClassName: longhorn
+    storageClassName: local-nvme
     size: 5Gi
 
 promtail:

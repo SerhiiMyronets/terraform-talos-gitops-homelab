@@ -60,17 +60,6 @@ variable "talos_version" {
   default     = "v1.12.4"
 }
 
-# variable "talos_qemu_iscsi_hash" {
-#   description = "SHA256 hash of the Talos Linux image for intel-ucode & qemu-guest-agent"
-#   type        = string
-#   default     = "e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e"
-# }
-#
-# locals {
-#   talos_image_url      = "https://factory.talos.dev/image/${var.talos_qemu_iscsi_hash}/${var.talos_version}/nocloud-amd64.raw.gz"
-#   talos_image_filename = "talos-${var.talos_version}-nocloud-amd64.img"
-# }
-
 variable "kubernetes_version" {
   type    = string
   default = "1.34.2"
@@ -112,14 +101,6 @@ variable "cluster_node_network_first_worker_hostnum" {
   description = "Host number for the first worker node (e.g. 168.168.100.70)."
   type        = number
   default     = 70
-}
-
-variable "load_balancer_ip_range" {
-  description = "Range of host numbers to allocate for LoadBalancer services."
-  default = {
-    first = 80
-    last  = 85
-  }
 }
 
 // ==============================================================================

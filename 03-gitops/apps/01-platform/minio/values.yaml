@@ -35,7 +35,7 @@ policies:
 persistence:
   enabled: true
   size: 10Gi
-  storageClass: longhorn
+  storageClass: local-nvme
 
 consoleService:
   type: ClusterIP

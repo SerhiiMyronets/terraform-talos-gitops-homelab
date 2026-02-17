@@ -1,8 +1,0 @@
-apiVersion: cilium.io/v2alpha1
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: external
-spec:
-  blocks:
-    - start: ${load_balancer_first_host}
-      stop: ${load_balancer_last_host}

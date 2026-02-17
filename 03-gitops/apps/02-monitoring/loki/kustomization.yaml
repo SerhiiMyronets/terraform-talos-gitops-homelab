@@ -1,6 +1,3 @@
-resources:
-  - loki-ingress.yaml
-
 helmCharts:
   - name: loki-stack
     releaseName: loki-stack

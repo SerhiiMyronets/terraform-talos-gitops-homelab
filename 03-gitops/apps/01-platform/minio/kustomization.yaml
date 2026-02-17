@@ -13,4 +13,4 @@ resources:
   - namespace.yaml
   - minio-root-secret.yaml
   - minio-buildkit-secret.yaml
-  - minio-ingress.yaml
+#  - minio-ingress.yaml
