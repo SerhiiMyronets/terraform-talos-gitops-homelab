@@ -64,6 +64,37 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: open-ebs
+  namespace: argocd
+spec:
+  project: core
+  sources:
+    - repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+      targetRevision: homelab
+      path: 03-gitops/apps/00-core/open-ebs
+
+    - repoURL: https://openebs.github.io/openebs
+      chart: openebs
+      targetRevision: 4.1.1
+      helm:
+        valueFiles:
+          - $values/02-bootstrap/values/openebs-values.yaml
+
+    - repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+      targetRevision: homelab
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openebs
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: cloudflared
   namespace: argocd
 spec:

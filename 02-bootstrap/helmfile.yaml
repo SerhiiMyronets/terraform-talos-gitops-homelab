@@ -24,11 +24,6 @@ hooks:
     command: "kubectl"
     args: [ "apply", "-k", "./manifests/prepare/" ]
 
-  - events: [ "cleanup" ]
-    showlogs: true
-    command: "kubectl"
-    args: [ "apply", "-f", "./manifests/cleanup/" ]
-
 releases:
   - name: cilium
     namespace: kube-system
