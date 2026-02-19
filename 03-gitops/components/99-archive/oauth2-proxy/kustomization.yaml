@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: oauth2-proxy
+    releaseName: oauth2-proxy
+    version: 7.16.0
+    repo: https://oauth2-proxy.github.io/manifests
+    namespace: oauth2-proxy
+    valuesFile: values.yaml
+
+resources:
+  - namespace.yaml
+  - oauth2-proxy-token.yaml
+  - httproute.yaml
