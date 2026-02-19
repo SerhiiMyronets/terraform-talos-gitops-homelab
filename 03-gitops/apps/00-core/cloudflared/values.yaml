@@ -1,21 +1,12 @@
-cloudflare:
-  tunnelName: wildcard-tunnel
-  secretName: cloudflared-credential-token
+tunnelConfig:
+  name: wildcard-tunnel
 
-  ingress:
-    - hostname: cluster.serhii.link
-      service: https://kubernetes.default.svc:443
-      originRequest:
-        originServerName: kubernetes.default.svc.cluster.local
-        caPool: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-        noTLSVerify: false
-    - hostname: "*.serhii.link"
-      service: http://cilium-gateway-main-gateway.gateway-system.svc.cluster.local:80
-#      service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+tunnelSecrets:
+  existingConfigJsonFileSecret:
+    name: cloudflared-credential-token
 
-replicaCount: 1
+ingress:
+  - hostname: "*.serhii.link"
+    service: hhttp://cilium-gateway-main-gateway.gateway-system.svc.cluster.local:80
 
-image:
-  repository: cloudflare/cloudflared
-  pullPolicy: IfNotPresent
-  tag: 2025.11.1
+  - service: http_status:404
