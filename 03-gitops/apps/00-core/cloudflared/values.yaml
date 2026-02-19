@@ -2,6 +2,10 @@ tunnelConfig:
   name: wildcard-tunnel
 
 tunnelSecrets:
+  existingPemFileSecret:
+    name: "cloudflared-credential-token"
+    key: "cert.pem"
+
   existingConfigJsonFileSecret:
     name: cloudflared-credential-token
     key: "credentials.json"
