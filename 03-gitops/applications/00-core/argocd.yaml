@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
       targetRevision: homelab
-      path: 03-gitops/apps/00-core/argocd
+      path: 03-gitops/components/00-core/argocd
 
     - repoURL: https://argoproj.github.io/argo-helm
       chart: argo-cd
