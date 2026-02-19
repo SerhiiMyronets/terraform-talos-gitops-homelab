@@ -2,9 +2,7 @@ tunnelConfig:
   name: wildcard-tunnel
 
 tunnelSecrets:
-  existingPemFileSecret:
-    name: "cloudflared-credential-token"
-    key: "cert.pem"
+  base64EncodedPemFile: "dW51c2VkCg==" # "unused"
 
   existingConfigJsonFileSecret:
     name: cloudflared-credential-token
@@ -15,3 +13,7 @@ ingress:
     service: hhttp://cilium-gateway-main-gateway.gateway-system.svc.cluster.local:80
 
   - service: http_status:404
+
+replica:
+  allNodes: false
+  count: 1
