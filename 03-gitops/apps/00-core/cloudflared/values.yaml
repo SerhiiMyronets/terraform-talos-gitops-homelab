@@ -10,7 +10,7 @@ tunnelSecrets:
 
 ingress:
   - hostname: "*.serhii.link"
-    service: hhttp://cilium-gateway-main-gateway.gateway-system.svc.cluster.local:80
+    service: http://cilium-gateway-main-gateway.gateway-system.svc.cluster.local:80
 
   - service: http_status:404
 
