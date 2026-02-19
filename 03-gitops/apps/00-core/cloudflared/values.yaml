@@ -4,6 +4,7 @@ tunnelConfig:
 tunnelSecrets:
   existingConfigJsonFileSecret:
     name: cloudflared-credential-token
+    key: "credentials.json"
 
 ingress:
   - hostname: "*.serhii.link"
