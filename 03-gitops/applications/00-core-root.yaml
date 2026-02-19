@@ -4,7 +4,7 @@ metadata:
   name: core-root
   namespace: argocd
 spec:
-  project: dafault
+  project: default
   source:
     repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
     targetRevision: homelab
