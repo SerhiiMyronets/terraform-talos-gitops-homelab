@@ -30,6 +30,7 @@ grafana:
   grafana.ini:
     auth.anonymous.enabled: true
     auth.anonymous.org_role: Admin
+    auth.anonymous.org_name: "Main Org."
     auth.disable_login_form: true
 #  enabled: true
 #  # English comment: Basic resources for Grafana
