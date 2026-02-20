@@ -9,10 +9,22 @@ kubeScheduler:
 kubeProxy:
   enabled: false
 
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-nvme
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 2Gi
+
 prometheus:
   prometheusSpec:
     retention: 7d
     retentionSize: "10GB"
+
     storageSpec:
       volumeClaimTemplate:
         spec:
@@ -23,7 +35,6 @@ prometheus:
               storage: 20Gi
 
     # English comment: Talos-specific fix for node-exporter
-    # It avoids issues with mounting host paths
     hostNetwork: true
 
 grafana:
@@ -32,13 +43,13 @@ grafana:
       disable_login_form: true
     auth.anonymous:
       enabled: true
-      org_name: "Main Org."
       org_role: Admin
+
   deploymentStrategy:
     type: Recreate
+
   adminPassword: admin
 
-  # English comment: Ensure security context is still there
   securityContext:
     runAsUser: 472
     runAsGroup: 472
