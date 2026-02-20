@@ -5,5 +5,7 @@ resources:
   - https://raw.githubusercontent.com/external-secrets/external-secrets/v2.0.0/deploy/crds/bundle.yaml
   # Prometheus Operator CRDs
   - https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.89.0/stripped-down-crds.yaml
+  # Strimzi CRDs
+  - https://github.com/strimzi/strimzi-kafka-operator/releases/download/0.50.0/strimzi-crds-0.50.0.yaml
   # Initial secret
   - initial-secret.yaml
