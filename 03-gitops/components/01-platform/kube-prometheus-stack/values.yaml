@@ -1,3 +1,6 @@
+crds:
+  enabled: false
+
 # English comment: Core components settings for Talos Linux
 prometheusOperator:
   resources:
