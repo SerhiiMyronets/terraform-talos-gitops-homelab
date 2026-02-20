@@ -1,17 +1,7 @@
 crds:
   enabled: false
 
-# English comment: Core components settings for Talos Linux
-prometheusOperator:
-  resources:
-    limits:
-      cpu: 200m
-      memory: 256Mi
-    requests:
-      cpu: 50m
-      memory: 128Mi
 
-# English comment: Disable components that don't work on Talos by default
 kubeControllerManager:
   enabled: false
 kubeScheduler:
@@ -21,24 +11,12 @@ kubeProxy:
 
 prometheus:
   prometheusSpec:
-    # English comment: Resources for the main Prometheus DB
-    resources:
-      limits:
-        cpu: 500m
-        memory: 1536Mi # J4125 friendly limit
-      requests:
-        cpu: 100m
-        memory: 512Mi
-    
-    # English comment: Retention settings to save disk and RAM
     retention: 7d
     retentionSize: "10GB"
-    
-    # English comment: Storage configuration for OpenEBS
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: local-nvme # Change to your actual storage class
+          storageClassName: local-nvme
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
@@ -60,6 +38,7 @@ grafana:
       org_role: Admin
   deploymentStrategy:
     type: Recreate
+  adminPassword: "admin"
 
   # English comment: Ensure security context is still there
   securityContext:
@@ -80,14 +59,3 @@ grafana:
       enabled: true
       label: grafana_dashboard
       searchNamespace: ALL
-
-# English comment: Alertmanager is useful but can be heavy, let's limit it
-alertmanager:
-  alertmanagerSpec:
-    resources:
-      limits:
-        cpu: 100m
-        memory: 128Mi
-      requests:
-        cpu: 10m
-        memory: 64Mi
