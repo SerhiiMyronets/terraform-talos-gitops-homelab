@@ -41,8 +41,8 @@ grafana:
 #      enabled: true
 #      org_name: "Main Org."
 #      org_role: Admin
-#  deploymentStrategy:
-#    type: Recreate
+  deploymentStrategy:
+    type: Recreate
   adminPassword: "admin"
 
   # English comment: Ensure security context is still there
