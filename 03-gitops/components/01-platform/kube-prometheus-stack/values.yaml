@@ -50,10 +50,3 @@ grafana:
     enabled: true
     storageClassName: local-nvme
     size: 5Gi
-
-  # English comment: Sidecar will automatically find dashboards in ConfigMaps
-  sidecar:
-    dashboards:
-      enabled: true
-      label: grafana_dashboard
-      searchNamespace: ALL
