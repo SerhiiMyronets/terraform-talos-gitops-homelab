@@ -61,11 +61,11 @@ grafana:
   deploymentStrategy:
     type: Recreate
 
-    # English comment: Ensure security context is still there
-    podSecurityContext:
-      fsGroup: 472
-    initChownData:
-      enabled: false
+  # English comment: Ensure security context is still there
+  podSecurityContext:
+    fsGroup: 472
+  initChownData:
+    enabled: false
   
   persistence:
     enabled: true
