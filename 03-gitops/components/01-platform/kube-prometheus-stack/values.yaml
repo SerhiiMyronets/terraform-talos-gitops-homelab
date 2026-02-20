@@ -1,85 +1,80 @@
-kubeScheduler:
-  enabled: true
-  service:
-    enabled: false
-  serviceMonitor:
-    enabled: false
+# English comment: Core components settings for Talos Linux
+prometheusOperator:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
 
+# English comment: Disable components that don't work on Talos by default
 kubeControllerManager:
-  enabled: true
-  service:
-    enabled: false
-  serviceMonitor:
-    enabled: false
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
 
 prometheus:
   prometheusSpec:
+    # English comment: Resources for the main Prometheus DB
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1536Mi # J4125 friendly limit
+      requests:
+        cpu: 100m
+        memory: 512Mi
+    
+    # English comment: Retention settings to save disk and RAM
+    retention: 7d
+    retentionSize: "10GB"
+    
+    # English comment: Storage configuration for OpenEBS
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: local-nvme
+          storageClassName: local-nvme # Change to your actual storage class
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
-              storage: 5Gi
+              storage: 20Gi
 
-alertmanager:
-  alertmanagerSpec:
-    storage:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: local-nvme
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 2Gi
+    # English comment: Talos-specific fix for node-exporter
+    # It avoids issues with mounting host paths
+    hostNetwork: true
 
 grafana:
   enabled: true
-
+  # English comment: Basic resources for Grafana
+  resources:
+    limits:
+      cpu: 200m
+      memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
+  
   persistence:
     enabled: true
     storageClassName: local-nvme
     size: 5Gi
 
+  # English comment: Sidecar will automatically find dashboards in ConfigMaps
   sidecar:
     dashboards:
       enabled: true
       label: grafana_dashboard
+      searchNamespace: ALL
 
-#  grafana.ini:
-#    auth:
-#      disable_login_form: true
-#    auth.anonymous:
-#      enabled: true
-#      org_role: Admin
-#  defaultDatasourceEnabled: false
-#  additionalDataSources:
-#    - name: Prometheus
-#      type: prometheus
-#      uid: webstore-metrics
-#      access: proxy
-#      url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
-#      jsonData:
-#        exemplarTraceIdDestinations:
-#          - datasourceUid: webstore-traces
-#            name: trace_id
-#    - name: Jaeger
-#      type: jaeger
-#      uid: webstore-traces
-#      access: proxy
-#      url: http://jaeger-query.monitoring.svc.cluster.local:16686/jaeger/ui
-#    - name: Tempo
-#      type: tempo
-#      uid: tempo
-#      access: proxy
-#      url: http://tempo.monitoring.svc.cluster.local:3100
-#    - name: Loki
-#      type: loki
-#      uid: webstore-logs
-#      access: proxy
-#      url: http://loki-stack.monitoring.svc.cluster.local:3100
-#  sidecar:
-#    dashboards:
-#      enabled: true
-#      label: grafana_dashboard
+# English comment: Alertmanager is useful but can be heavy, let's limit it
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
