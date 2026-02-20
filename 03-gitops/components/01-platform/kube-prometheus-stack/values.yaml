@@ -58,6 +58,14 @@ grafana:
       enabled: true
       org_name: "Main Org."
       org_role: Admin
+  deploymentStrategy:
+    type: Recreate
+
+    # English comment: Ensure security context is still there
+    podSecurityContext:
+      fsGroup: 472
+    initChownData:
+      enabled: false
   
   persistence:
     enabled: true
