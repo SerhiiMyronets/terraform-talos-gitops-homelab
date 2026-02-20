@@ -11,7 +11,7 @@ spec:
       path: 03-gitops/components/01-platform/strimzi
 
     - repoURL: https://strimzi.io/charts
-      chart: https://strimzi.io/charts
+      chart: strimzi-kafka-operator
       targetRevision: 0.50.1
       helm:
         valueFiles:
