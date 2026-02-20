@@ -1,6 +1,3 @@
-crds:
-  enabled: true
-
 kubeScheduler:
   enabled: true
   service:
@@ -20,7 +17,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: longhorn
+          storageClassName: local-nvme
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
@@ -31,46 +28,58 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: longhorn
+          storageClassName: local-nvme
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
               storage: 2Gi
 
 grafana:
-  grafana.ini:
-    auth:
-      disable_login_form: true
-    auth.anonymous:
-      enabled: true
-      org_role: Admin
-  defaultDatasourceEnabled: false
-  additionalDataSources:
-    - name: Prometheus
-      type: prometheus
-      uid: webstore-metrics
-      access: proxy
-      url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
-      jsonData:
-        exemplarTraceIdDestinations:
-          - datasourceUid: webstore-traces
-            name: trace_id
-    - name: Jaeger
-      type: jaeger
-      uid: webstore-traces
-      access: proxy
-      url: http://jaeger-query.monitoring.svc.cluster.local:16686/jaeger/ui
-    - name: Tempo
-      type: tempo
-      uid: tempo
-      access: proxy
-      url: http://tempo.monitoring.svc.cluster.local:3100
-    - name: Loki
-      type: loki
-      uid: webstore-logs
-      access: proxy
-      url: http://loki-stack.monitoring.svc.cluster.local:3100
+  enabled: true
+
+  persistence:
+    enabled: true
+    storageClassName: local-nvme
+    size: 5Gi
+
   sidecar:
     dashboards:
       enabled: true
       label: grafana_dashboard
+
+#  grafana.ini:
+#    auth:
+#      disable_login_form: true
+#    auth.anonymous:
+#      enabled: true
+#      org_role: Admin
+#  defaultDatasourceEnabled: false
+#  additionalDataSources:
+#    - name: Prometheus
+#      type: prometheus
+#      uid: webstore-metrics
+#      access: proxy
+#      url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+#      jsonData:
+#        exemplarTraceIdDestinations:
+#          - datasourceUid: webstore-traces
+#            name: trace_id
+#    - name: Jaeger
+#      type: jaeger
+#      uid: webstore-traces
+#      access: proxy
+#      url: http://jaeger-query.monitoring.svc.cluster.local:16686/jaeger/ui
+#    - name: Tempo
+#      type: tempo
+#      uid: tempo
+#      access: proxy
+#      url: http://tempo.monitoring.svc.cluster.local:3100
+#    - name: Loki
+#      type: loki
+#      uid: webstore-logs
+#      access: proxy
+#      url: http://loki-stack.monitoring.svc.cluster.local:3100
+#  sidecar:
+#    dashboards:
+#      enabled: true
+#      label: grafana_dashboard
