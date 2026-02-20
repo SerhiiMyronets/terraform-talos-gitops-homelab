@@ -27,12 +27,11 @@ prometheus:
     hostNetwork: true
 
 grafana:
-  grafana.ini:
-    auth.anonymous.enabled: true
-    auth.anonymous.org_role: Admin
-    auth.anonymous.org_name: "Main Org."
-    auth.disable_login_form: true
-  enabled: true
+#  grafana.ini:
+#    auth.anonymous.enabled: true
+#    auth.anonymous.org_role: Admin
+#    auth.anonymous.org_name: "Main Org."
+#    auth.disable_login_form: true
   # English comment: Basic resources for Grafana
 #  grafana.ini:
 #    auth:
@@ -43,7 +42,8 @@ grafana:
 #      org_role: Admin
   deploymentStrategy:
     type: Recreate
-  adminPassword: "admin"
+  adminUser: admin
+  adminPassword: admin
 
   # English comment: Ensure security context is still there
   securityContext:
