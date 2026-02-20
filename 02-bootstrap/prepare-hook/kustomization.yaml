@@ -1,5 +1,7 @@
 resources:
-# Gateway API CRDs
+  # Gateway API CRDs
   - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml
-# Initial secret
+  # External Secrets CRDs
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/v2.0.0/deploy/crds/bundle.yaml
+  # Initial secret
   - initial-secret.yaml

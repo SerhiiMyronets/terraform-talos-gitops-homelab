@@ -19,3 +19,6 @@ notifications:
 # ApplicationSet controller - can be disabled if not using generator patterns
 applicationSet:
   replicas: 0
+
+crds:
+  install: false

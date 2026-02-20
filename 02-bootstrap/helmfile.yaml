@@ -8,7 +8,12 @@ hooks:
   - events: [ "prepare" ]
     showlogs: true
     command: "kubectl"
-    args: [ "apply", "-k", "./prepare-hook/" ]
+    args: [ "apply", "-k", "./prepare-hook/", "--server-side" ]
+
+  - events: [ "prepare" ]
+    showlogs: true
+    command: "kubectl"
+    args: [ "apply", "-k", "https://github.com/argoproj/argo-cd/manifests/crds?ref=stable", "--server-side" ]
 
 releases:
   - name: cilium
@@ -22,6 +27,5 @@ releases:
     namespace: argocd
     chart: argo/argo-cd
     version: 9.4.2
-    createNamespace: true
     values:
       - values/argocd-values.yaml
