@@ -62,7 +62,9 @@ grafana:
     type: Recreate
 
   # English comment: Ensure security context is still there
-  podSecurityContext:
+  securityContext:
+    runAsUser: 472
+    runAsGroup: 472
     fsGroup: 472
   initChownData:
     enabled: false
