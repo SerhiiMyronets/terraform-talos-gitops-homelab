@@ -5,7 +5,9 @@ metadata:
   namespace: observability
 spec:
   mode: daemonset
-  # Додаємо прокидання папок з ноди в контейнер
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0
   volumes:
     - name: hostfs
       hostPath:
@@ -29,7 +31,6 @@ spec:
         insecure_skip_verify: true
 
     processors:
-      # Додаємо порожній конфіг для batch, щоб він активувався
       batch: {}
 
       resourcedetection:
@@ -46,7 +47,6 @@ spec:
           processors: [resourcedetection, batch]
           exporters: [debug]
 
-  # Налаштування монтування для контейнера
   volumeMounts:
     - name: hostfs
       mountPath: /hostfs
