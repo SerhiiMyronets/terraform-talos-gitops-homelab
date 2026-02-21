@@ -1,0 +1,4 @@
+server:
+  persistentVolume:
+    enabled: true
+    storageClassName: local-nvme
