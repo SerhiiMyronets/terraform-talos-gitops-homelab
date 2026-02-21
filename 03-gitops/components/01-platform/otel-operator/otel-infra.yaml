@@ -31,6 +31,13 @@ spec:
         auth_type: "serviceAccount"
         insecure_skip_verify: true
 
+      prometheus:
+        config:
+          scrape_configs:
+            - job_name: 'ksm'
+              static_configs:
+                - targets: [ 'ksm-kube-state-metrics.observability.svc.cluster.local:8080' ]
+
     processors:
       batch: {}
 
