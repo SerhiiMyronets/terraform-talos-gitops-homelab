@@ -40,7 +40,7 @@ spec:
     exporters:
       debug:
         verbosity: normal
-      prometheus_remotewrite:
+      prometheusremotewrite:
         endpoint: "http://vmsingle-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
         resource_to_telemetry_conversion:
           enabled: true
@@ -50,7 +50,7 @@ spec:
         metrics:
           receivers: [hostmetrics, kubeletstats, prometheus]
           processors: [resourcedetection, batch]
-          exporters: [debug, prometheus_remotewrite]
+          exporters: [debug, prometheusremotewrite]
 
   volumeMounts:
     - name: hostfs
