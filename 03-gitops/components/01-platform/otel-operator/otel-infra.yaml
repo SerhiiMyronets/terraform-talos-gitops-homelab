@@ -5,6 +5,7 @@ metadata:
   namespace: observability
 spec:
   mode: daemonset
+  image: otel/opentelemetry-collector-contrib:latest
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
