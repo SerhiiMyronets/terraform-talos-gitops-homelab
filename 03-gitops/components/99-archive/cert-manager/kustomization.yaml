@@ -1,4 +1,0 @@
-resources:
-  - clusterissuer.yaml
-  - certificate.yaml
-  - issuer-ca.yaml

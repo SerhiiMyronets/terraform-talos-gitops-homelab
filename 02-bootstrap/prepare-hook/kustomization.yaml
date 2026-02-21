@@ -7,5 +7,7 @@ resources:
   - https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.89.0/stripped-down-crds.yaml
   # Strimzi CRDs
   - https://github.com/strimzi/strimzi-kafka-operator/releases/download/0.50.0/strimzi-crds-0.50.0.yaml
+  # Cert Manager CRDs
+  - http://github.com/jetstack/cert-manager/releases/download/v1.19.3/cert-manager.crds.yaml
   # Initial secret
   - initial-secret.yaml
