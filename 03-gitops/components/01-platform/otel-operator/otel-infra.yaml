@@ -1,0 +1,39 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: otel-infra
+  namespace: observability
+spec:
+  mode: daemonset
+  config:
+    receivers:
+      hostmetrics:
+        root_path: /hostfs
+        scrapers:
+          cpu:
+          memory:
+          network:
+          disk:
+          filesystem:
+
+      kubeletstats:
+        collection_interval: 20s
+        endpoint: "https://${env:K8S_NODE_NAME}:10250"
+        auth_type: "serviceAccount"
+        insecure_skip_verify: true
+
+    processors:
+      batch:
+      resourcedetection:
+        detectors: [env, system]
+
+    exporters:
+      logging:
+        verbosity: normal
+
+    service:
+      pipelines:
+        metrics:
+          receivers: [hostmetrics, kubeletstats]
+          processors: [resourcedetection, batch]
+          exporters: [logging]
