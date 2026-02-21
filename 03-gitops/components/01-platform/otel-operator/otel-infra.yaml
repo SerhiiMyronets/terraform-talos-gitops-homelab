@@ -28,7 +28,7 @@ spec:
         detectors: [env, system]
 
     exporters:
-      logging:
+      debug:
         verbosity: normal
 
     service:
