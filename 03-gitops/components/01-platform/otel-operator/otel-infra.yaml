@@ -5,16 +5,22 @@ metadata:
   namespace: observability
 spec:
   mode: daemonset
+  # Додаємо прокидання папок з ноди в контейнер
+  volumes:
+    - name: hostfs
+      hostPath:
+        path: /
   config:
     receivers:
       hostmetrics:
         root_path: /hostfs
+        collection_interval: 20s
         scrapers:
-          cpu:
-          memory:
-          network:
-          disk:
-          filesystem:
+          cpu: {}
+          memory: {}
+          network: {}
+          disk: {}
+          filesystem: {}
 
       kubeletstats:
         collection_interval: 20s
@@ -23,7 +29,9 @@ spec:
         insecure_skip_verify: true
 
     processors:
-      batch:
+      # Додаємо порожній конфіг для batch, щоб він активувався
+      batch: {}
+
       resourcedetection:
         detectors: [env, system]
 
@@ -36,4 +44,11 @@ spec:
         metrics:
           receivers: [hostmetrics, kubeletstats]
           processors: [resourcedetection, batch]
-          exporters: [logging]
+          exporters: [debug]
+
+  # Налаштування монтування для контейнера
+  volumeMounts:
+    - name: hostfs
+      mountPath: /hostfs
+      readOnly: true
+      mountPropagation: HostToContainer
