@@ -48,7 +48,7 @@ spec:
       debug:
         verbosity: normal
       prometheusremotewrite:
-        endpoint: "http://vmsingle-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
+        endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
         resource_to_telemetry_conversion:
           enabled: true
 
