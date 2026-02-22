@@ -1,0 +1,37 @@
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: otel-gateway
+  namespace: observability
+spec:
+  mode: deployment
+  replicas: 1
+  image: otel/opentelemetry-collector-contrib:latest
+  config:
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+      prometheus:
+        config:
+          scrape_configs:
+            - job_name: 'kube-state-metrics'
+              static_configs:
+                - targets: ['ksm-kube-state-metrics.observability.svc.cluster.local:8080']
+
+    processors:
+      batch: {}
+
+    exporters:
+      prometheusremotewrite:
+        endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
+      debug:
+        verbosity: normal
+
+    service:
+      pipelines:
+        metrics:
+          receivers: [otlp, prometheus]
+          processors: [batch]
+          exporters: [prometheusremotewrite, debug]
