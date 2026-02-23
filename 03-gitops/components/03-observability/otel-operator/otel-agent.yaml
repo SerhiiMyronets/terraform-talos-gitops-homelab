@@ -6,10 +6,6 @@ metadata:
 spec:
   mode: daemonset
   image: otel/opentelemetry-collector-contrib:latest
-
-  podSecurityContext:
-    runAsUser: 0
-    runAsGroup: 0
   env:
     - name: K8S_NODE_NAME
       valueFrom:
