@@ -13,12 +13,12 @@ spec:
         protocols:
           grpc:
             endpoint: 0.0.0.0:4317
-      prometheus:
-        config:
-          scrape_configs:
-            - job_name: 'kube-state-metrics'
-              static_configs:
-                - targets: ['ksm-kube-state-metrics.observability.svc.cluster.local:8080']
+#      prometheus:
+#        config:
+#          scrape_configs:
+#            - job_name: 'kube-state-metrics'
+#              static_configs:
+#                - targets: ['ksm-kube-state-metrics.observability.svc.cluster.local:8080']
 
     processors:
       batch: {}
