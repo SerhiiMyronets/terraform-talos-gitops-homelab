@@ -6,15 +6,15 @@ metadata:
 spec:
   mode: daemonset
   image: otel/opentelemetry-collector-contrib:latest
-  env:
-    - name: K8S_NODE_NAME
-      valueFrom:
-        fieldRef:
-          fieldPath: spec.nodeName
-    - name: K8S_NODE_IP
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
+#  env:
+#    - name: K8S_NODE_NAME
+#      valueFrom:
+#        fieldRef:
+#          fieldPath: spec.nodeName
+#    - name: K8S_NODE_IP
+#      valueFrom:
+#        fieldRef:
+#          fieldPath: status.hostIP
   config:
     receivers:
       hostmetrics:
