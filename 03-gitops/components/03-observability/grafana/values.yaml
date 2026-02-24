@@ -21,3 +21,8 @@ persistence:
   enabled: true
   storageClassName: local-nvme
   size: 5Gi
+
+sidecar:
+  datasources:
+    enabled: true
+    label: grafana_datasource
