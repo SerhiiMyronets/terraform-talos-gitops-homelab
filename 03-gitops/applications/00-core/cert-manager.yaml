@@ -6,18 +6,18 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
-  project: platform
+  project: core
   sources:
     - repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
       targetRevision: homelab
-      path: 03-gitops/components/01-platform/cert-manager
+      path: 03-gitops/components/00-core/cert-manager
 
     - repoURL: https://charts.jetstack.io
       chart: cert-manager
       targetRevision: 1.19.3
       helm:
         valueFiles:
-          - $values/03-gitops/components/01-platform/cert-manager/values.yaml
+          - $values/03-gitops/components/00-core/cert-manager/values.yaml
 
     - repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
       targetRevision: homelab
