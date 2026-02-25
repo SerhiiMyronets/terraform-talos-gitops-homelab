@@ -25,5 +25,5 @@ spec:
     matchLabels:
       app.kubernetes.io/name: kube-state-metrics
   endpoints:
-    - port: http-metrics
+    - port: metrics
       interval: 30s
