@@ -36,9 +36,9 @@ metadata:
   labels:
     env: homelab
 spec:
-  namespaceSelector:
-    matchNames:
-      - argocd
+#  namespaceSelector:
+#    matchNames:
+#      - argocd
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-metrics
