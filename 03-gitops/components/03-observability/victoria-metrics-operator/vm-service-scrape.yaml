@@ -4,7 +4,7 @@ metadata:
   name: node-exporter
   namespace: observability
   labels:
-    env: homelab
+    env: sandbox
 spec:
   selector:
     matchLabels:
@@ -19,7 +19,7 @@ metadata:
   name: kube-state-metrics
   namespace: observability
   labels:
-    env: homelab
+    env: sandbox
 spec:
   selector:
     matchLabels:
@@ -34,7 +34,7 @@ metadata:
   name: argocd-metrics
   namespace: observability
   labels:
-    env: homelab
+    env: sandbox
 spec:
   namespaceSelector:
     matchNames:
