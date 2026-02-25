@@ -27,3 +27,19 @@ spec:
   endpoints:
     - port: http
       interval: 30s
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: argocd-metrics
+  namespace: observability
+  labels:
+    env: homelab
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-application-controller
+  endpoints:
+    - port: metrics
+      interval: 30s
+      path: /metrics
