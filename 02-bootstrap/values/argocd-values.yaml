@@ -22,8 +22,3 @@ applicationSet:
 
 crds:
   install: false
-
-
-controller:
-  metrics:
-    enabled: true
