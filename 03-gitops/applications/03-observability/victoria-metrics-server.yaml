@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: victoria-metrics-server
+  name: victoria-metrics
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "10"
