@@ -12,3 +12,18 @@ spec:
   endpoints:
     - port: metrics
       interval: 15s
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: kube-state-metrics
+  namespace: observability
+  labels:
+    env: homelab
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kube-state-metrics
+  endpoints:
+    - port: http-metrics
+      interval: 30s
