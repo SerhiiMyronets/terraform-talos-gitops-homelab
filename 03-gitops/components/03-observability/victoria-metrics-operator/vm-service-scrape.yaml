@@ -32,7 +32,7 @@ apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMServiceScrape
 metadata:
   name: argocd-metrics
-  namespace: observability
+  namespace: argocd
   labels:
     env: homelab
 spec:
