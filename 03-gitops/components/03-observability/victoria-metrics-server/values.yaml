@@ -1,4 +1,5 @@
 server:
+  fullnameOverride: vm-server
   persistentVolume:
     enabled: true
     storageClassName: local-nvme
