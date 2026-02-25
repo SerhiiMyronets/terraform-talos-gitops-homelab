@@ -1,1 +1,3 @@
 # fullnameOverride: vm-operator
+admissionWebhooks:
+  enabled: false
