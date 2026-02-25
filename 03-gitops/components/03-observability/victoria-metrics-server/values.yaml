@@ -1,6 +1,6 @@
 server:
   name: vm-server
-#  fullnameOverride: vm-server
+  fullnameOverride: victoria-metrics-server
   persistentVolume:
     enabled: true
     storageClassName: local-nvme
