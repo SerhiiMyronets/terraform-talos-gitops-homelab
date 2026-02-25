@@ -4,6 +4,7 @@ metadata:
   name: main-agent
   namespace: observability
 spec:
+  serviceScrapeNamespaceSelector: {}
   remoteWrite:
     - url: "http://victoria-metrics-server.observability.svc:8428/api/v1/write"
   serviceScrapeSelector:
