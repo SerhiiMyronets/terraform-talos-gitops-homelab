@@ -1,4 +1,5 @@
 server:
+  name: vm-server
 #  fullnameOverride: vm-server
   persistentVolume:
     enabled: true
