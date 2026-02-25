@@ -32,10 +32,13 @@ apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMServiceScrape
 metadata:
   name: argocd-metrics
-  namespace: argocd
+  namespace: observability
   labels:
     env: homelab
 spec:
+  namespaceSelector:
+    matchNames:
+      - argocd
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-application-controller
