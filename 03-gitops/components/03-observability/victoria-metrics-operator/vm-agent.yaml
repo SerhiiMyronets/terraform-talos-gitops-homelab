@@ -10,4 +10,4 @@ spec:
     - url: "http://victoria-metrics-server.observability.svc:8428/api/v1/write"
   serviceScrapeSelector:
     matchLabels:
-      env: sandboxb
+      env: sandbox
