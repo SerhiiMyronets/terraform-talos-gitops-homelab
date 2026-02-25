@@ -41,7 +41,7 @@ spec:
       - argocd
   selector:
     matchLabels:
-      app.kubernetes.io/name: application-controller
+      app.kubernetes.io/name: argocd-metrics
   endpoints:
     - port: http-metrics
       interval: 30s
