@@ -3,7 +3,8 @@ config:
     [INPUT]
         Name                tail
         Tag                 kube.*
-        Path                /var/log/pods/kube-system_*/*/*.log,/var/log/pods/cilium_*/*/*.log
+        Path                /var/log/containers/*_kube-system_*/*.log
+        Exclude_Path        /var/log/containers/*fluent-bit*.log,/var/log/containers/*fluentbit*.log
         Parser              cri
         Mem_Buf_Limit       100MB
         Refresh_Interval    10
@@ -12,7 +13,7 @@ config:
     [FILTER]
         Name                kubernetes
         Match               kube.*
-        Kube_Tag_Prefix     kube.var.log.pods.
+        Kube_Tag_Prefix     kube.var.log.containers.
         Merge_Log           On
         Keep_Log            Off
         K8S-Logging.Parser  On
