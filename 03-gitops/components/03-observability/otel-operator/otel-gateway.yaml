@@ -34,4 +34,4 @@ spec:
         metrics:
           receivers: [otlp, prometheus]
           processors: [batch]
-          exporters: [prometheusremotewrite, debug]
+          exporters: [debug]
