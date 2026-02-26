@@ -25,13 +25,25 @@ config:
         labels: false
         annotations: false
 
+      - name: nest
+        match: kube.*
+        operation: lift
+        nested_under: kubernetes
+        add_prefix: k8s_
+
       - name: modify
         match: kube.*
         add: log_type infrastructure
 
-      - name: modify
+      - name: record_modifier
         match: kube.*
-        add: fb_marker __from_fluent_bit__
+        allowlist_key:
+          - log
+          - log_type
+          - k8s_namespace_name
+          - k8s_pod_name
+          - k8s_container_name
+          - k8s_host
 
     outputs:
       - name: opentelemetry
