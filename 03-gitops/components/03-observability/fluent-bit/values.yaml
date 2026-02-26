@@ -3,7 +3,7 @@ config:
     [INPUT]
         Name                tail
         Tag                 kube.*
-        Path                /var/log/pods/kube-system_*/*/*.log,/var/log/pods/cilium_*/*/*.log,/var/log/pods/observability_*/*/*.log
+        Path                /var/log/pods/kube-system_*/*/*.log,/var/log/pods/cilium_*/*/*.log
         Exclude_Path        /var/log/pods/observability_fluent-bit*/*/*.log
         Parser              cri
         Docker_Mode         On
