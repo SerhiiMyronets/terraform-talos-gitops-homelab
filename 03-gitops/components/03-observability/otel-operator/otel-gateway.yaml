@@ -13,12 +13,6 @@ spec:
         protocols:
           grpc:
             endpoint: 0.0.0.0:4317
-      prometheus:
-        config:
-          scrape_configs:
-            - job_name: 'kube-state-metrics'
-              static_configs:
-                - targets: ['ksm-kube-state-metrics.observability.svc.cluster.local:8080']
 
     processors:
       batch: {}
@@ -29,7 +23,7 @@ spec:
       debug:
         verbosity: normal
       otlphttp/loki:
-        endpoint: "http://loki-gateway.observability.svc:3100/otlp" # Зверни увагу на шлях /otlp
+        endpoint: "http://loki-gateway.observability.svc:3100/otlp"
         tls:
     insecure: true
 
