@@ -48,10 +48,10 @@ spec:
 
     service:
       pipelines:
-        metrics:
-          receivers: [otlp]
-          processors: [batch]
-          exporters: [prometheusremotewrite, debug]
+#        metrics:
+#          receivers: [otlp]
+#          processors: [batch]
+#          exporters: [prometheusremotewrite, debug]
         logs:
           receivers: [otlp]
           processors: [batch]
