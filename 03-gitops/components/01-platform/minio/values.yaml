@@ -6,6 +6,12 @@ buckets:
     policy: none
     purge: false
     versioning: false
+  - name: "loki-chunks"
+    policy: none
+    purge: false
+  - name: "loki-admin"
+    policy: none
+    purge: false
 
 users:
   - accessKey: buildkit
