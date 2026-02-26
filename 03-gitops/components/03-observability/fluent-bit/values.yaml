@@ -31,10 +31,6 @@ config:
         nested_under: kubernetes
         add_prefix: k8s_
 
-      - name: modify
-        match: kube.*
-        add: log_type infrastructure
-
       - name: record_modifier
         match: kube.*
         allowlist_key:
@@ -44,6 +40,10 @@ config:
           - k8s_pod_name
           - k8s_container_name
           - k8s_host
+
+      - name: modify
+        match: kube.*
+        add: log_type infrastructure
 
     outputs:
       - name: opentelemetry
