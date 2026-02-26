@@ -13,8 +13,8 @@ spec:
       path: 03-gitops/components/03-observability/fluent-bit
 
     - repoURL: https://fluent.github.io/helm-charts
-      chart: fluent-bit
-      targetRevision: 0.55.0
+      chart: fluent-bit-collector
+      targetRevision: 1.0.0-beta.2
       helm:
         valueFiles:
           - $values/03-gitops/components/03-observability/fluent-bit/values.yaml
