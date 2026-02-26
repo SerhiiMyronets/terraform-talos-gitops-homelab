@@ -34,11 +34,11 @@ config:
         add: fb_marker __from_fluent_bit__
 
     outputs:
-      - name: stdout
-        match: kube.*
       - name: opentelemetry
         match: kube.*
         host: otel-gateway-collector.observability.svc
         port: 4318
         logs_uri: /v1/logs
         tls: off
+        logs_body_key: log
+        logs_body_key_attributes: true
