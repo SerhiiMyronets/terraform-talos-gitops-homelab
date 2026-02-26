@@ -45,11 +45,6 @@ spec:
         verbosity: normal
       otlp_http/loki:
         endpoint: "http://loki.observability.svc:3100/otlp"
-        timeout: 30s
-        retry_on_failure:
-          enabled: true
-        tls:
-          insecure: true
 
     service:
       pipelines:
