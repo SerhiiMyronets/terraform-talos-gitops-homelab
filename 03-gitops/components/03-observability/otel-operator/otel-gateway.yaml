@@ -28,8 +28,10 @@ spec:
         endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
       debug:
         verbosity: normal
-      loki:
-        endpoint: "http://loki-gateway.observability.svc:3100/loki/api/v1/push"
+      otlphttp/loki:
+        endpoint: "http://loki-gateway.observability.svc:3100/otlp" # Зверни увагу на шлях /otlp
+        tls:
+    insecure: true
 
     service:
       pipelines:
