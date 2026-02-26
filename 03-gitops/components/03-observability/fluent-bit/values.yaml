@@ -35,7 +35,7 @@ config:
 
     outputs:
       - name: stdout
-      - match: kube.*
+        match: kube.*
       - name: opentelemetry
         match: kube.*
         host: otel-gateway-collector.observability.svc
