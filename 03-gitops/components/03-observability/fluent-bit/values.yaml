@@ -3,7 +3,7 @@ config:
     [INPUT]
         Name                tail
         Tag                 kube.*
-        Path                /var/log/containers/*_kube-system_*/*.log
+        Path                /var/log/containers/*_kube-system_*.log
         Parser              cri
         Mem_Buf_Limit       100MB
         Refresh_Interval    10
