@@ -1,21 +1,13 @@
 config:
-  service: |
-    [SERVICE]
-        Flush         1
-        Log_Level     info
-        Daemon        off
-        Parsers_File  parsers.conf
-        HTTP_Server   On
-        HTTP_Port     2020
-
   inputs: |
     [INPUT]
         Name                tail
         Tag                 infra.*
         Path                /var/log/pods/kube-system_*/*/*.log,/var/log/pods/cilium_*/*/*.log,/var/log/pods/observability_*/*/*.log
+        Exclude_Path        /var/log/pods/observability_fluent-bit*/*/*.log
         Parser              docker
         Docker_Mode         On
-        Mem_Buf_Limit       50MB
+        Mem_Buf_Limit       100MB
         Refresh_Interval    10
 
   filters: |
@@ -40,5 +32,5 @@ config:
         Host                   otel-gateway-collector.observability.svc
         Port                   4318
         Logs_uri               /v1/logs
-        Log_response_payload   True
+        Log_response_payload   False
         Tls                    Off
