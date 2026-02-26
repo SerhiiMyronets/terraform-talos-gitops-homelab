@@ -42,10 +42,12 @@ config:
   # Направляємо потік на твій OTel Collector Gateway
   outputs: |
     [OUTPUT]
-        Name            otlp
-        Match           *
-        Host            otel-gateway-collector.observability.svc
-        Port            4317
-        metrics_endpoint /v1/metrics
-        logs_endpoint    /v1/logs
-        tls              off
+        Name                   opentelemetry
+        Match                  *
+        Host                   otel-gateway-collector.observability.svc
+        Port                   4317
+        Logs_uri               /v1/logs
+        Metrics_uri            /v1/metrics
+        Log_response_payload   True
+        Tls                    Off
+        Tls.verify             Off
