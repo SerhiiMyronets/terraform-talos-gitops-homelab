@@ -42,7 +42,7 @@ spec:
       prometheusremotewrite:
         endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
       debug:
-        verbosity: normal
+        verbosity: detailed
       otlp_http/loki:
         endpoint: "http://loki.observability.svc:3100/otlp"
 
