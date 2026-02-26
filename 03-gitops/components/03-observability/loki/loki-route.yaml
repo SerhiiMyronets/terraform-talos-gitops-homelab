@@ -19,6 +19,6 @@ spec:
       backendRefs:
         - group: ''
           kind: Service
-          name: loki
+          name: loki-gateway
           port: 3100
           weight: 1
