@@ -44,9 +44,8 @@ config:
     [OUTPUT]
         Name            otlp
         Match           *
-        Host            otel-collector.observability.svc
+        Host            otel-gateway-collector.observability.svc
         Port            4317
-        # Використовуємо gRPC для ефективності
         metrics_endpoint /v1/metrics
         logs_endpoint    /v1/logs
         tls              off
