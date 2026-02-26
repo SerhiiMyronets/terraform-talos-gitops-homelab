@@ -1,72 +1,40 @@
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: events_otel
+  name: events-otel
 rules:
-  - apiGroups:
-      - ""
+  - apiGroups: [""]
     resources:
       - events
       - namespaces
-      - namespaces/status
       - nodes
-      - nodes/spec
       - pods
-      - pods/status
-      - replicationcontrollers
-      - replicationcontrollers/status
-      - resourcequotas
-      - services
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - apps
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
     resources:
       - daemonsets
       - deployments
       - replicasets
       - statefulsets
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - extensions
-    resources:
-      - daemonsets
-      - deployments
-      - replicasets
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - batch
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["batch"]
     resources:
       - jobs
       - cronjobs
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - autoscaling
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["autoscaling"]
     resources:
       - horizontalpodautoscalers
-    verbs:
-      - get
-      - list
-      - watch
+    verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: events_otel
+  name: events-otel
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: events_otel
+  name: events-otel
 subjects:
   - kind: ServiceAccount
     name: otel-gateway-collector
