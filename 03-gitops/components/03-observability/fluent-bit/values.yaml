@@ -17,7 +17,7 @@ config:
     inputs:
       - name: tail
         alias: k8s-logs
-        path: /var/log/containers/*_kube-system_*/*.log   # тільки kube-system для тесту
+        path: /var/log/containers/*_kube-system_*.log   # тільки kube-system для тесту
         exclude_path: /var/log/containers/*fluent-bit*.log,/var/log/containers/*fluentbit*.log
         tag: kube.*   # або kube.<namespace_name>.<pod_name>.<container_name> для кращої сумісності
         read_from_head: true
