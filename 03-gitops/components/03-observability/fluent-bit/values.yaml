@@ -29,6 +29,10 @@ config:
         match: kube.*
         add: log_type infrastructure
 
+      - name: modify
+        match: kube.*
+        add: fb_marker __from_fluent_bit__
+
     outputs:
       - name: opentelemetry
         match: kube.*
