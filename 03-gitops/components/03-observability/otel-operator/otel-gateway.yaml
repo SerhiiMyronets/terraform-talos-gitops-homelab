@@ -44,7 +44,7 @@ spec:
       debug:
         verbosity: normal
       otlp_http/loki:
-        endpoint: "http://loki-gateway.observability.svc:3100/otlp"
+        endpoint: "http://loki.observability.svc:3100/otlp"
         timeout: 30s
         retry_on_failure:
           enabled: true
