@@ -7,6 +7,8 @@ spec:
   mode: deployment
   replicas: 1
   image: otel/opentelemetry-collector-contrib:latest
+
+  # Налаштування безпеки для ПОДА
   podSecurityContext:
     runAsNonRoot: true
     runAsUser: 1000
@@ -14,6 +16,16 @@ spec:
     fsGroup: 1000
     seccompProfile:
       type: RuntimeDefault
+
+  # Налаштування безпеки для КОНТЕЙНЕРА (те, що вимагає помилка)
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    privileged: false
+    readOnlyRootFilesystem: true
+
   config:
     receivers:
       otlp:
@@ -32,15 +44,15 @@ spec:
       otlphttp/loki:
         endpoint: "http://loki-gateway.observability.svc:3100/otlp"
         tls:
-    insecure: true
+          insecure: true # Виправлено відступ
 
     service:
       pipelines:
         metrics:
           receivers: [otlp]
           processors: [batch]
-          exporters: [debug]
+          exporters: [prometheusremotewrite, debug]
         logs:
-          receivers: [ otlp ]
-          processors: [ batch ]
-          exporters: [ debug ]
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlphttp/loki, debug]
