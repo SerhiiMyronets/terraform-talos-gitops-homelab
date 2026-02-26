@@ -43,7 +43,7 @@ spec:
         endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
       debug:
         verbosity: normal
-      otlphttp/loki:
+      otlp_http/loki:
         endpoint: "http://loki-gateway.observability.svc:3100/otlp"
         tls:
           insecure: true # Виправлено відступ
@@ -57,4 +57,4 @@ spec:
         logs:
           receivers: [otlp]
           processors: [batch]
-          exporters: [otlphttp/loki, debug]
+          exporters: [otlp_http/loki, debug]
