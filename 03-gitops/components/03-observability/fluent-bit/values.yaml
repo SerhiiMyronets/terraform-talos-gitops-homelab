@@ -15,16 +15,16 @@ config:
         HTTP_Listen   0.0.0.0
         HTTP_Port     2020
 
-  inputs: |
-    [INPUT]
-        Name                tail
-        Tag                 kube.*
-        Path                /var/log/pods/*/*/*.log
-        Parser              docker
-        Docker_Mode         On
-        Mem_Buf_Limit       50MB
-        Skip_Long_Lines     On
-        Refresh_Interval    10
+inputs: |
+  [INPUT]
+      Name                tail
+      Tag                 kube.*
+      Path                /var/log/pods/kube-system_*/*/*.log,/var/log/pods/observability_vmagent*/*/*.log,/var/log/pods/ingress-nginx_*/*/*.log
+      Parser              docker
+      Docker_Mode         On
+      Mem_Buf_Limit       50MB
+      Skip_Long_Lines     On
+      Refresh_Interval    10
 
   # Додаємо метадані Kubernetes (Labels, Annotations)
   filters: |
