@@ -35,7 +35,7 @@ loki:
 #test:
 #  enabled: false
 lokiCanary:
-  enabled: true
+  enabled: false
 monitoring:
   dashboards:
     enabled: true
