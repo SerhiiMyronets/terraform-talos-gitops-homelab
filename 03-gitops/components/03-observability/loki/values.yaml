@@ -2,6 +2,13 @@ deploymentMode: SingleBinary
 
 loki:
 
+  loki:
+    limits_config:
+      ingestion_rate_mb: 20
+      ingestion_burst_size_mb: 40
+      max_streams_per_user: 10000
+
+
   auth_enabled: false
 
   commonConfig:
