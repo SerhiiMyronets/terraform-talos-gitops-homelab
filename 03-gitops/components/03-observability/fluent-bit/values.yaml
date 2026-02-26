@@ -50,10 +50,3 @@ config:
         logs_uri: /v1/logs
         log_response_payload: false
         tls: off
-
-  parsers:
-    - name: cri
-      format: regex
-      regex: ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$
-      time_key: time
-      time_format: "%Y-%m-%dT%H:%M:%S.%L%z"
