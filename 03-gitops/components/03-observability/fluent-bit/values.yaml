@@ -17,8 +17,6 @@ config:
         Keep_Log            Off
         K8S-Logging.Parser  On
         K8S-Logging.Exclude On
-        Labels              On
-        Annotations         On
 
     [FILTER]
         Name                modify
