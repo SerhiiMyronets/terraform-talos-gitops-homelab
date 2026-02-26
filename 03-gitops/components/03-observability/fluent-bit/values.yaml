@@ -45,7 +45,7 @@ config:
         Name                   opentelemetry
         Match                  *
         Host                   otel-gateway-collector.observability.svc
-        Port                   4317
+        Port                   4318
         Logs_uri               /v1/logs
         Metrics_uri            /v1/metrics
         Log_response_payload   True
