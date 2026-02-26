@@ -28,6 +28,8 @@ spec:
 
   config:
     receivers:
+      k8s_events:
+        auth_type: serviceAccount
       otlp:
         protocols:
           grpc:
@@ -53,6 +55,6 @@ spec:
 #          processors: [batch]
 #          exporters: [prometheusremotewrite, debug]
         logs:
-          receivers: [otlp]
+          receivers: [otlp, k8s_events]
           processors: [batch]
           exporters: [otlp_http/loki, debug]
