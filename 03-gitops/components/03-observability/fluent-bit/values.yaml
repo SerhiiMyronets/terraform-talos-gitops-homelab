@@ -6,9 +6,7 @@ config:
         Daemon        off
         Parsers_File  parsers.conf
         HTTP_Server   On
-        HTTP_Listen   0.0.0.0
         HTTP_Port     2020
-
 
   inputs: |
     [INPUT]
@@ -26,6 +24,10 @@ config:
         Match               infra.*
         Kube_Tag_Prefix     infra.var.log.pods.
         Merge_Log           On
+        Keep_Log            Off
+        K8S-Logging.Parser  On
+        K8S-Logging.Exclude On
+
     [FILTER]
         Name                modify
         Match               infra.*
@@ -38,7 +40,5 @@ config:
         Host                   otel-gateway-collector.observability.svc
         Port                   4318
         Logs_uri               /v1/logs
-        Metrics_uri            /v1/metrics
         Log_response_payload   True
         Tls                    Off
-        Tls.verify             Off
