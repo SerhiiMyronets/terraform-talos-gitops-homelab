@@ -5,7 +5,7 @@ config:
         Tag                 kube.*
         Path                /var/log/pods/kube-system_*/*/*.log,/var/log/pods/cilium_*/*/*.log,/var/log/pods/observability_*/*/*.log
         Exclude_Path        /var/log/pods/observability_fluent-bit*/*/*.log
-        Parser              docker
+        Parser              cri
         Docker_Mode         On
         Mem_Buf_Limit       100MB
         Refresh_Interval    10
