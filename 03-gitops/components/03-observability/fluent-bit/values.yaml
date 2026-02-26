@@ -26,8 +26,10 @@ config:
         Match               infra.*
         Kube_Tag_Prefix     infra.var.log.pods.
         Merge_Log           On
-        # Додаємо мітку для швидкої фільтрації в Loki
-        Add_Label           log_origin infrastructure_audit
+    [FILTER]
+        Name                modify
+        Match               infra.*
+        Add                 log_type infrastructure
 
   outputs: |
     [OUTPUT]
