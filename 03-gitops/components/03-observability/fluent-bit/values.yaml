@@ -20,8 +20,8 @@ config:
     filters:
       - name: kubernetes
         match: kube.*
-        merge_log: true
-        keep_log: false
+        merge_log: false
+        keep_log: true
         labels: true
         annotations: true
 
