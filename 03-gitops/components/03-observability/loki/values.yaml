@@ -7,13 +7,18 @@ loki:
 
   storage:
     type: s3
+
+    bucketNames:
+      chunks: loki-chunks
+      ruler: loki-admin
+      admin: loki-admin
+
     s3:
       endpoint: http://minio.minio.svc:9000
       region: us-east-1
       secretAccessKey: oLS.uUYBFk!CT4
       accessKeyId: serhii
       s3ForcePathStyle: true
-      bucketnames: loki-chunks
 
   schemaConfig:
     configs:
