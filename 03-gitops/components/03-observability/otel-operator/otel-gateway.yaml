@@ -30,7 +30,7 @@ spec:
     service:
       pipelines:
         metrics:
-          receivers: [otlp, prometheus]
+          receivers: [otlp]
           processors: [batch]
           exporters: [debug]
         logs:
