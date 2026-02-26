@@ -32,8 +32,10 @@ loki:
           prefix: index_
           period: 24h
 
-test:
-  enabled: false
+#test:
+#  enabled: false
+lokiCanary:
+  enabled: true
 monitoring:
   dashboards:
     enabled: true
