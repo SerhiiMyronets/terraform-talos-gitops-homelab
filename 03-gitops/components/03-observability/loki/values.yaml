@@ -1,0 +1,40 @@
+loki:
+
+  auth_enabled: false
+
+  commonConfig:
+    replication_factor: 1
+
+  storage:
+    type: s3
+    s3:
+      endpoint: http://minio.minio.svc:9000
+      region: us-east-1
+      secretAccessKey: oLS.uUYBFk!CT4
+      accessKeyId: serhii
+      s3ForcePathStyle: true
+      bucketnames: loki-chunks
+
+  schemaConfig:
+    configs:
+      - from: "2024-01-01"
+        store: tsdb
+        object_store: s3
+        schema: v13
+        index:
+          prefix: index_
+          period: 24h
+
+test:
+  enabled: false
+monitoring:
+  dashboards:
+    enabled: true
+  rules:
+    enabled: false
+
+#promtail:
+#  enabled: true
+#
+#grafana:
+#  enabled: false
