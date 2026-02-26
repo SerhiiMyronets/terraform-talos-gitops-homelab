@@ -37,36 +37,6 @@ spec:
 
     processors:
       batch: {}
-      k8sattributes:
-        auth_type: serviceAccount  # або node, якщо потрібно
-        extract:
-          metadata:
-            - k8s.namespace.name
-            - k8s.pod.name
-            - k8s.container.name
-            - k8s.pod.uid
-            - k8s.node.name
-            # Додай інші, якщо потрібно: k8s.deployment.name, k8s.labels (для всіх labels як k8s.pod.label.app тощо)
-          # Опціонально: витягувати labels/annotations
-          labels:
-            - tag_name: app
-              key: app
-              from: pod
-          annotations: []  # або аналогічно, якщо потрібно
-        pod_association:  # <- цей блок на тому ж рівні, що й extract!
-          - sources:
-              - from: connection  # найпоширеніший: асоціює за IP з'єднання (працює для gateway)
-          # Додаткові правила (рекомендовано додати 2-3 для надійності)
-          - sources:
-              - from: resource_attribute
-                name: k8s.pod.ip
-          - sources:
-              - from: resource_attribute
-                name: k8s.pod.uid
-          - sources:
-              - from: resource_attribute
-                name: k8s.pod.name
-        passthrough: false  # не пропускати telemetry, якщо под не знайдено
 
     exporters:
       prometheusremotewrite:
@@ -84,5 +54,5 @@ spec:
           exporters: [prometheusremotewrite, debug]
         logs:
           receivers: [otlp]
-          processors: [k8sattributes, batch]
+          processors: [batch]
           exporters: [otlp_http/loki, debug]
