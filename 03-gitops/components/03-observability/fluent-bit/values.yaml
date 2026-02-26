@@ -7,7 +7,7 @@ config:
     inputs:
       - name: tail
         alias: k8s-logs
-        path: /var/log/containers/*_kube-system_*.log   # тільки kube-system для тесту
+        path: /var/log/containers/*_kube-system_*.log
         exclude_path: /var/log/containers/*fluent-bit*.log,/var/log/containers/*fluentbit*.log
         tag: kube.*
         read_from_head: true
@@ -20,11 +20,8 @@ config:
     filters:
       - name: kubernetes
         match: kube.*
-        kube_tag_prefix: kube.var.log.containers.
         merge_log: true
         keep_log: false
-        k8s-logging.parser: true
-        k8s-logging.exclude: true
         labels: true
         annotations: true
 
@@ -34,9 +31,8 @@ config:
 
     outputs:
       - name: opentelemetry
-        match: "*"
+        match: kube.*
         host: otel-gateway-collector.observability.svc
         port: 4318
         logs_uri: /v1/logs
-        log_response_payload: false
         tls: off
