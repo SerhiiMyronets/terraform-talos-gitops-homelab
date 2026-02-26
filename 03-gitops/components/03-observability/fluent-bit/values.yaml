@@ -22,8 +22,8 @@ config:
         match: kube.*
         merge_log: false
         keep_log: true
-        labels: true
-        annotations: true
+        labels: false
+        annotations: false
 
       - name: modify
         match: kube.*
