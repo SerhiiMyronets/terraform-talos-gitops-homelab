@@ -10,7 +10,6 @@ loki:
     type: s3
 
     bucketNames:
-      chunks: loki-chunks
       ruler: loki-admin
       admin: loki-admin
 
@@ -41,5 +40,6 @@ gateway:
 
 resultsCache:
   enabled: false
+
 chunksCache:
   enabled: false
