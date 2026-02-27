@@ -8,16 +8,15 @@ spec:
   replicas: 1
   image: otel/opentelemetry-collector-contrib:latest
 
-  # Налаштування безпеки для ПОДА
-  podSecurityContext:
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
-    seccompProfile:
-      type: RuntimeDefault
+#  # Налаштування безпеки для ПОДА
+#  podSecurityContext:
+#    runAsNonRoot: true
+#    runAsUser: 1000
+#    runAsGroup: 1000
+#    fsGroup: 1000
+#    seccompProfile:
+#      type: RuntimeDefault
 
-  # Налаштування безпеки для КОНТЕЙНЕРА (те, що вимагає помилка)
   securityContext:
     allowPrivilegeEscalation: false
     capabilities:
@@ -31,6 +30,7 @@ spec:
       k8s_events:
         auth_type: serviceAccount
         namespaces: []
+
       otlp:
         protocols:
           grpc:
