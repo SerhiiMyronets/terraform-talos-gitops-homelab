@@ -17,13 +17,13 @@ spec:
 #    seccompProfile:
 #      type: RuntimeDefault
 
-  securityContext:
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-        - ALL
-    privileged: false
-    readOnlyRootFilesystem: true
+#  securityContext:
+#    allowPrivilegeEscalation: false
+#    capabilities:
+#      drop:
+#        - ALL
+#    privileged: false
+#    readOnlyRootFilesystem: true
 
   config:
     receivers:
