@@ -60,7 +60,7 @@ config:
       - name: audit
         format: json
         time_key: requestReceivedTimestamp
-        time_Format: %Y-%m-%dT%H:%M:%S.%L%z
+        time_Format: "%Y-%m-%dT%H:%M:%S.%L%z"
 
     outputs:
       - name: opentelemetry
