@@ -39,6 +39,16 @@ spec:
             endpoint: 0.0.0.0:4318
 
     processors:
+
+      resource:
+        attributes:
+          - key: k8s.cluster.name
+            value: "production-us-east-1"
+            action: upsert
+          - key: deployment.environment
+            value: "production"
+            action: upsert
+
       batch: {}
 
     exporters:
