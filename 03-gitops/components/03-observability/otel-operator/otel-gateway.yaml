@@ -46,6 +46,18 @@ spec:
             value: "events"
             action: upsert
 
+      resource/system:
+        attributes:
+          - key: type
+            value: "system"
+            action: upsert
+
+      resource/service:
+        attributes:
+          - key: type
+            value: "service"
+            action: upsert
+
       batch: {}
 
     exporters:
@@ -62,7 +74,12 @@ spec:
 #          receivers: [otlp]
 #          processors: [batch]
 #          exporters: [prometheusremotewrite, debug]
-        logs:
-          receivers: [otlp, k8s_events]
+        logs/events:
+          receivers: [k8s_events]
           processors: [resource/events, batch]
+          exporters: [otlp_http/loki, debug]
+
+        logs/system:
+          receivers: [otlp]
+          processors: [resource/system, batch]
           exporters: [otlp_http/loki, debug]
