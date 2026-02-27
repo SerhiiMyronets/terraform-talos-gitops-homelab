@@ -10,6 +10,7 @@ loki:
     type: s3
 
     bucketNames:
+      chunks: loki-admin
       ruler: loki-admin
       admin: loki-admin
 
