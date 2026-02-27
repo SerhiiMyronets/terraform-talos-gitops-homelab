@@ -40,24 +40,32 @@ spec:
 
     processors:
 
-      resource/events:
+      resource/cluster_logs:
         attributes:
           - key: service.name
-            value: cluster_events
+            value: logs
+            action: upsert
+          - key: service.namespace
+            value: cluster
             action: upsert
 
-      resource/system:
+      resource/cluster_events:
         attributes:
           - key: service.name
-            value: system_metrics
+            value: events
+            action: upsert
+          - key: service.namespace
+            value: cluster
             action: upsert
 
-      resource/application:
+      resource/servce_logs:
         attributes:
           - key: service.name
-            value: service_metrics
+            value: logs
             action: upsert
-
+          - key: service.namespace
+            value: service
+            action: upsert
 
       batch: {}
 
@@ -75,12 +83,12 @@ spec:
 #          receivers: [otlp]
 #          processors: [batch]
 #          exporters: [prometheusremotewrite, debug]
-        logs/events:
+        logs/cluster_events:
           receivers: [k8s_events]
-          processors: [resource/events, batch]
+          processors: [resource/cluster_events, batch]
           exporters: [otlp_http/loki, debug]
 
-        logs/system:
+        logs/cluster_logs:
           receivers: [otlp]
-          processors: [resource/system, batch]
+          processors: [cluster_logs, batch]
           exporters: [otlp_http/loki, debug]
