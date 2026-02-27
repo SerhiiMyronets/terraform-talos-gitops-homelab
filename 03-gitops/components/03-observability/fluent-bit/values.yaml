@@ -3,6 +3,10 @@ tolerations:
     operator: Exists
     effect: NoSchedule
 
+securityContext:
+  runAsUser: 0
+  privileged: true
+
 config:
   service:
     log_level: info
