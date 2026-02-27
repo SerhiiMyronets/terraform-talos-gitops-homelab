@@ -71,15 +71,23 @@ spec:
         log_statements:
           - context: log
             statements:
-              # Mark certain event reasons as errors for alerting
+              # 1. Set default severity for all events first
+              - set(severity_number, 9)
+              - set(severity_text, "INFO")
+
+              # 2. Upgrade severity for specific error conditions
               - set(severity_number, 17) where attributes["k8s.event.reason"] == "OOMKilling"
               - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "OOMKilling"
+
               - set(severity_number, 17) where attributes["k8s.event.reason"] == "FailedScheduling"
               - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "FailedScheduling"
+
               - set(severity_number, 17) where attributes["k8s.event.reason"] == "NodeNotReady"
               - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "NodeNotReady"
-              - set(severity_number, 9) where attributes["k8s.event.reason"] == "Valid"
-              - set(severity_text, "INFO") where attributes["k8s.event.reason"] == "Valid"
+
+              # 3. Handle Warnings
+              - set(severity_number, 13) where attributes["k8s.event.reason"] == "BackOff"
+              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "BackOff"
 
       batch: {}
 
