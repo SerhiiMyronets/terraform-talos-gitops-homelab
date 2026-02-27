@@ -10,7 +10,6 @@ data:
     apiVersion: 1
     datasources:
       - name: Loki
-        type: Loki
+        type: loki
         url: http://loki.observability.svc.cluster.local:3100
         access: proxy
-        isDefault: true
