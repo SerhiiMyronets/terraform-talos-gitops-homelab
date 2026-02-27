@@ -42,29 +42,20 @@ spec:
 
       resource/events:
         attributes:
-          - key: log_type
+          - key: kind
             value: events
-            action: upsert
-          - key: k8s.cluster.name
-            value: "production-us-east-1"
             action: upsert
 
       resource/system:
         attributes:
-          - key: log.type
+          - key: kind
             value: system
             action: upsert
 
       resource/service:
         attributes:
-          - key: log.type
+          - key: kind
             value: service
-            action: upsert
-
-      resource/loki_labels:
-        attributes:
-          - key: loki.resource.labels
-            value: log_type
             action: upsert
 
 
@@ -86,10 +77,10 @@ spec:
 #          exporters: [prometheusremotewrite, debug]
         logs/events:
           receivers: [k8s_events]
-          processors: [resource/events, resource/loki_labels, batch]
+          processors: [resource/events, batch]
           exporters: [otlp_http/loki, debug]
 
         logs/system:
           receivers: [otlp]
-          processors: [resource/system, resource/loki_labels, batch]
+          processors: [resource/system, batch]
           exporters: [otlp_http/loki, debug]
