@@ -8,23 +8,6 @@ spec:
   replicas: 1
   image: otel/opentelemetry-collector-contrib:latest
 
-#  # Налаштування безпеки для ПОДА
-#  podSecurityContext:
-#    runAsNonRoot: true
-#    runAsUser: 1000
-#    runAsGroup: 1000
-#    fsGroup: 1000
-#    seccompProfile:
-#      type: RuntimeDefault
-
-#  securityContext:
-#    allowPrivilegeEscalation: false
-#    capabilities:
-#      drop:
-#        - ALL
-#    privileged: false
-#    readOnlyRootFilesystem: true
-
   config:
     receivers:
       k8s_events:
@@ -94,8 +77,8 @@ spec:
     exporters:
       prometheusremotewrite:
         endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
-      debug:
-        verbosity: normal
+      debug: {}
+
       otlp_http/loki:
         endpoint: "http://loki.observability.svc:3100/otlp"
 

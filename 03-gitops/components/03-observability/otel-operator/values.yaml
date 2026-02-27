@@ -1,0 +1,7 @@
+gateway:
+  enabled: false
+
+resultsCache:
+  enabled: false
+chunksCache:
+  enabled: false
