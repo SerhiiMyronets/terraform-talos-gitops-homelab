@@ -58,7 +58,7 @@ spec:
             value: cluster
             action: upsert
 
-      resource/servce_logs:
+      resource/service_logs:
         attributes:
           - key: service.name
             value: logs
@@ -90,5 +90,5 @@ spec:
 
         logs/cluster_logs:
           receivers: [otlp]
-          processors: [resource/servce_logs, batch]
+          processors: [resource/cluster_logs, batch]
           exporters: [otlp_http/loki, debug]
