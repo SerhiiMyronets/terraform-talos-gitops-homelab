@@ -42,20 +42,20 @@ spec:
 
       resource/events:
         attributes:
-          - key: type
-            value: "events"
+          - key: log.type
+            value: events
             action: upsert
 
       resource/system:
         attributes:
-          - key: type
-            value: "system"
+          - key: log.type
+            value: system
             action: upsert
 
       resource/service:
         attributes:
-          - key: type
-            value: "service"
+          - key: log.type
+            value: service
             action: upsert
 
       batch: {}
