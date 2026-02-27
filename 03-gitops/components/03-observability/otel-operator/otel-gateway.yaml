@@ -42,7 +42,7 @@ spec:
 
       resource/events:
         attributes:
-          - key: log.type
+          - key: log_type
             value: events
             action: upsert
           - key: k8s.cluster.name
@@ -64,7 +64,7 @@ spec:
       resource/loki_labels:
         attributes:
           - key: loki.resource.labels
-            value: log.type
+            value: log_type
             action: upsert
 
 
