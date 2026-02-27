@@ -58,6 +58,13 @@ spec:
             value: service
             action: upsert
 
+      resource/loki_labels:
+        attributes:
+          - key: loki.resource.labels
+            value: log.type
+            action: upsert
+
+
       batch: {}
 
     exporters:
@@ -65,10 +72,8 @@ spec:
         endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
       debug:
         verbosity: normal
-      loki:
-        endpoint: "http://loki.observability.svc:3100/loki/api/v1/push"
-        resource_to_telemetry_conversion:
-          enabled: true
+      otlp_http/loki:
+        endpoint: "http://loki.observability.svc:3100/otlp"
 
     service:
       pipelines:
@@ -78,10 +83,10 @@ spec:
 #          exporters: [prometheusremotewrite, debug]
         logs/events:
           receivers: [k8s_events]
-          processors: [resource/events, batch]
-          exporters: [loki, debug]
+          processors: [resource/events, resource/loki_labels, batch]
+          exporters: [otlp_http/loki, debug]
 
         logs/system:
           receivers: [otlp]
-          processors: [resource/system, batch]
-          exporters: [loki, debug]
+          processors: [resource/system, resource/loki_labels, batch]
+          exporters: [otlp_http/loki, debug]
