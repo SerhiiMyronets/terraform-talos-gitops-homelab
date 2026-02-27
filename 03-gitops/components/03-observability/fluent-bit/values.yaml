@@ -39,6 +39,7 @@ config:
       - name: record_modifier
         match: kube.*
         allowlist_key:
+          - log
           - log_type
           - k8s_namespace_name
           - k8s_pod_name
