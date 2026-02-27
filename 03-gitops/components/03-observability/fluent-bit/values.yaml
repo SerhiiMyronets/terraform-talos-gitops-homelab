@@ -8,6 +8,13 @@ config:
     log_level: info
     http_listen: 0.0.0.0
 
+  customParsers:
+    - name: audit
+      format: json
+      time_key: requestReceivedTimestamp
+      time_Format: "%Y-%m-%dT%H:%M:%S.%L%z"
+
+
   pipeline:
     inputs:
       - name: tail
@@ -56,11 +63,6 @@ config:
         match: kube.*
         add: log_type infrastructure
 
-    customParsers:
-      - name: audit
-        format: json
-        time_key: requestReceivedTimestamp
-        time_Format: "%Y-%m-%dT%H:%M:%S.%L%z"
 
     outputs:
       - name: opentelemetry
