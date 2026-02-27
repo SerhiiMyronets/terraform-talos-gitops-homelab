@@ -78,3 +78,12 @@ config:
         alias: stdout
         match: audit.*
         format: json_lines
+
+daemonSetVolumes:
+  - name: varlog
+    hostPath:
+      path: /var/log
+
+daemonSetVolumeMounts:
+  - name: varlog
+    mountPath: /var/log
