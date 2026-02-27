@@ -36,15 +36,14 @@ config:
         nested_under: kubernetes
         add_prefix: k8s_
 
-#      - name: record_modifier
-#        match: kube.*
-#        allowlist_key:
-#          - log
-#          - log_type
-#          - k8s_namespace_name
-#          - k8s_pod_name
-#          - k8s_container_name
-#          - k8s_host
+      - name: record_modifier
+        match: kube.*
+        allowlist_key:
+          - log_type
+          - k8s_namespace_name
+          - k8s_pod_name
+          - k8s_container_name
+          - k8s_host
 
       - name: modify
         match: kube.*
