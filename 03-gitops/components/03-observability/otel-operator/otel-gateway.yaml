@@ -99,7 +99,7 @@ spec:
 #          exporters: [prometheusremotewrite, debug]
         logs/cluster_events:
           receivers: [k8s_events]
-          processors: [resource/cluster_events, batch]
+          processors: [resource/cluster_events, transform/events, batch]
           exporters: [otlp_http/loki, debug]
 
         logs/cluster_logs:
