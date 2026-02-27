@@ -90,5 +90,5 @@ spec:
 
         logs/cluster_logs:
           receivers: [otlp]
-          processors: [cluster_logs, batch]
+          processors: [resource/servce_logs, batch]
           exporters: [otlp_http/loki, debug]
