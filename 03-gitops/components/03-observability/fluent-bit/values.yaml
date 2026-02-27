@@ -11,13 +11,6 @@ config:
     log_level: info
     http_listen: 0.0.0.0
 
-  parsers:
-    - name: audit
-      format: json
-      time_key: requestReceivedTimestamp
-      time_Format: "%Y-%m-%dT%H:%M:%S.%L%z"
-
-
   pipeline:
     inputs:
       - name: tail
@@ -26,7 +19,7 @@ config:
         exclude_path: /var/log/containers/*fluent-bit*.log,/var/log/containers/*fluentbit*.log
         tag: kube.*
         read_from_head: true
-        multiline.parser: cri
+        parser: cri
         skip_long_lines: true
         skip_empty_lines: true
         refresh_interval: 10
