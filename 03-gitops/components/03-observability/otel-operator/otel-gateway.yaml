@@ -86,10 +86,10 @@ spec:
 #          exporters: [prometheusremotewrite, debug]
         logs/events:
           receivers: [k8s_events]
-          processors: [resource/events, batch]
+          processors: [resource/events, resource/loki_labels, batch]
           exporters: [otlp_http/loki, debug]
 
         logs/system:
           receivers: [otlp]
-          processors: [resource/system, batch]
+          processors: [resource/system, resource/loki_labels, batch]
           exporters: [otlp_http/loki, debug]
