@@ -42,20 +42,20 @@ spec:
 
       resource/events:
         attributes:
-          - key: kind
-            value: events
+          - key: service.name
+            value: cluster_events
             action: upsert
 
       resource/system:
         attributes:
-          - key: kind
-            value: system
+          - key: service.name
+            value: system_metrics
             action: upsert
 
-      resource/service:
+      resource/application:
         attributes:
-          - key: kind
-            value: service
+          - key: service.name
+            value: service_metrics
             action: upsert
 
 
