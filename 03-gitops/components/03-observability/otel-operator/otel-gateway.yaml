@@ -67,6 +67,20 @@ spec:
             value: service
             action: upsert
 
+      transform/events:
+        log_statements:
+          - context: log
+            statements:
+              # Mark certain event reasons as errors for alerting
+              - set(severity_number, 17) where attributes["k8s.event.reason"] == "OOMKilling"
+              - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "OOMKilling"
+              - set(severity_number, 17) where attributes["k8s.event.reason"] == "FailedScheduling"
+              - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "FailedScheduling"
+              - set(severity_number, 17) where attributes["k8s.event.reason"] == "NodeNotReady"
+              - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "NodeNotReady"
+              - set(severity_number, 9) where attributes["k8s.event.reason"] == "Valid"
+              - set(severity_text, "INFO") where attributes["k8s.event.reason"] == "Valid"
+
       batch: {}
 
     exporters:
