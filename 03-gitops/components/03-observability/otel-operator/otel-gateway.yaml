@@ -65,8 +65,8 @@ spec:
         endpoint: "http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write"
       debug:
         verbosity: normal
-      otlp_http/loki:
-        endpoint: "http://loki.observability.svc:3100/otlp"
+      loki:
+        endpoint: "http://loki.observability.svc:3100/loki/api/v1/push"
         resource_to_telemetry_conversion:
           enabled: true
 
@@ -79,9 +79,9 @@ spec:
         logs/events:
           receivers: [k8s_events]
           processors: [resource/events, batch]
-          exporters: [otlp_http/loki, debug]
+          exporters: [loki, debug]
 
         logs/system:
           receivers: [otlp]
           processors: [resource/system, batch]
-          exporters: [otlp_http/loki, debug]
+          exporters: [loki, debug]
