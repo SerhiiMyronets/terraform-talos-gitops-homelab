@@ -67,6 +67,8 @@ spec:
         verbosity: normal
       otlp_http/loki:
         endpoint: "http://loki.observability.svc:3100/otlp"
+        resource_to_telemetry_conversion:
+          enabled: true
 
     service:
       pipelines:
