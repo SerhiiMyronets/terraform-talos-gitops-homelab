@@ -8,12 +8,11 @@ config:
     log_level: info
     http_listen: 0.0.0.0
 
-  customParsers: |
-    [PARSER]
-      Name          audit
-      Format        json
-      Time_Key      requestReceivedTimestamp
-      Time_Format   %Y-%m-%dT%H:%M:%S.%L%z
+  parsers:
+    - name: audit
+      format: json
+      time_key: requestReceivedTimestamp
+      time_Format: "%Y-%m-%dT%H:%M:%S.%L%z"
 
 
   pipeline:
