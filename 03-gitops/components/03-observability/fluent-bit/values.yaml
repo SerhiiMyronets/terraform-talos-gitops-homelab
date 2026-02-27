@@ -25,12 +25,6 @@ config:
         refresh_interval: 10
         mem_buf_limit: 50MB
 
-      - name: tail
-        alias: audit-logs
-        path: /var/log/audit/kube/*.log
-        parser: audit
-        tag: audit.*
-
     filters:
       - name: kubernetes
         match: kube.*
@@ -69,8 +63,3 @@ config:
         tls: off
         logs_body_key: log
         logs_body_key_attributes: true
-
-      - name: stdout
-        alias: stdout
-        match: audit.*
-        format: json_lines
