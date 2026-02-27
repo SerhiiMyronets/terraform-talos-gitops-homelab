@@ -76,6 +76,6 @@ config:
         logs_body_key_attributes: true
 
       - name: stdout
-        alias: stdout1
+        alias: stdout
         match: audit.*
         format: json_lines
