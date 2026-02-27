@@ -40,13 +40,10 @@ spec:
 
     processors:
 
-      resource:
+      resource/events:
         attributes:
-          - key: k8s.cluster.name
-            value: "production-us-east-1"
-            action: upsert
-          - key: deployment.environment
-            value: "production"
+          - key: type
+            value: "events"
             action: upsert
 
       batch: {}
@@ -67,5 +64,5 @@ spec:
 #          exporters: [prometheusremotewrite, debug]
         logs:
           receivers: [otlp, k8s_events]
-          processors: [resource, batch]
+          processors: [resource/events, batch]
           exporters: [otlp_http/loki, debug]
