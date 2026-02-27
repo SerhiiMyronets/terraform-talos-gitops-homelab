@@ -20,10 +20,10 @@ config:
         tag: kube.*
         read_from_head: true
         parser: cri
-#        skip_long_lines: true
-#        skip_empty_lines: true
-#        refresh_interval: 10
-#        mem_buf_limit: 50MB
+        skip_long_lines: true
+        skip_empty_lines: true
+        refresh_interval: 10
+        mem_buf_limit: 50MB
 
     filters:
       - name: kubernetes
