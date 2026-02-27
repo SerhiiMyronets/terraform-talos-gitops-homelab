@@ -30,6 +30,7 @@ spec:
     receivers:
       k8s_events:
         auth_type: serviceAccount
+        namespaces: []
       otlp:
         protocols:
           grpc:
