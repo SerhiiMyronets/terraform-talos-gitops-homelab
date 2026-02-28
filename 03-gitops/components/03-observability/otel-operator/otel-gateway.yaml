@@ -130,7 +130,7 @@ spec:
         logs/cluster_events:
           receivers: [k8s_events]
           processors: [filter/events_drop_routine, transform/events_severity, resource/cluster_events, batch]
-          exporters: [otlp_http/loki]
+          exporters: [otlp_http/loki, awss3]
 
         logs/cluster_logs:
           receivers: [otlp]
