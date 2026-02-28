@@ -110,12 +110,13 @@ spec:
         endpoint: "http://loki.observability.svc:3100/otlp"
 
       awss3:
-        s3_bucket: logs-cold-storage
-        region: us-east-1
-        s3_prefix: "logs/year={{ .Year }}/month={{ printf \"%02d\" .Month }}/day={{ printf \"%02d\" .Day }}/hour={{ printf \"%02d\" .Hour }}"
-        s3_partition: "minute"
-        encoding: "otlp_json"
-        compression: "gzip"
+        s3uploader:
+          s3_bucket: logs-cold-storage
+          region: us-east-1
+          s3_prefix: "logs/year={{ .Year }}/month={{ printf \"%02d\" .Month }}/day={{ printf \"%02d\" .Day }}/hour={{ printf \"%02d\" .Hour }}"
+          s3_partition: "minute"
+          encoding: "otlp_json"
+          compression: "gzip"
 
     service:
       pipelines:
