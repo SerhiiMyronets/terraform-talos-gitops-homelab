@@ -76,8 +76,8 @@ spec:
               - set(severity_number, 13) where attributes["k8s.event.reason"] == "Error"
               - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "Error"
 
-              - set(severity_number, 13) where attributes["k8s.event.reason"] == "Error"
-              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "Error"
+              - set(severity_number, 13) where attributes["k8s.event.reason"] == "BackOff"
+              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "BackOff"
 
       filter:
         error_mode: ignore
