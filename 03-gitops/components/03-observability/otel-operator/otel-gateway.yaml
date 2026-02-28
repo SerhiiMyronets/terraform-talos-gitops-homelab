@@ -54,7 +54,7 @@ spec:
             value: services
             action: upsert
 
-      transform/events:
+      transform/events_severity:
         log_statements:
           - context: log
             statements:
@@ -79,7 +79,7 @@ spec:
               - set(severity_number, 13) where attributes["k8s.event.reason"] == "BackOff"
               - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "BackOff"
 
-      filter:
+      filter/events_drop_routine:
         error_mode: ignore
         logs:
           log_record:
@@ -113,7 +113,7 @@ spec:
 
         logs/cluster_events:
           receivers: [k8s_events]
-          processors: [resource/cluster_events, transform/events, batch]
+          processors: [filter/events_drop_routine, transform/events_severity, resource/cluster_events, batch]
           exporters: [otlp_http/loki]
 
         logs/cluster_logs:
