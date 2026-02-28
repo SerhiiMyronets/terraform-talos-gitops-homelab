@@ -97,6 +97,8 @@ spec:
       otlp_http/loki:
         endpoint: "http://loki.observability.svc:3100/otlp"
 
+
+
     service:
       pipelines:
 #        metrics:
