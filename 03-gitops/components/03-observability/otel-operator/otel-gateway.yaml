@@ -13,25 +13,6 @@ spec:
 
       tcplog/talos:
         listen_address: "0.0.0.0:6050"
-        operators:
-          - type: json_parser
-
-#      tcplog/talos:
-#        tcp:
-#          listen_address: "0.0.0.0:6050"  # або інший порт, якщо змінив
-#        operators:
-#          - type: json_parser
-#            timestamp:
-#              layout: '%Y-%m-%dT%H:%M:%S.%fZ'
-#              layout_type: gotime
-#              parse_from: talos-time
-#            severity:
-#              parse_from: talos-level
-#              mapping:
-#                info: INFO
-#                warn: WARN
-#                error: ERROR
-#                debug: DEBUG
 
       k8s_events:
         auth_type: serviceAccount
