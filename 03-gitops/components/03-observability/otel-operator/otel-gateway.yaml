@@ -11,9 +11,6 @@ spec:
   config:
     receivers:
 
-      tcplog/talos:
-        listen_address: "0.0.0.0:6050"
-
       k8s_events:
         auth_type: serviceAccount
         namespaces: []
@@ -105,11 +102,6 @@ spec:
 #          receivers: [otlp]
 #          processors: [batch]
 #          exporters: [prometheusremotewrite, debug]
-
-        logs/talos:
-          receivers: [ tcplog/talos ]
-          processors: [ batch ]
-          exporters: [ otlp_http/loki, debug ]  # або твій бекенд
 
         logs/cluster_events:
           receivers: [k8s_events]
