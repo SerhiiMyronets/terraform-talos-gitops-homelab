@@ -12,7 +12,7 @@ spec:
     receivers:
 
       tcplog/talos:
-        listen_address: "0.0.0.0:2000"
+        listen_address: "0.0.0.0:6050"
         operators:
           - type: json_parser
 
