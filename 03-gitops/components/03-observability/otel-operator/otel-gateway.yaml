@@ -10,6 +10,24 @@ spec:
 
   config:
     receivers:
+
+      tcplog/talos:
+        tcp:
+          listen_address: "0.0.0.0:4318"  # або інший порт, якщо змінив
+        operators:
+          - type: json_parser
+            timestamp:
+              layout: '%Y-%m-%dT%H:%M:%S.%fZ'
+              layout_type: gotime
+              parse_from: talos-time
+            severity:
+              parse_from: talos-level
+              mapping:
+                info: INFO
+                warn: WARN
+                error: ERROR
+                debug: DEBUG
+
       k8s_events:
         auth_type: serviceAccount
         namespaces: []
@@ -88,12 +106,18 @@ spec:
 #          receivers: [otlp]
 #          processors: [batch]
 #          exporters: [prometheusremotewrite, debug]
+
+        logs/talos:
+          receivers: [ tcplog/talos ]
+          processors: [ batch ]
+          exporters: [ otlp_http/loki, debug ]  # або твій бекенд
+
         logs/cluster_events:
           receivers: [k8s_events]
           processors: [resource/cluster_events, transform/events, batch]
-          exporters: [otlp_http/loki, debug]
+          exporters: [otlp_http/loki]
 
         logs/cluster_logs:
           receivers: [otlp]
           processors: [resource/cluster_logs, batch]
-          exporters: [otlp_http/loki, debug]
+          exporters: [otlp_http/loki]
