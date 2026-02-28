@@ -117,9 +117,9 @@ spec:
           s3_force_path_style: true
           s3_partition_format: '%Y/%m/%d/%H'
           compression: gzip
-          timeout: 60s
         resource_attrs_to_s3:
           s3_prefix: service.name
+        timeout: 60s
 
     service:
       pipelines:
