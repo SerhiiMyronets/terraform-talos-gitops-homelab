@@ -13,7 +13,7 @@ spec:
 
       tcplog/talos:
         tcp:
-          listen_address: "0.0.0.0:4318"  # або інший порт, якщо змінив
+          listen_address: "0.0.0.0:6050"  # або інший порт, якщо змінив
         operators:
           - type: json_parser
             timestamp:
