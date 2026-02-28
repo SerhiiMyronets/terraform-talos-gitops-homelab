@@ -99,7 +99,9 @@ spec:
             - 'attributes["k8s.event.reason"] == "Created" and attributes["k8s.object.kind"] == "Pod"'
             - 'attributes["k8s.event.reason"] == "Started" and attributes["k8s.object.kind"] == "Pod"'
 
-      batch: {}
+      batch:
+        timeout: 60s
+        send_batch_size: 10000
 
     exporters:
       prometheusremotewrite:
@@ -119,7 +121,7 @@ spec:
           compression: gzip
         resource_attrs_to_s3:
           s3_prefix: service.name
-        timeout: 60s
+#        timeout: 60s
 
     service:
       pipelines:
