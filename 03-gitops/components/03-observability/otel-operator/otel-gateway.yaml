@@ -10,6 +10,7 @@ spec:
       targetPort: 6050
       nodePort: 30050 # Займаємо цей порт на всіх вузлах
       protocol: TCP
+
   mode: deployment
   replicas: 1
   image: otel/opentelemetry-collector-contrib:latest
@@ -57,7 +58,7 @@ spec:
             value: logs
             action: upsert
           - key: service.namespace
-            value: service
+            value: services
             action: upsert
 
       transform/events:
