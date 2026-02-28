@@ -11,10 +11,11 @@ spec:
   config:
     receivers:
 
-      tcplog/talos:
+    tcplog/talos:
+      tcp:
         listen_address: "0.0.0.0:6050"
-        operators:
-          - type: json_parser
+      operators:
+        - type: json_parser
 
 #      tcplog/talos:
 #        tcp:
