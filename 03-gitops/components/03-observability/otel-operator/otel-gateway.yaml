@@ -111,6 +111,7 @@ spec:
 
       awss3:
         s3uploader:
+          endpoint: "http://minio.minio.svc:9000"
           s3_bucket: logs-cold-storage
           region: us-east-1
           s3_partition_format: '%Y/%m/%d/%H'
