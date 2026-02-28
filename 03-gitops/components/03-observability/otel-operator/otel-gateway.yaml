@@ -113,10 +113,10 @@ spec:
         s3uploader:
           s3_bucket: logs-cold-storage
           region: us-east-1
-          s3_prefix: "logs/year={{ .Year }}/month={{ printf \"%02d\" .Month }}/day={{ printf \"%02d\" .Day }}/hour={{ printf \"%02d\" .Hour }}"
-          s3_partition: "minute"
-          encoding: "otlp_json"
-          compression: "gzip"
+          s3_partition_format: '%Y/%m/%d/%H'
+          compression: gzip
+        resource_attrs_to_s3:
+          s3_prefix: service.name
 
     service:
       pipelines:
