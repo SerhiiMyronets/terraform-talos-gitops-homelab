@@ -4,6 +4,18 @@ metadata:
   name: otel-gateway
   namespace: observability
 spec:
+  env:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: minio-access-secret
+          key: accessKey
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: minio-access-secret
+          key: secretKey
+
   mode: deployment
   replicas: 1
   image: otel/opentelemetry-collector-contrib:latest
