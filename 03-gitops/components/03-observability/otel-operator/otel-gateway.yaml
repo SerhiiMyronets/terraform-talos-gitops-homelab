@@ -11,6 +11,11 @@ spec:
   config:
     receivers:
 
+      tcplog/talos:
+        listen_address: "0.0.0.0:2000"
+        operators:
+          - type: json_parser
+
 #      tcplog/talos:
 #        tcp:
 #          listen_address: "0.0.0.0:6050"  # або інший порт, якщо змінив
@@ -107,10 +112,10 @@ spec:
 #          processors: [batch]
 #          exporters: [prometheusremotewrite, debug]
 
-#        logs/talos:
-#          receivers: [ tcplog/talos ]
-#          processors: [ batch ]
-#          exporters: [ otlp_http/loki, debug ]  # або твій бекенд
+        logs/talos:
+          receivers: [ tcplog/talos ]
+          processors: [ batch ]
+          exporters: [ otlp_http/loki, debug ]  # або твій бекенд
 
         logs/cluster_events:
           receivers: [k8s_events]
