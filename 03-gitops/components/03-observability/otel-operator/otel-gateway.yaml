@@ -68,25 +68,25 @@ spec:
           - context: log
             statements:
               # 1. Set default severity for all events first
-              - set(severity_number, 9)
-              - set(severity_text, "INFO")
+              - set(log.severity_number, 9)
+              - set(log.severity_text, "INFO")
 
               # 2. Upgrade severity for specific error conditions
-              - set(severity_number, 17) where attributes["k8s.event.reason"] == "OOMKilling"
-              - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "OOMKilling"
+              - set(log.severity_number, 17) where attributes["k8s.event.reason"] == "OOMKilling"
+              - set(log.severity_text, "ERROR") where attributes["k8s.event.reason"] == "OOMKilling"
 
-              - set(severity_number, 17) where attributes["k8s.event.reason"] == "FailedScheduling"
-              - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "FailedScheduling"
+              - set(log.severity_number, 17) where attributes["k8s.event.reason"] == "FailedScheduling"
+              - set(log.severity_text, "ERROR") where attributes["k8s.event.reason"] == "FailedScheduling"
 
-              - set(severity_number, 17) where attributes["k8s.event.reason"] == "NodeNotReady"
-              - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "NodeNotReady"
+              - set(log.severity_number, 17) where attributes["k8s.event.reason"] == "NodeNotReady"
+              - set(log.severity_text, "ERROR") where attributes["k8s.event.reason"] == "NodeNotReady"
 
               # 3. Handle Warnings
-              - set(severity_number, 13) where attributes["k8s.event.reason"] == "Error"
-              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "Error"
+              - set(log.severity_number, 13) where attributes["k8s.event.reason"] == "Error"
+              - set(log.severity_text, "WARN") where attributes["k8s.event.reason"] == "Error"
 
-              - set(severity_number, 13) where attributes["k8s.event.reason"] == "BackOff"
-              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "BackOff"
+              - set(log.severity_number, 13) where attributes["k8s.event.reason"] == "BackOff"
+              - set(log.severity_text, "WARN") where attributes["k8s.event.reason"] == "BackOff"
 
       filter/events_drop_routine:
         error_mode: ignore
@@ -112,8 +112,9 @@ spec:
       awss3:
         s3uploader:
           endpoint: "http://minio.minio.svc:9000"
-          s3_bucket: logs-cold-storage
           region: us-east-1
+          s3_bucket: logs-cold-storage
+          s3_force_path_style: true
           s3_partition_format: '%Y/%m/%d/%H'
           compression: gzip
         resource_attrs_to_s3:
