@@ -73,8 +73,11 @@ spec:
               - set(severity_text, "ERROR") where attributes["k8s.event.reason"] == "NodeNotReady"
 
               # 3. Handle Warnings
-              - set(severity_number, 13) where attributes["k8s.event.reason"] == "BackOff"
-              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "BackOff"
+              - set(severity_number, 13) where attributes["k8s.event.reason"] == "Error"
+              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "Error"
+
+              - set(severity_number, 13) where attributes["k8s.event.reason"] == "Error"
+              - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "Error"
 
       filter:
         error_mode: ignore
