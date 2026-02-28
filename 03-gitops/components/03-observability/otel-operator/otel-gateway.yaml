@@ -81,6 +81,7 @@ spec:
         logs:
           log_record:
             # Drop routine lifecycle events
+            - 'attributes["k8s.event.reason"] == "Valid"'
             - 'attributes["k8s.event.reason"] == "Scheduled"'
             - 'attributes["k8s.event.reason"] == "Pulled"'
             - 'attributes["k8s.event.reason"] == "Created" and attributes["k8s.object.kind"] == "Pod"'
