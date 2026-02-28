@@ -4,13 +4,6 @@ metadata:
   name: otel-gateway
   namespace: observability
 spec:
-  ports:
-    - name: tcplog-talos
-      port: 6050
-      targetPort: 6050
-      nodePort: 30050 # Займаємо цей порт на всіх вузлах
-      protocol: TCP
-
   mode: deployment
   replicas: 1
   image: otel/opentelemetry-collector-contrib:latest
@@ -82,6 +75,16 @@ spec:
               # 3. Handle Warnings
               - set(severity_number, 13) where attributes["k8s.event.reason"] == "BackOff"
               - set(severity_text, "WARN") where attributes["k8s.event.reason"] == "BackOff"
+
+      filter:
+        error_mode: ignore
+        logs:
+          log_record:
+            # Drop routine lifecycle events
+            - 'attributes["k8s.event.reason"] == "Scheduled"'
+            - 'attributes["k8s.event.reason"] == "Pulled"'
+            - 'attributes["k8s.event.reason"] == "Created" and attributes["k8s.object.kind"] == "Pod"'
+            - 'attributes["k8s.event.reason"] == "Started" and attributes["k8s.object.kind"] == "Pod"'
 
       batch: {}
 
