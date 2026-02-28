@@ -1,0 +1,5 @@
+machine:
+  logging:
+    destinations:
+      - endpoint: "tcp://otel-gateway-collector.observability.svc:6050"
+        format: "json_lines"
