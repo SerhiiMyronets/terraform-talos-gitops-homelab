@@ -81,7 +81,7 @@ daemonSetVolumeMounts:
 
 
 hostVolumes:
-  - name: audit-logsid
+  - name: audit-logs
     hostPath:
       path: /var/log/audit/kube
       type: Directory
