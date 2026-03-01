@@ -6,6 +6,12 @@ tolerations:
 securityContext:
   readOnlyRootFilesystem: true
 
+extraPorts:
+  - port: 12345
+    containerPort: 12345
+    protocol: TCP
+    name: talos
+
 config:
   service:
     log_level: info
@@ -20,6 +26,12 @@ config:
         tag: kube.*
         read_from_head: true
         multiline.parser: cri
+
+      - name: tcp
+        listen: 0.0.0.0
+        port: 12345
+        format: json
+        tag: talos.*
 
     filters:
       - name: kubernetes
@@ -59,3 +71,6 @@ config:
         tls: off
         logs_body_key: log
         logs_body_key_attributes: true
+
+      - name: stdout
+        match: talos.*
