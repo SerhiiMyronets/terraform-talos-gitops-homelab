@@ -1,7 +1,7 @@
 machine:
   logging:
     destinations:
-      - endpoint: "tcp://otel-gateway-collector.observability.svc:6050"
+      - endpoint: "tcp://127.0.0.1:12345/"
         format: "json_lines"
         extraTags:
           service_name: logs
