@@ -78,3 +78,11 @@ daemonSetVolumeMounts:
   - name: audit-logs
     mountPath: /var/log/audit/kube
     readOnly: true
+
+
+hostVolumes:
+  - name: audit-logsid
+    hostPath:
+      path: /var/log/audit/kube
+      type: Directory
+    mountPath: /var/log/audit/kube
