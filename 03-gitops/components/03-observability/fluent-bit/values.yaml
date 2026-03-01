@@ -4,10 +4,6 @@ tolerations:
     effect: NoSchedule
 
 config:
-  service:
-    log_level: info
-    http_listen: 0.0.0.0
-
   pipeline:
     inputs:
       - name: tail
@@ -15,13 +11,6 @@ config:
         path: /var/log/containers/*_kube-system_*.log
         exclude_path: /var/log/containers/*fluent-bit*.log,/var/log/containers/*fluentbit*.log
         tag: kube.*
-        read_from_head: true
-        multiline.parser: cri
-
-      - name: tail
-        alias: k8s-audit-logs
-        path: /var/log/audit/kube/*.log
-        tag: audit.*
         read_from_head: true
         multiline.parser: cri
 
@@ -63,26 +52,3 @@ config:
         tls: off
         logs_body_key: log
         logs_body_key_attributes: true
-
-      - name: stdout
-        alias: stdout
-        match: audit.*
-
-daemonSetVolumes:
-  - name: audit-logs
-    hostPath:
-      path: /var/log/audit/kube
-      type: Directory
-
-daemonSetVolumeMounts:
-  - name: audit-logs
-    mountPath: /var/log/audit/kube
-    readOnly: true
-
-
-hostVolumes:
-  - name: audit-logs
-    hostPath:
-      path: /var/log/audit/kube
-      type: Directory
-    mountPath: /var/log/audit/kube
