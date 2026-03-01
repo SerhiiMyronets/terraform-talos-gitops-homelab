@@ -21,11 +21,12 @@ config:
         read_from_head: true
         multiline.parser: cri
 
-      - name: tcp
-        listen: 0.0.0.0
-        port: 12345
-        format: json
-        tag: talos.*
+      - name: tail
+        alias: k8s-audit-logs
+        path: /var/log/audit/kube/*.log
+        tag: audit.*
+        read_from_head: true
+        multiline.parser: cri
 
     filters:
       - name: kubernetes
@@ -65,3 +66,7 @@ config:
         tls: off
         logs_body_key: log
         logs_body_key_attributes: true
+
+      - name: stdout
+        alias: stdout
+        match: audit.*
