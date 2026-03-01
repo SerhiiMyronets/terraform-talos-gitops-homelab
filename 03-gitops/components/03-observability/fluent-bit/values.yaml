@@ -67,3 +67,14 @@ config:
       - name: stdout
         alias: stdout
         match: audit.*
+
+daemonSetVolumes:
+  - name: audit-logs
+    hostPath:
+      path: /var/log/audit/kube
+      type: Directory
+
+daemonSetVolumeMounts:
+  - name: audit-logs
+    mountPath: /var/log/audit/kube
+    readOnly: true
