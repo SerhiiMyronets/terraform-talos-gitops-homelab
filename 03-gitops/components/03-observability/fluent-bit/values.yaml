@@ -73,4 +73,6 @@ config:
         logs_body_key_attributes: true
 
       - name: stdout
-        match: talos.*
+        Alias: stdout
+        Match: talos.*
+        Format: json_lines
