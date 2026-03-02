@@ -2,7 +2,7 @@ apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMServiceScrape
 metadata:
   name: strimzi-kafka-metrics
-  namespace: kafka
+  namespace: observability
   labels:
     env: sandbox
 spec:
