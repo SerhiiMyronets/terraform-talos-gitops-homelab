@@ -4,6 +4,8 @@ metadata:
   name: kafka-test-apps-producer
   labels:
     strimzi.io/cluster: my-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   authentication:
     type: tls
@@ -22,6 +24,8 @@ metadata:
   name: kafka-test-apps-consumer
   labels:
     strimzi.io/cluster: my-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   authentication:
     type: tls
@@ -44,6 +48,8 @@ metadata:
   name: kafka-test-apps
   labels:
     strimzi.io/cluster: my-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   partitions: 3
   replicas: 3
@@ -59,6 +65,8 @@ metadata:
   labels:
     app: kafka-producer
   name: kafka-producer
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   replicas: 1
   selector:
@@ -112,6 +120,8 @@ metadata:
   labels:
     app: kafka-consumer
   name: kafka-consumer
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   replicas: 1
   selector:

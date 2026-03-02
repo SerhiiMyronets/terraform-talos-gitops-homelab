@@ -2,6 +2,8 @@ apiVersion: kafka.strimzi.io/v1
 kind: Kafka
 metadata:
   name: my-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   kafka:
     listeners:
@@ -75,8 +77,10 @@ metadata:
   labels:
     strimzi.io/cluster: my-cluster
   annotations:
+    argocd.argoproj.io/sync-wave: "0"
     strimzi.io/next-node-ids: "[0-99]"
     strimzi.io/remove-node-ids: "[99-0]"
+
 spec:
   roles:
     - controller
@@ -103,6 +107,7 @@ metadata:
   labels:
     strimzi.io/cluster: my-cluster
   annotations:
+    argocd.argoproj.io/sync-wave: "0"
     strimzi.io/next-node-ids: "[100-199]"
     strimzi.io/remove-node-ids: "[199-100]"
 spec:

@@ -5,6 +5,7 @@ metadata:
   labels:
     strimzi.io/cluster: my-cluster
   annotations:
+    argocd.argoproj.io/sync-wave: "10"
     strimzi.io/rebalance-auto-approval: "true"
 spec:
   skipHardGoalCheck: true
