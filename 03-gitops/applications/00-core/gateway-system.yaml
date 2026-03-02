@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: gateway-system
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: core
   source:
