@@ -2,7 +2,7 @@ apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMServiceScrape
 metadata:
   name: strimzi-kafka-metrics
-  namespace: observability
+  namespace: kafka
   labels:
     env: sandbox
 spec:
@@ -12,7 +12,8 @@ spec:
   selector:
     matchLabels:
       strimzi.io/kind: Kafka
-  endpoints:
+      strimzi.io/cluster: my-cluster
+  podMetricsEndpoints:
     - port: tcp-prometheus
       path: /metrics
       interval: 30s
