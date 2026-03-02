@@ -13,7 +13,7 @@ spec:
           type: tls
       - name: external
         port: 9094
-        type: nodeport
+        type: loadbalancer
         tls: true
         authentication:
           type: tls
