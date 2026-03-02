@@ -19,13 +19,6 @@ spec:
           type: tls
     authorization:
       type: simple
-    storage:
-      type: jbod
-      volumes:
-        - id: 0
-          type: persistent-claim
-          size: 100Gi
-          deleteClaim: true
     config:
       auto.create.topics.enable: "false"
       offsets.topic.replication.factor: 3
@@ -95,13 +88,13 @@ spec:
     limits:
       memory: 2Gi
       cpu: "1"
-#  storage:
-#    type: jbod
-#    volumes:
-#      - id: 0
-#        type: persistent-claim
-#        size: 100Gi
-#        deleteClaim: true
+  storage:
+    type: jbod
+    volumes:
+      - id: 0
+        type: persistent-claim
+        size: 100Gi
+        deleteClaim: true
 ---
 apiVersion: kafka.strimzi.io/v1
 kind: KafkaNodePool
@@ -123,13 +116,13 @@ spec:
     limits:
       memory: 2Gi
       cpu: "1"
-#  storage:
-#    type: jbod
-#    volumes:
-#      - id: 0
-#        type: persistent-claim
-#        size: 100Gi
-#        deleteClaim: true
+  storage:
+    type: jbod
+    volumes:
+      - id: 0
+        type: persistent-claim
+        size: 100Gi
+        deleteClaim: true
 
 ---
 kind: ConfigMap
