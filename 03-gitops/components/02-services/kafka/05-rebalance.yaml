@@ -1,0 +1,18 @@
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaRebalance
+metadata:
+  name: my-rebalance
+  labels:
+    strimzi.io/cluster: my-cluster
+  annotations:
+    strimzi.io/rebalance-auto-approval: "true"
+spec:
+  skipHardGoalCheck: true
+  goals:
+    - LeaderReplicaDistributionGoal
+    - LeaderBytesInDistributionGoal
+    - DiskUsageDistributionGoal
+    - CpuUsageDistributionGoal
+    - ReplicaDistributionGoal
+    - NetworkInboundUsageDistributionGoal
+    - NetworkOutboundUsageDistributionGoal
