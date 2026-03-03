@@ -82,7 +82,7 @@ metadata:
 spec:
   roles:
     - controller
-  replicas: 1
+  replicas: 3
   resources:
     requests:
       memory: 2Gi
