@@ -1,0 +1,13 @@
+auth:
+  database: kafka-streaming
+  username: user
+  existingSecret: postgresql-secret
+  secretKeys:
+    adminPasswordKey: ROOT_PASSWORD
+    userPasswordKey: DB_PASSWORD
+
+primary:
+  persistence:
+    enabled: true
+    size: 8Gi
+    storageClass: local-nvme
