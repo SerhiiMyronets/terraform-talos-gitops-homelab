@@ -90,7 +90,7 @@ spec:
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9093
             - name: TOPIC
-              value: kafka-test-apps
+              value: sensor-data
             - name: PRODUCE_INTERVAL
               value: "5"
           volumeMounts:
