@@ -37,6 +37,10 @@ dashboards:
       gnetId: 24626
       revision: latest
       datasource: VictoriaMetrics
+    kubernetes-dashboard:
+      gnetId: 15661
+      revision: latest
+      datasource: VictoriaMetrics
 
 dashboardProviders:
   dashboardproviders.yaml:
