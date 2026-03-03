@@ -102,7 +102,7 @@ spec:
                 secretKeyRef:
                   name: kafka-test-apps-producer
                   key: user.key
-            - name: BOOTSTRAP_SERVERS
+            - name: KAFKA_BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9093
             - name: TOPIC
               value: kafka-test-apps
