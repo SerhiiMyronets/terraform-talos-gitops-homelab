@@ -1,0 +1,10 @@
+[Unit]
+Description=Set CPU governor to powersave
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cpupower frequency-set -g powersave
+
+[Install]
+WantedBy=multi-user.target
