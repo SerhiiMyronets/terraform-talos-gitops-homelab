@@ -263,6 +263,9 @@ data:
       - pattern: "kafka.server<type=broker-metadata-metrics><>(.+):"
         name: kafka_server_brokermetadatametrics_$1
         type: GAUGE
+      # Catch all remaining metrics
+      - pattern: "kafka.*"
+      - pattern: "java.lang<.*>"
   cruise-control-metrics.yaml: |
     # See https://github.com/prometheus/jmx_exporter for more info about JMX Prometheus Exporter metrics
     lowercaseOutputName: true
