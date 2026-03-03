@@ -87,29 +87,26 @@ spec:
             seccompProfile:
               type: RuntimeDefault
           env:
-            - name: CA_CRT
-              valueFrom:
-                secretKeyRef:
-                  name: my-cluster-cluster-ca-cert
-                  key: ca.crt
-            - name: USER_CRT
-              valueFrom:
-                secretKeyRef:
-                  name: kafka-test-apps-producer
-                  key: user.crt
-            - name: USER_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: kafka-test-apps-producer
-                  key: user.key
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9093
             - name: TOPIC
               value: kafka-test-apps
-            - name: TIMER
-              value: "1000"
-            - name: NUMBER_OF_KEYS
-              value: "12"
+            - name: PRODUCE_INTERVAL
+              value: "5"
+          volumeMounts:
+            - name: cluster-ca
+              mountPath: /etc/kafka/ca
+              readOnly: true
+            - name: user-tls
+              mountPath: /etc/kafka/user
+              readOnly: true
+      volumes:
+        - name: cluster-ca
+          secret:
+            secretName: my-cluster-cluster-ca-cert
+        - name: user-tls
+          secret:
+            secretName: kafka-test-apps-producer
 ---
 apiVersion: apps/v1
 kind: Deployment
