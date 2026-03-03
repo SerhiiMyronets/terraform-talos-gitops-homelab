@@ -38,6 +38,10 @@ spec:
         configMapKeyRef:
           name: kafka-metrics
           key: kafka-metrics.yaml
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
+  kafkaExporter: {}
   cruiseControl:
     autoRebalance:
       - mode: add-brokers

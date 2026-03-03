@@ -1,0 +1,40 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMNodeScrape
+metadata:
+  name: kubelet-cadvisor
+  namespace: observability
+  labels:
+    env: sandbox  # щоб твій VMAgent його підхопив (бо serviceScrapeSelector: matchLabels env: sandbox)
+spec:
+  scheme: https
+  tlsConfig:
+    insecureSkipVerify: true  # для тесту; пізніше можеш додати caFile
+  bearerTokenFile: "/var/run/secrets/kubernetes.io/serviceaccount/token"  # VMAgent повинен мати SA з правами
+  path: /metrics/cadvisor
+  interval: 30s
+  honorLabels: true
+  relabelConfigs:
+    - action: labelmap
+      regex: __meta_kubernetes_node_label_(.+)
+    - sourceLabels: [__address__]
+      targetLabel: instance
+      replacement: $1  # або __meta_kubernetes_node_name для кращого лейблу
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMNodeScrape
+metadata:
+  name: kubelet-metrics
+  namespace: observability
+  labels:
+    env: sandbox
+spec:
+  scheme: https
+  tlsConfig:
+    insecureSkipVerify: true
+  bearerTokenFile: "/var/run/secrets/kubernetes.io/serviceaccount/token"
+  path: /metrics
+  interval: 30s
+  honorLabels: true
+  relabelConfigs:
+    - action: labelmap
+      regex: __meta_kubernetes_node_label_(.+)
