@@ -4,6 +4,8 @@ metadata:
   name: main-agent
   namespace: observability
 spec:
+  serviceScrapeNamespaceSelector: { }
+  podScrapeNamespaceSelector: { }
   extraArgs:
     promscrape.dropOriginalLabels: "false"
   remoteWrite:
