@@ -14,7 +14,7 @@ spec:
     acls:
       - resource:
           type: topic
-          name: kafka-test-apps
+          name: sensor-data
         operations: [ Write, Create, Describe ]
 ---
 apiVersion: kafka.strimzi.io/v1
@@ -33,7 +33,7 @@ spec:
     acls:
       - resource:
           type: topic
-          name: kafka-test-apps
+          name: sensor-data
         operations: [ Read, Describe ]
       - resource:
           type: group
