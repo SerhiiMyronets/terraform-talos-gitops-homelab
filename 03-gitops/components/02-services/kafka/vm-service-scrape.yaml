@@ -5,6 +5,8 @@ metadata:
   namespace: kafka
   labels:
     env: sandbox
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   namespaceSelector:
     matchNames:
