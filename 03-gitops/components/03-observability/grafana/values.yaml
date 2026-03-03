@@ -35,5 +35,5 @@ dashboards:
   default:
     kafka-dashboard:
       gnetId: 24626
-      revision: 1
+      revision: latest
       datasource: VictoriaMetrics
