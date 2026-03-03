@@ -17,6 +17,12 @@ spec:
         tls: true
         authentication:
           type: tls
+      - name: external
+        port: 9094
+        type: nodeport
+        tls: true
+        authentication:
+          type: tls
     authorization:
       type: simple
     config:
@@ -56,7 +62,7 @@ metadata:
 spec:
   roles:
     - controller
-  replicas: 1
+  replicas: 3
   storage:
     type: jbod
     volumes:
