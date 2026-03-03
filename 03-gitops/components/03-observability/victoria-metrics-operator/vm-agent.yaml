@@ -6,6 +6,7 @@ metadata:
 spec:
   serviceScrapeNamespaceSelector: { }
   podScrapeNamespaceSelector: { }
+  nodeScrapeNamespaceSelector: { }
   extraArgs:
     promscrape.dropOriginalLabels: "false"
   remoteWrite:
