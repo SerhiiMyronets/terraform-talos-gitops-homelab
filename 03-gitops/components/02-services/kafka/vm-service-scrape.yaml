@@ -2,7 +2,7 @@ apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMPodScrape
 metadata:
   name: strimzi-kafka-metrics
-  namespace: kafka
+  namespace: observability
   annotations:
     argocd.argoproj.io/sync-wave: "20"
 spec:
