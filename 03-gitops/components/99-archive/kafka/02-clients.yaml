@@ -44,7 +44,7 @@ spec:
 apiVersion: kafka.strimzi.io/v1
 kind: KafkaTopic
 metadata:
-  name: sensor-data
+  name: kafka-test-apps
   labels:
     strimzi.io/cluster: my-cluster
   annotations:
@@ -77,7 +77,7 @@ spec:
     spec:
       containers:
         - name: kafka-producer
-          image: ghcr.io/serhiimyronets/producer:latest
+          image: ghcr.io/scholzj/strimzi-apache-kafka-on-kubernetes-producer:latest
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -159,6 +159,6 @@ spec:
             - name: BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9093
             - name: TOPIC
-              value: sensor-data
+              value: kafka-test-apps
             - name: GROUP_ID
               value: my-kafka-consumer
