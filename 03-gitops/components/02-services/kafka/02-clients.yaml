@@ -48,7 +48,7 @@ metadata:
   labels:
     strimzi.io/cluster: my-cluster
   annotations:
-    argocd.argoproj.io/sync-wave: "10"
+    argocd.argoproj.io/sync-wave: "9"
 spec:
   partitions: 3
   replicas: 3
