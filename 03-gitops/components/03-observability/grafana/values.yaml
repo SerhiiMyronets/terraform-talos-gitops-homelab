@@ -26,3 +26,7 @@ sidecar:
   datasources:
     enabled: true
     label: grafana_datasource
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    searchNamespace: ALL
