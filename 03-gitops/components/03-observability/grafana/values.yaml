@@ -30,3 +30,10 @@ sidecar:
     enabled: true
     label: grafana_dashboard
     searchNamespace: ALL
+
+dashboards:
+  default:
+    kafka-dashboard:
+      gnetId: 24626
+      revision: 1
+      datasource: VictoriaMetrics
