@@ -33,14 +33,14 @@ sidecar:
 
 dashboards:
   default:
-#    kafka-dashboard:
-#      gnetId: 24626
-#      revision: latest
-#      datasource: VictoriaMetrics
-    kubernetes-dashboard:
-      gnetId: 15661
-      revision: 2
+    kafka-dashboard:
+      gnetId: 24626
+      revision: latest
       datasource: VictoriaMetrics
+#    kubernetes-dashboard:
+#      gnetId: 15661
+#      revision: 2
+#      datasource: VictoriaMetrics
 
 dashboardProviders:
   dashboardproviders.yaml:
