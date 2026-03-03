@@ -99,6 +99,8 @@ metadata:
   name: kafka-metrics
   labels:
     app: strimzi
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   kafka-metrics.yaml: |
     # See https://github.com/prometheus/jmx_exporter for more info about JMX Prometheus Exporter metrics
