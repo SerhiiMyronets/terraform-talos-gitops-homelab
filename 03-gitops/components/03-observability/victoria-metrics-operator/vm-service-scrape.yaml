@@ -3,8 +3,6 @@ kind: VMServiceScrape
 metadata:
   name: node-exporter
   namespace: observability
-  labels:
-    env: sandbox
 spec:
   selector:
     matchLabels:
@@ -18,8 +16,6 @@ kind: VMServiceScrape
 metadata:
   name: kube-state-metrics
   namespace: observability
-  labels:
-    env: sandbox
 spec:
   selector:
     matchLabels:
@@ -33,8 +29,6 @@ kind: VMServiceScrape
 metadata:
   name: argocd-metrics
   namespace: observability
-  labels:
-    env: sandbox
 spec:
   namespaceSelector:
     matchNames:

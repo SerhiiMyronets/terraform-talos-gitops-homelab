@@ -4,13 +4,10 @@ metadata:
   name: main-agent
   namespace: observability
 spec:
-  serviceScrapeNamespaceSelector: { }
-  podScrapeNamespaceSelector: { }
-  nodeScrapeNamespaceSelector: { }
+  serviceScrapeSelector: { }
+  podScrapeSelector: { }
+  nodeScrapeSelector: { }
   extraArgs:
     promscrape.dropOriginalLabels: "false"
   remoteWrite:
     - url: "http://victoria-metrics-server.observability.svc:8428/api/v1/write"
-  serviceScrapeSelector:
-    matchLabels:
-      env: sandbox
