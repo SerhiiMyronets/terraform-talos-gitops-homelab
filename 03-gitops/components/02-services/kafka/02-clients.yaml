@@ -16,7 +16,6 @@ spec:
           type: topic
           name: kafka-test-apps
         operations: [ Write, Create, Describe ]
-
 ---
 apiVersion: kafka.strimzi.io/v1
 kind: KafkaUser
@@ -57,7 +56,6 @@ spec:
     retention.bytes: 1073741824
     retention.ms: 86400000
     segment.bytes: 1073741824
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -112,7 +110,6 @@ spec:
               value: "1000"
             - name: NUMBER_OF_KEYS
               value: "12"
-
 ---
 apiVersion: apps/v1
 kind: Deployment

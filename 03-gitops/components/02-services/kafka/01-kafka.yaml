@@ -32,31 +32,6 @@ spec:
         configMapKeyRef:
           name: kafka-metrics
           key: kafka-metrics.yaml
-  entityOperator:
-    topicOperator:
-      resources:
-        requests:
-          memory: 256Mi
-          cpu: "0.2"
-        limits:
-          memory: 256Mi
-          cpu: "0.5"
-    userOperator:
-      resources:
-        requests:
-          memory: 512Mi
-          cpu: "0.2"
-        limits:
-          memory: 512Mi
-          cpu: "0.5"
-  kafkaExporter:
-    resources:
-      requests:
-        memory: 256Mi
-        cpu: "0.1"
-      limits:
-        memory: 256Mi
-        cpu: "0.5"
   cruiseControl:
     autoRebalance:
       - mode: add-brokers
@@ -78,18 +53,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
     strimzi.io/next-node-ids: "[0-99]"
     strimzi.io/remove-node-ids: "[99-0]"
-
 spec:
   roles:
     - controller
-  replicas: 3
-  resources:
-    requests:
-      memory: 2Gi
-      cpu: 500m
-    limits:
-      memory: 2Gi
-      cpu: "1"
+  replicas: 1
   storage:
     type: jbod
     volumes:
@@ -112,13 +79,6 @@ spec:
   roles:
     - broker
   replicas: 3
-  resources:
-    requests:
-      memory: 2Gi
-      cpu: 500m
-    limits:
-      memory: 2Gi
-      cpu: "1"
   storage:
     type: jbod
     volumes:
@@ -126,7 +86,6 @@ spec:
         type: persistent-claim
         size: 100Gi
         deleteClaim: true
-
 ---
 kind: ConfigMap
 apiVersion: v1
