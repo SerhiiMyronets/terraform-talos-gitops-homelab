@@ -159,3 +159,27 @@ spec:
       port: 3000
       targetPort: 3000
   type: ClusterIP
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: kafka-dashboard-route
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: main-gateway
+      namespace: gateway-system
+  hostnames:
+    - kafka-dashboard.serhii.link
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - group: ''
+          kind: Service
+          name: kafka-dashboard-service
+          port: 3000
+          weight: 1
