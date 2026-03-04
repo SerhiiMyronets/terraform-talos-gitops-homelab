@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-producer
+  name: kafka-producer
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+        - name: kafka-producer
+          image: ghcr.io/serhiimyronets/producer:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+          env:
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: my-cluster-kafka-bootstrap:9093
+            - name: TOPIC
+              value: sensor-data
+            - name: PRODUCE_INTERVAL
+              value: "0.1"
+          volumeMounts:
+            - name: cluster-ca
+              mountPath: /etc/kafka/ca
+              readOnly: true
+            - name: user-tls
+              mountPath: /etc/kafka/user
+              readOnly: true
+      volumes:
+        - name: cluster-ca
+          secret:
+            secretName: my-cluster-cluster-ca-cert
+        - name: user-tls
+          secret:
+            secretName: kafka-test-apps-producer
