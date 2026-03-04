@@ -92,7 +92,7 @@ spec:
             - name: TOPIC
               value: sensor-data
             - name: PRODUCE_INTERVAL
-              value: "0.01"
+              value: "0.05"
           volumeMounts:
             - name: cluster-ca
               mountPath: /etc/kafka/ca
