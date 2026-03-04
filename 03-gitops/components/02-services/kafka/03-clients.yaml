@@ -100,3 +100,62 @@ spec:
         - name: user-tls
           secret:
             secretName: kafka-test-apps-consumer
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka-consumer-service
+spec:
+  selector:
+    app: kafka-consumer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-dashboard
+  name: kafka-dashboard
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-dashboard
+  template:
+    metadata:
+      labels:
+        app: kafka-dashboard
+    spec:
+      containers:
+        - name: kafka-dashboard
+          image: ghcr.io/serhiimyronets/dashboard:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+          env:
+            - name: API_BASE_URL
+              value: http://kafka-consumer-service:8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka-dashboard-service
+spec:
+  selector:
+    app: kafka-dashboard
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
