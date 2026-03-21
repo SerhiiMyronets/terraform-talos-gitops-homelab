@@ -39,7 +39,6 @@ spec:
           type: group
           name: my-kafka-consumer
         operations: [ Read ]
-
 ---
 apiVersion: kafka.strimzi.io/v1
 kind: KafkaTopic
