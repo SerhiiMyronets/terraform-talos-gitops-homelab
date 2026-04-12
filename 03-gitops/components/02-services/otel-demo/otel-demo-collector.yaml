@@ -37,20 +37,20 @@ spec:
     exporters:
       # Metrics → VictoriaMetrics
       prometheusremotewrite/vm:
-        endpoint: http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write
+        endpoint: http://victoria-metrics-server.observability.svc.cluster.local:8428/api/v1/write
         tls:
           insecure: true
         resource_to_telemetry_conversion:
           enabled: true
 
       # Logs → Loki
-      otlphttp/loki:
+      otlp_http/loki:
         endpoint: http://loki.observability.svc:3100/otlp
         tls:
           insecure: true
 
       # Traces → Tempo
-      otlp/tempo:
+      otlp_grpc/tempo:
         endpoint: tempo.observability.svc.cluster.local:4317
         tls:
           insecure: true
@@ -66,7 +66,7 @@ spec:
         traces:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [otlp/tempo, spanmetrics]
+          exporters: [otlp_grpc/tempo, spanmetrics]
         metrics:
           receivers: [otlp, spanmetrics]
           processors: [memory_limiter, resource, batch]
@@ -74,7 +74,7 @@ spec:
         logs:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [otlphttp/loki]
+          exporters: [otlp_http/loki]
       telemetry:
         metrics:
           level: basic
