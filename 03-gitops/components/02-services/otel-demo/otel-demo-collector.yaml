@@ -35,7 +35,7 @@ spec:
         timeout: 5s
 
     exporters:
-      # Metrics → VictoriaMetrics via Prometheus Remote Write
+      # Metrics → VictoriaMetrics
       prometheusremotewrite/vm:
         endpoint: http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write
         tls:
@@ -43,22 +43,22 @@ spec:
         resource_to_telemetry_conversion:
           enabled: true
 
-      # Logs → Loki via OTLP
+      # Logs → Loki
       otlphttp/loki:
         endpoint: http://loki.observability.svc:3100/otlp
         tls:
           insecure: true
 
-      # Traces → debug for now (replace with Tempo later)
-      debug/traces:
-        verbosity: basic
+      # Traces → Tempo
+      otlp/tempo:
+        endpoint: tempo.observability.svc.cluster.local:4317
+        tls:
+          insecure: true
 
-      # General debug for troubleshooting
       debug:
         verbosity: basic
 
     connectors:
-      # Generate RED metrics from traces (useful even without trace backend)
       spanmetrics: {}
 
     service:
@@ -66,7 +66,7 @@ spec:
         traces:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [debug/traces, spanmetrics]
+          exporters: [otlp/tempo, spanmetrics]
         metrics:
           receivers: [otlp, spanmetrics]
           processors: [memory_limiter, resource, batch]
