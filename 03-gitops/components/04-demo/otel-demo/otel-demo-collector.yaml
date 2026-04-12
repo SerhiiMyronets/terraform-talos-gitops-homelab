@@ -7,7 +7,21 @@ spec:
   image: otel/opentelemetry-collector-contrib:latest
   mode: deployment
   replicas: 1
+  # Mount DD_API_KEY and DD_SITE_PARAMETER from secret
+  envFrom:
+    - secretRef:
+        name: datadog-secret
   config:
+    extensions:
+      health_check: {}
+      datadog/extension:
+        api:
+          site: ${env:DD_SITE_PARAMETER}
+          key: ${env:DD_API_KEY}
+        http:
+          endpoint: "localhost:9875"
+          path: "/metadata"
+
     receivers:
       otlp:
         protocols:
@@ -30,26 +44,29 @@ spec:
           - key: service.instance.id
             from_attribute: k8s.pod.uid
             action: insert
+          - key: deployment.environment.name
+            value: "otel-demo"
+            action: upsert
       batch:
         send_batch_size: 1024
         timeout: 5s
 
     exporters:
-      # Metrics → VictoriaMetrics via Prometheus Remote Write
+      # Metrics → VictoriaMetrics
       prometheusremotewrite/vm:
         endpoint: http://victoria-metrics-victoria-metrics-single-server.observability.svc.cluster.local:8428/api/v1/write
-#        tls:
-#          insecure: true
-#        resource_to_telemetry_conversion:
-#          enabled: true
+        tls:
+          insecure: true
+        resource_to_telemetry_conversion:
+          enabled: true
 
-      # Logs → Loki via OTLP
+      # Logs → Loki
       otlphttp/loki:
         endpoint: http://loki.observability.svc:3100/otlp
         tls:
           insecure: true
 
-      # Traces → debug for now (replace with Tempo later)
+      # Traces → debug (replace with Tempo later)
       debug/traces:
         verbosity: basic
 
@@ -57,24 +74,42 @@ spec:
       debug:
         verbosity: basic
 
+      # Datadog
+      datadog:
+        traces:
+          compute_stats_by_span_kind: true
+          trace_buffer: 500
+        hostname: "otel-demo-collector"
+        api:
+          site: ${env:DD_SITE_PARAMETER}
+          key: ${env:DD_API_KEY}
+        sending_queue:
+          batch:
+            min_size: 10
+            max_size: 100
+            flush_timeout: 10s
+
     connectors:
-      # Generate RED metrics from traces (useful even without trace backend)
       spanmetrics: {}
+      datadog/connector:
+        traces:
+          compute_stats_by_span_kind: true
 
     service:
+      extensions: [health_check, datadog/extension]
       pipelines:
         traces:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [debug/traces, spanmetrics]
+          exporters: [debug/traces, spanmetrics, datadog, datadog/connector]
         metrics:
-          receivers: [otlp, spanmetrics]
+          receivers: [otlp, spanmetrics, datadog/connector]
           processors: [memory_limiter, resource, batch]
-          exporters: [prometheusremotewrite/vm]
+          exporters: [prometheusremotewrite/vm, datadog]
         logs:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [otlphttp/loki]
+          exporters: [otlphttp/loki, datadog]
       telemetry:
         metrics:
           level: basic

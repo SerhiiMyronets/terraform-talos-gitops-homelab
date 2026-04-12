@@ -1,8 +1,8 @@
-kind: "DatadogAgent"
-apiVersion: "datadoghq.com/v2alpha1"
+kind: DatadogAgent
+apiVersion: datadoghq.com/v2alpha1
 metadata:
-  name: "datadog"
-  namespace: "datadog"
+  name: datadog
+  namespace: datadog
 spec:
   global:
     clusterName: "homelab"

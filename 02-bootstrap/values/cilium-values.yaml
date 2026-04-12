@@ -71,7 +71,6 @@ prometheus:
   serviceMonitor:
     enabled: false
   port: 9962
-  # Критично — слухати на всіх інтерфейсах, а не тільки localhost
-  metrics:
-    enabled: true
-    address: "0.0.0.0:9962"
+
+extraArgs:
+  - "--prometheus-serve-addr=:9962"
