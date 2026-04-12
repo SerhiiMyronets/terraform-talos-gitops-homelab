@@ -65,3 +65,13 @@ hubble:
     enabled: true
   ui:
     enabled: true
+
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+  port: 9962
+  # Критично — слухати на всіх інтерфейсах, а не тільки localhost
+  metrics:
+    enabled: true
+    address: "0.0.0.0:9962"

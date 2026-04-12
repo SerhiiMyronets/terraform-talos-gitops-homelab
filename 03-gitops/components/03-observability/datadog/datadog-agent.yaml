@@ -1,0 +1,59 @@
+kind: "DatadogAgent"
+apiVersion: "datadoghq.com/v2alpha1"
+metadata:
+  name: "datadog"
+  namespace: "datadog"
+spec:
+  global:
+    clusterName: "homelab"
+    site: "us5.datadoghq.com"
+    credentials:
+      apiSecret:
+        secretName: "datadog-secret"
+        keyName: "api-key"
+    registry: "registry.datadoghq.com"
+    tags:
+      - "env:prod"
+  features:
+    clusterChecks:
+      enabled: true
+    orchestratorExplorer:
+      enabled: true
+    apm:
+      instrumentation:
+        enabled: true
+        targets:
+          - name: "default-target"
+            ddTraceVersions:
+              java: "1"
+              python: "4"
+              js: "5"
+              php: "1"
+              dotnet: "3"
+              ruby: "2"
+    logCollection:
+      enabled: true
+      containerCollectAll: true
+  override:
+    nodeAgent:
+      volumes:
+        - name: passwd
+          configMap:
+            name: passwd-file
+      containers:
+        agent:
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - name: passwd
+              mountPath: /etc/passwd
+              subPath: passwd
+          env:
+            - name: DD_HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DD_REMOTE_CONFIGURATION_ENABLED
+              value: "false"
+            - name: DD_KUBELET_TLS_VERIFY
+              value: "false"
