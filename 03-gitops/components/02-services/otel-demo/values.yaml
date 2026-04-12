@@ -17,6 +17,8 @@ default:
 
 components:
   load-generator:
+    useDefault:
+      env: true
     env:
       - name: LOCUST_USERS
         value: "3"
