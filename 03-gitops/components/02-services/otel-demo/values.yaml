@@ -19,11 +19,11 @@ components:
   load-generator:
     useDefault:
       env: true
-#    env:
-#      - name: LOCUST_USERS
-#        value: "3"
-#      - name: LOCUST_SPAWN_RATE
-#        value: "1"
+    env:
+      - name: LOCUST_USERS
+        value: "3"
+      - name: LOCUST_SPAWN_RATE
+        value: "1"
 
 opentelemetry-collector:
   enabled: false
