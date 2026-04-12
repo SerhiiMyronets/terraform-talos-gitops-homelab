@@ -1,0 +1,16 @@
+persistence:
+  enabled: true
+  storageClass: local-nvme
+  size: 20Gi
+
+tempo:
+  search:
+    enabled: true
+  otlp:
+    grpc:
+      enabled: true
+    http:
+      enabled: true
+
+  metricsGenerator:
+    enabled: true
