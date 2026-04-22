@@ -28,10 +28,10 @@ Install the following CLI tools on your **local workstation** (not inside Proxmo
 - `kubectl`: Kubernetes control interface
 - `helmfile`: Declarative Helm release management
 - `helm`: Dependency of `helmfile`
+- `talosctl`: Talos Linux management CLI
 
 ### Optional
 
-- `talosctl`: Talos Linux management CLI
 - `cilium`: Cilium CLI for CNI diagnostics
 
 #### Installation (macOS / Ubuntu)
@@ -81,7 +81,7 @@ This will:
 
 ## Proxmox Network Configuration
 
-To isolate the Kubernetes cluster, configure a dedicated bridge (`vmbr1`) with NAT on the Proxmox host. This prevents interference with your home network.
+The Kubernetes cluster VMs connect directly to the main network bridge (`vmbr0`). No NAT or isolated bridge is required — VMs receive IPs on the `10.1.1.0/24` subnet and are reachable from your workstation without any additional routing tricks.
 
 > Replace all instances of `enp3s0` with your actual network interface (check via `ip a` or `ip link`).
 
@@ -95,20 +95,17 @@ iface lo inet loopback
 # main interface
 auto enp3s0
 iface enp3s0 inet static
-    address  192.168.1.100/24
-    gateway  192.168.1.1
+    address  10.1.1.100/24
+    gateway  10.1.1.1
 
-# isolated bridge for cluster
-auto vmbr1
-iface vmbr1 inet static
-    address  192.168.100.1/24
-    bridge-ports none
+# main bridge for cluster VMs
+auto vmbr0
+iface vmbr0 inet static
+    address  10.1.1.100/24
+    gateway  10.1.1.1
+    bridge-ports enp3s0
     bridge-stp off
     bridge-fd 0
-
-    post-up   echo 1 > /proc/sys/net/ipv4/ip_forward
-    post-up   iptables -t nat -A POSTROUTING -s '192.168.100.0/24' -o enp3s0 -j MASQUERADE
-    post-down iptables -t nat -D POSTROUTING -s '192.168.100.0/24' -o enp3s0 -j MASQUERADE
 
 source /etc/network/interfaces.d/*
 ```
@@ -123,17 +120,16 @@ ifreload -a
 
 ## Static Route (Local Machine)
 
-To allow your workstation to reach Talos nodes inside the isolated network, add a static route:
+To allow your workstation to reach Talos nodes on the cluster network, add a static route:
 
 ```bash
-sudo route -n add 192.168.100.0/24 192.168.1.100
+sudo route -n add 10.1.1.0/24 10.1.1.100
 ```
 
-Replace `192.168.1.100` with your Proxmox host's IP address.
+Replace `10.1.1.100` with your Proxmox host's IP address if it differs.
 
 ---
 
 ## Navigation
 
 [← Back to Main project README](../README.md) • [→ Continue to 01-infrastructure](../01-infrastructure/README.md)
-

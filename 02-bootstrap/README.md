@@ -1,22 +1,36 @@
 # 02-bootstrap
 
-This stage installs essential platform components into the Kubernetes cluster using Helmfile.
+This stage installs the core networking and GitOps components into the Kubernetes cluster using Helmfile.
 
 It assumes that the cluster is already initialized and accessible using the generated `kubeconfig` from the previous stage (`01-infrastructure`).
 
 ## Purpose
 
-The components installed in this phase are required for certificate management, ingress routing, GitOps-based application delivery, persistent storage, and cluster metrics.
+The components installed in this phase provide the cluster CNI (Cilium) and the GitOps controller (Argo CD). All subsequent workloads are managed by Argo CD via the `03-gitops` layer.
 
 ## Installed Components
 
-| Name             | Purpose                                        |
-| ---------------- | ---------------------------------------------- |
-| `metrics-server` | Enables resource metrics collection            |
-| `cert-manager`   | Manages TLS certificates via Kubernetes CRDs   |
-| `ingress-nginx`  | Provides ingress routing via NGINX controller  |
-| `argo-cd`        | GitOps controller for managing Kubernetes apps |
-| `longhorn`       | Provides persistent storage for workloads      |
+| Name      | Chart version | Purpose                                        |
+| --------- | ------------- | ---------------------------------------------- |
+| `cilium`  | `1.19.0`      | CNI with kube-proxy replacement and Gateway API |
+| `argo-cd` | `9.4.2`       | GitOps controller for managing Kubernetes apps  |
+
+## Prepare Hook
+
+Before Helmfile applies any Helm releases, it runs a `prepare` hook. This hook performs two steps:
+
+1. **Initial Kubernetes secrets** — applies cluster secrets (e.g. image pull secrets, external-secrets bootstrap credentials) via kustomize so they are available before any chart is installed.
+2. **Argo CD CRDs** — applies the Argo CD Custom Resource Definitions server-side (`--server-side`) before the Argo CD Helm release runs, avoiding CRD size limits that can cause a standard `kubectl apply` to fail.
+
+## Cilium Configuration
+
+Cilium is deployed with the following features enabled:
+
+- **kube-proxy replacement** — Cilium replaces `kube-proxy` entirely using eBPF for service routing.
+- **Gateway API** — Cilium implements the Kubernetes Gateway API with ALPN and `AppProtocol` support for HTTP/2 and gRPC routing.
+- **L2 announcements** — Cilium announces LoadBalancer service IPs on the local L2 network, enabling bare-metal load balancing without an external LB.
+- **Hubble relay + UI** — the Hubble observability plane is enabled with both the relay (gRPC API) and the web UI for network flow visibility.
+- **Prometheus metrics** — Cilium exposes Prometheus metrics on port `9962`.
 
 ## Usage
 
@@ -32,27 +46,33 @@ To apply the bootstrap components:
 helmfile apply
 ```
 
-This command installs all defined charts with their default or overridden configurations.
+This command runs the prepare hook and then installs Cilium and Argo CD with their configured values.
 
-Note: After applying, it may take 1–2 minutes for Longhorn to become fully ready as it initializes its internal components.
+## Readiness Check
 
-You can check the status with:
+After applying, verify that both components are running:
 
 ```bash
-kubectl get deployments -n longhorn-system
+# Check Cilium agent status
+cilium status --wait
+
+# Check Argo CD server deployment
+kubectl get deployments -n argocd
 ```
 
-Example output when ready:
+Example output when Argo CD is ready:
 
 ```
-NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
-csi-attacher               3/3     3            3           2m13s
-csi-provisioner            3/3     3            3           2m12s
-csi-resizer                3/3     3            3           2m12s
-csi-snapshotter            3/3     3            3           2m12s
-longhorn-driver-deployer   1/1     1            1           3m21s
-longhorn-ui                2/2     2            2           3m21s
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
+argocd-applicationset-controller   1/1     1            1           2m
+argocd-dex-server                  1/1     1            1           2m
+argocd-notifications-controller    1/1     1            1           2m
+argocd-redis                       1/1     1            1           2m
+argocd-repo-server                 1/1     1            1           2m
+argocd-server                      1/1     1            1           2m
 ```
+
+Once both checks pass, the cluster is running Cilium CNI and Argo CD is ready to manage GitOps applications.
 
 ## Navigation
 

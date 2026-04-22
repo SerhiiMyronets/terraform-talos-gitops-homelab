@@ -9,92 +9,98 @@ This layer turns your cluster into a fully GitOps-managed platform, enabling rep
 
 Argo CD Applications are bootstrapped in a controlled order to ensure service readiness and interdependency handling. This approach enables reproducible, declarative deployment of all Kubernetes workloads via Git.
 
+All Argo CD Applications target the `homelab` branch as their `targetRevision`.
+
 ## Structure
 
-| Layer         | Path                  | Description                                    |
-| ------------- | --------------------- | ---------------------------------------------- |
-| Applications  | `applications/`       | Argo CD Application definitions (per stage)    |
-| Platform Apps | `apps/01-platform/`   | Argo CD, cert-manager, Cilium, Longhorn        |
-| Monitoring    | `apps/02-monitoring/` | Prometheus, Grafana, Tempo, Loki, Jaeger, etc. |
-| Demo          | `apps/03-demo/`       | OpenTelemetry Demo (`otel-demo`)               |
+The GitOps layer uses a 4-tier App-of-Apps pattern. Each tier has a root Application YAML that manages a set of child Applications, one per component.
 
-## Ingress Access
+| Tier | Root YAML | Components |
+| ---- | --------- | ---------- |
+| `00-core` | `00-core-root.yaml` | argocd, cert-manager, cloudflared, external-secrets, gateway-system, metrics-server, minio, open-ebs |
+| `01-platform` | `01-platform-root.yaml` | postgresql, strimzi-operator |
+| `02-services` | `02-services-root.yaml` | kafka, otel-demo |
+| `03-observability` | `03-observability.yaml` | fluent-bit, grafana, kube-state-metrics, loki, otel-operator, prometheus-node-exporter, tempo, victoria-metrics-operator, victoria-metrics-server |
 
-All Ingress resources created in this stage are configured to work with the NGINX Ingress Controller.
-They receive static IPs from the Cilium LoadBalancer IP pool. By default, services are exposed via `192.168.100.80`.
+### components/ directory
 
-TLS configuration blocks are included in the manifests but commented out. To enable TLS for Ingress resources, uncomment the relevant sections in the Ingress manifests. Then extract the self-signed certificate and add it to your local trust store:
+The `components/` directory contains per-component Argo CD Application definitions and Kustomize configurations. Each subdirectory corresponds to one component and holds the Application manifest plus any Kustomize overlays needed to deploy it.
 
-```bash
-kubectl get secret ingress-tls -n cert-manager -o jsonpath='{.data.tls\.crt}' | base64 -d > local-cluster-root-ca.crt
-```
+#### components/99-archive/
 
-You can then add this certificate to your system trust store:
+`components/99-archive/` contains retired or experimental components that are no longer part of the active stack. These are preserved for reference but not deployed by any active root Application. Archived components include:
 
-* **macOS**: open Keychain Access → drag the file into "System" → set trust to "Always Trust"
-* **Linux**: copy to `/usr/local/share/ca-certificates/` and run `sudo update-ca-certificates`.
+- longhorn
+- jaeger
+- hubble-ui
+- kube-prometheus-stack
+- jenkins
+- harbor
+- sonarqube
+- vault
 
-To access services via domain names, you can:
+## Ingress and Routing
 
-* Update your local `/etc/hosts` file (example below):
+All services in this layer are exposed using the **Cilium Gateway API** via `HTTPRoute` resources. There is no ingress-nginx controller. Cilium handles L7 routing natively through its Gateway API implementation.
 
-```bash
-192.168.100.80  argocd.homelab.local grafana.homelab.local prometheus.homelab.local \
-                alertmanager.homelab.local loki.homelab.local tempo.homelab.local \
-                jaeger.homelab.local longhorn.homelab.local \
-                otel-demo.homelab.local otel-demo-loadgen.homelab.local
-```
+## Secrets Management
 
-* Or configure wildcard DNS entries (e.g., \*.homelab.local) pointing to the Ingress IP.
+Secrets are managed using **External Secrets Operator** integrated with **Infisical** as the secrets backend. The `external-secrets` component in `00-core` installs the operator and configures the `ClusterSecretStore` that references Infisical. Application secrets are then declared as `ExternalSecret` resources that pull values from Infisical at sync time.
 
 ## Usage
 
-> **Pre-requisite**: Ensure Argo CD is already running in your cluster. It was installed via Helm in the previous stage (`02-bootstrap`).
+> **Pre-requisite**: Ensure Argo CD is already running in your cluster. It was installed via Helmfile in the previous stage (`02-bootstrap`).
 
-It is recommended to apply the Argo CD Applications in order, as each layer builds upon the previous one (e.g., monitoring components depend on platform services such as cert-manager and ingress).
+Apply the tiers in order. Each tier builds on the previous one — `01-platform` depends on core infrastructure from `00-core`, `02-services` depends on platform operators, and `03-observability` depends on services being available.
 
 ### Step-by-step deployment
 
 ```bash
-# 1. Apply platform components
-kubectl apply -f applications/01-platform-bootstrap.yaml
+# 1. Apply core infrastructure (Argo CD self-management, cert-manager, external-secrets, gateway, etc.)
+kubectl apply -f applications/00-core-root.yaml
 
-# 2. Apply observability stack
-kubectl apply -f applications/02-monitoring-bootstrap.yaml
+# 2. Apply platform operators (PostgreSQL, Strimzi)
+kubectl apply -f applications/01-platform-root.yaml
 
-# 3. Apply the OpenTelemetry demo
-kubectl apply -f applications/03-otel-demo.yaml
+# 3. Apply services (Kafka, otel-demo)
+kubectl apply -f applications/02-services-root.yaml
+
+# 4. Apply observability stack (Grafana, Loki, Tempo, VictoriaMetrics, etc.)
+kubectl apply -f applications/03-observability.yaml
 ```
 
-### Application breakdown
+### Tier breakdown
 
-* `01-platform-bootstrap.yaml`
+* `00-core-root.yaml` — bootstraps the foundational layer:
+  * Puts Argo CD itself under Argo CD management
+  * Installs cert-manager for TLS certificate management
+  * Deploys cloudflared for external tunnel access
+  * Installs External Secrets Operator with Infisical integration
+  * Configures the Cilium Gateway API gateway (`gateway-system`)
+  * Deploys metrics-server, MinIO, and OpenEBS for storage
 
-  * Adds Cilium to Argo CD management (already pre-installed)
-  * Installs cert-manager with self-signed CA
-  * Deploys Ingress resources for Argo CD and Longhorn UIs
+* `01-platform-root.yaml` — deploys platform-level operators:
+  * PostgreSQL database
+  * Strimzi Kafka operator
 
-* `02-monitoring-bootstrap.yaml`
+* `02-services-root.yaml` — deploys application workloads:
+  * Kafka cluster (managed by Strimzi)
+  * OpenTelemetry Demo (`otel-demo`) — a 21-microservice e-commerce application
 
-  * Installs kube-prometheus-stack, OpenTelemetry Collector, Loki, Tempo, Jaeger, and Hubble
-  * Deploys Ingress resources for Hubble, Jaeger, Alertmanager, Grafana, Prometheus, Loki, and Tempo
+* `03-observability.yaml` — deploys the full observability stack:
+  * Grafana (dashboards and visualization)
+  * Loki (log aggregation)
+  * Tempo (distributed tracing)
+  * VictoriaMetrics operator and server (metrics backend)
+  * OpenTelemetry Operator
+  * Fluent Bit (log forwarding)
+  * kube-state-metrics and prometheus-node-exporter (cluster metrics)
 
-* `03-otel-demo.yaml`
-
-  * Deploys the `otel-demo`, an OpenTelemetry example application representing a 21-microservice online store
-  * Exposes the frontend and load generator via Ingress resources
-
-After applying all stages, you’ll have a fully observable, GitOps-driven cluster with traceable demo workloads ready for exploration.
+After applying all tiers, you'll have a fully observable, GitOps-driven cluster with traceable demo workloads ready for exploration.
 
 ## UI Previews
 
-Below are sample screenshots of key components that become available after deploying this layer. All of them are exposed via Ingress with optional TLS.
-
-### Lens
-
-Cluster workloads and sync events visualized in Lens — a Kubernetes dashboard for developers and operators.
-
-<img src="../assets/lens.png" width="1100"/>
+Below are sample screenshots of key components that become available after deploying this layer.
 
 ### Argo CD
 
@@ -108,24 +114,6 @@ Observability dashboards with real-time service-level metrics and performance da
 
 <img src="../assets/grafana.png" width="1100"/>
 
-### Longhorn
-
-Web UI displaying storage volumes, replicas, and system health status.
-
-<img src="../assets/longhorn.png" width="1100"/>
-
-### Hubble
-
-Cilium-powered service map visualizing real-time network traffic flows.
-
-<img src="../assets/hubble.png" width="1100"/>
-
-### Jaeger
-
-UI for exploring distributed traces captured by the OpenTelemetry instrumentation.
-
-<img src="../assets/jaeger.png" width="1100"/>
-
 ### Tempo
 
 Trace timeline visualization inside Grafana using the Tempo datasource.
@@ -137,12 +125,6 @@ Trace timeline visualization inside Grafana using the Tempo datasource.
 The main frontend page of the otel-demo microservices-based e-commerce application.
 
 <img src="../assets/otel-demo.png" width="1100"/>
-
-### Load Generator
-
-Locust UI that generates synthetic traffic to simulate real user behavior.
-
-<img src="../assets/load-gen.png" width="1100"/>
 
 All components shown above are deployed declaratively and updated automatically via Argo CD.
 
