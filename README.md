@@ -10,31 +10,32 @@ The Kubernetes cluster is composed of multiple control plane and worker nodes pr
 
 ## Architecture
 
-The Kubernetes cluster operates in an isolated subnet (`192.168.100.0/24`) with virtual machines provisioned directly on a Proxmox VE host. A dedicated NAT bridge (`vmbr1`) is used to provide connectivity. Each node is assigned a static IP from this subnet. The control plane nodes are configured in high availability (HA) mode and share a virtual IP (`192.168.100.50`) for the Kubernetes API.
+The Kubernetes cluster operates on the main network subnet (`10.1.1.0/24`) with virtual machines provisioned directly on a Proxmox VE host. The main bridge (`vmbr0`) is used to provide connectivity. Each node is assigned a static IP from this subnet. The control plane node shares a virtual IP (`10.1.1.50`) for the Kubernetes API.
 
 ```
-Proxmox VE (192.168.1.100)
-  └─ vmbr1: 192.168.100.1 (NAT Gateway)
-       ├─ controlplane-1: 192.168.100.60
-       ├─ controlplane-2: 192.168.100.61
-       ├─ worker-1:      192.168.100.70
-       ├─ worker-2:      192.168.100.71
-       └─ cluster VIP:   192.168.100.50 (Kubernetes API)
+Proxmox VE (10.1.1.100)
+  └─ vmbr0: 10.1.1.1 (Gateway)
+       ├─ controlplane-1: 10.1.1.60
+       ├─ worker-1:       10.1.1.70
+       ├─ worker-2:       10.1.1.71
+       ├─ worker-3:       10.1.1.72
+       └─ cluster VIP:    10.1.1.50 (Kubernetes API)
 ```
 
-A static route to `192.168.100.0/24` must be configured on the developer workstation via the Proxmox host.
+A static route to `10.1.1.0/24` must be configured on the developer workstation via the Proxmox host (`10.1.1.100`).
 
 ## Features
 
-* Support for high availability across control-plane nodes
+* 1 control plane node + 3 worker nodes (Talos `v1.12.4`, Kubernetes `1.34.2`)
 * Fully declarative setup (no shell scripts)
 * Talos Linux installed and configured via Terraform
 * Proxmox-native VM provisioning
 * GitOps with Argo CD and Helmfile
-* Cilium CNI with kube-proxy disabled
-* Longhorn for persistent volumes
-* Full observability stack with OpenTelemetry Collector (metrics, logs, traces via Tempo, Loki, Prometheus, Grafana)
-*Demo microservices instrumented for end-to-end tracing and performance metrics collection*
+* Cilium CNI with kube-proxy disabled and Gateway API (HTTPRoute) for ingress
+* OpenEBS for persistent volumes
+* External Secrets with Infisical for secrets management
+* Full observability stack with OpenTelemetry Collector (metrics via VictoriaMetrics, logs via Loki, traces via Tempo, dashboards via Grafana)
+* Demo microservices instrumented for end-to-end tracing and performance metrics collection
 
 ## Directory Structure
 
@@ -42,8 +43,8 @@ A static route to `192.168.100.0/24` must be configured on the developer worksta
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | [`00-prerequisite/`](./00-prerequisite/README.md)     | Environment preparation: hardware requirements, dependencies, Proxmox and networking setup |
 | [`01-infrastructure/`](./01-infrastructure/README.md) | Terraform configurations for Proxmox VM provisioning and Talos injection                   |
-| [`02-bootstrap/`](./02-bootstrap/README.md)           | Installs base components (cert-manager, ingress, Argo CD, Longhorn, etc.) using Helmfile   |
-| [`03-gitops/`](./03-gitops/README.md)                 | Deploys applications via Argo CD, including observability stack and demo workloads         |
+| [`02-bootstrap/`](./02-bootstrap/README.md)           | Bootstraps the cluster with Cilium and Argo CD only using Helmfile                         |
+| [`03-gitops/`](./03-gitops/README.md)                 | Deploys applications via Argo CD using a 4-tier App-of-Apps (`00-core`, `01-platform`, `02-services`, `03-observability`) |
 
 
 ## UI Preview
@@ -53,8 +54,8 @@ Below is a preview of the cluster after deployment. For a complete set of UI scr
 |                    Proxmox                    |                    Argocd                    |
 |:---------------------------------------------:|:--------------------------------------------:|
 | <img src="./assets/proxmox.png" width="400"/> | <img src="./assets/argocd.png" width="400"/> |
-|                   HubbleUI                    |                    Tempo                     |
-| <img src="./assets/hubble.png" width="400"/>  | <img src="./assets/tempo.png" width="400"/>  |
+|                    Grafana                    |                    Tempo                     |
+| <img src="./assets/grafana.png" width="400"/> | <img src="./assets/tempo.png" width="400"/>  |
 
 ## Getting Started
 
