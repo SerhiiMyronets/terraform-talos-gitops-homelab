@@ -11,6 +11,7 @@ spec:
       namespace: gateway-system
   hostnames:
     - minio.serhii.link
+    - minio.home
   rules:
     - matches:
         - path:

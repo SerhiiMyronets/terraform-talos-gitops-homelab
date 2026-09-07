@@ -11,6 +11,7 @@ spec:
       namespace: gateway-system
   hostnames:
     - vm-server.serhii.link
+    - vm-server.home
   rules:
     - matches:
         - path:

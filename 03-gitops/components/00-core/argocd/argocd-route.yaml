@@ -11,6 +11,7 @@ spec:
       namespace: gateway-system
   hostnames:
     - argocd.serhii.link
+    - argocd.home
   rules:
     - matches:
         - path:
