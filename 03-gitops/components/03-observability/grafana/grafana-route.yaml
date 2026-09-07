@@ -11,6 +11,7 @@ spec:
       namespace: gateway-system
   hostnames:
     - grafana.serhii.link
+    - grafana.home
   rules:
     - matches:
         - path:

@@ -8,3 +8,5 @@ vault-init.json
 **-token.yaml
 **-secret.yaml
 .vscode
+.kiro
+.claude
