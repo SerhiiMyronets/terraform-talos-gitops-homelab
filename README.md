@@ -1,62 +1,112 @@
-# Talos Kubernetes Cluster on Proxmox with Terraform
+# Talos Kubernetes homelab on Proxmox
 
-This repository contains infrastructure-as-code configurations for deploying a minimal, production-grade Kubernetes cluster using Talos Linux and Terraform on Proxmox VE. This repository provides a fully declarative, script-free setup: Talos is configured and installed automatically during VM provisioning via Terraform.
+Infrastructure and GitOps configuration for a Talos Linux Kubernetes cluster running on Proxmox VE.
 
-## Overview
+The repository is split into three deployment stages:
 
-This project is designed for enthusiasts, students, or professionals who want to gain hands-on experience with a production-grade GitOps Kubernetes cluster using modest hardware — such as an old laptop or mini PC. It offers a fully automated deployment pipeline without requiring cloud resources or expensive infrastructure.
+```text
+00-prerequisite  →  01-infrastructure  →  02-bootstrap  →  03-gitops
+  host setup          Terraform/Talos       Cilium + Argo CD     workloads
+```
 
-The Kubernetes cluster is composed of multiple control plane and worker nodes provisioned on a Proxmox host using Terraform. Talos Linux is injected and configured automatically as part of the VM provisioning step. The configuration supports high availability (HA) and uses a virtual IP for the control plane endpoint. The deployment includes core platform components (ingress, certificate management, GitOps), observability stack (metrics, logs, traces), and demo microservices applications for testing.
+## What is deployed
+
+- Talos Linux VMs provisioned on Proxmox with Terraform
+- 1 control-plane node and 3 worker nodes by default
+- Cilium as the CNI, with kube-proxy replacement, eBPF, Hubble and Gateway API
+- Argo CD managing the rest of the cluster from the `homelab` branch
+- OpenEBS for worker-node storage
+- External Secrets Operator backed by Infisical
+- Cilium Gateway API (`Gateway`/`HTTPRoute`) for service exposure
+- PostgreSQL and Strimzi-managed Kafka
+- Observability with OpenTelemetry, VictoriaMetrics, Loki, Fluent Bit, Tempo and Grafana
+- OpenTelemetry Demo as an example instrumented workload
+- Cloudflare Tunnel for external access
+
+This is a homelab/learning environment. Resource sizes, credentials, network addresses and enabled workloads are repository-specific and should be reviewed before reuse.
 
 ## Architecture
 
-The Kubernetes cluster operates on the main network subnet (`10.1.1.0/24`) with virtual machines provisioned directly on a Proxmox VE host. The main bridge (`vmbr0`) is used to provide connectivity. Each node is assigned a static IP from this subnet. The control plane node shares a virtual IP (`10.1.1.50`) for the Kubernetes API.
+The default Terraform values use one Proxmox host and the `10.1.1.0/24` node network:
 
+```text
+Proxmox VE
+└── vmbr0
+    ├── control-plane: 10.1.1.60
+    ├── worker-1:      10.1.1.70
+    ├── worker-2:      10.1.1.71
+    ├── worker-3:      10.1.1.72
+    └── Kubernetes API VIP: 10.1.1.50
 ```
-Proxmox VE (10.1.1.100)
-  └─ vmbr0: 10.1.1.1 (Gateway)
-       ├─ controlplane-1: 10.1.1.60
-       ├─ worker-1:       10.1.1.70
-       ├─ worker-2:       10.1.1.71
-       ├─ worker-3:       10.1.1.72
-       └─ cluster VIP:    10.1.1.50 (Kubernetes API)
+
+The exact node count, addresses and VM resources are controlled by [`01-infrastructure/variables.tf`](./01-infrastructure/variables.tf). The default worker profile includes a separate 100 GB disk for OpenEBS.
+
+## Repository layout
+
+| Path | Role |
+| --- | --- |
+| [`00-prerequisite/`](./00-prerequisite/README.md) | Workstation, Proxmox and network preparation |
+| [`01-infrastructure/`](./01-infrastructure/README.md) | Terraform resources, Talos image/config generation and machine patches |
+| [`02-bootstrap/`](./02-bootstrap/README.md) | Helmfile bootstrap for Cilium and Argo CD |
+| [`03-gitops/`](./03-gitops/README.md) | Argo CD Applications, Helm values and Kubernetes resources |
+| [`assets/`](./assets/) | Documentation screenshots |
+
+Inside `03-gitops`, applications are organized into four tiers:
+
+```text
+00-core          Argo CD, cert-manager, Gateway API, secrets, storage, MinIO, metrics-server
+01-platform      PostgreSQL and Strimzi operator
+02-services      Kafka and OpenTelemetry Demo
+03-observability Grafana, Loki, Tempo, VictoriaMetrics, OpenTelemetry and exporters
 ```
 
-A static route to `10.1.1.0/24` must be configured on the developer workstation via the Proxmox host (`10.1.1.100`).
+`03-gitops/components/99-archive/` contains retired or experimental components and is not part of the active Argo CD tree.
 
-## Features
+## Deployment flow
 
-* 1 control plane node + 3 worker nodes (Talos `v1.12.4`, Kubernetes `1.34.2`)
-* Fully declarative setup (no shell scripts)
-* Talos Linux installed and configured via Terraform
-* Proxmox-native VM provisioning
-* GitOps with Argo CD and Helmfile
-* Cilium CNI with kube-proxy disabled and Gateway API (HTTPRoute) for ingress
-* OpenEBS for persistent volumes
-* External Secrets with Infisical for secrets management
-* Full observability stack with OpenTelemetry Collector (metrics via VictoriaMetrics, logs via Loki, traces via Tempo, dashboards via Grafana)
-* Demo microservices instrumented for end-to-end tracing and performance metrics collection
+Follow the stage-specific README files in order:
 
-## Directory Structure
+1. [Prepare the workstation and Proxmox host](./00-prerequisite/README.md).
+2. [Provision Talos VMs with Terraform](./01-infrastructure/README.md).
+3. [Bootstrap Cilium and Argo CD](./02-bootstrap/README.md) with Helmfile.
+4. [Apply the GitOps application tiers](./03-gitops/README.md) through Argo CD.
 
-| Path                                                  | Description                                                                                |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [`00-prerequisite/`](./00-prerequisite/README.md)     | Environment preparation: hardware requirements, dependencies, Proxmox and networking setup |
-| [`01-infrastructure/`](./01-infrastructure/README.md) | Terraform configurations for Proxmox VM provisioning and Talos injection                   |
-| [`02-bootstrap/`](./02-bootstrap/README.md)           | Bootstraps the cluster with Cilium and Argo CD only using Helmfile                         |
-| [`03-gitops/`](./03-gitops/README.md)                 | Deploys applications via Argo CD using a 4-tier App-of-Apps (`00-core`, `01-platform`, `02-services`, `03-observability`) |
+```bash
+# Run from 01-infrastructure
+terraform init
+terraform apply
+terraform output -raw kubeconfig > ~/.kube/config
+terraform output -raw talosconfig > ~/.talos/config
 
+# Then bootstrap
+cd ../02-bootstrap
+helmfile apply
 
-## UI Preview
+# Finally apply the Argo CD application roots
+kubectl apply -f ../03-gitops/applications/00-core-root.yaml
+kubectl apply -f ../03-gitops/applications/01-platform-root.yaml
+kubectl apply -f ../03-gitops/applications/02-services-root.yaml
+kubectl apply -f ../03-gitops/applications/03-observability.yaml
+```
 
-Below is a preview of the cluster after deployment. For a complete set of UI screenshots, see the [03-gitops UI Previews](./03-gitops/README.md#ui-previews).
+Do not commit real Proxmox credentials or bootstrap secrets. Use the example secret template and the configured Infisical integration for runtime secrets.
 
-|                    Proxmox                    |                    Argocd                    |
-|:---------------------------------------------:|:--------------------------------------------:|
+## Access and verification
+
+Internal services are exposed through Cilium Gateway API resources. Active routes live alongside component configuration under `03-gitops/components/`. External access is provided by Cloudflare Tunnel; DNS and tunnel credentials are environment-specific.
+
+```bash
+kubectl get nodes
+cilium status --wait
+kubectl get applications -A
+```
+
+## Screenshots
+
+| Proxmox | Argo CD |
+|:---:|:---:|
 | <img src="./assets/proxmox.png" width="400"/> | <img src="./assets/argocd.png" width="400"/> |
-|                    Grafana                    |                    Tempo                     |
-| <img src="./assets/grafana.png" width="400"/> | <img src="./assets/tempo.png" width="400"/>  |
 
-## Getting Started
-
-To get started, begin with [00-prerequisite](./00-prerequisite/README.md), which walks through system setup, required dependencies, and network configuration.
+| Grafana | Tempo |
+|:---:|:---:|
+| <img src="./assets/grafana.png" width="400"/> | <img src="./assets/tempo.png" width="400"/> |
